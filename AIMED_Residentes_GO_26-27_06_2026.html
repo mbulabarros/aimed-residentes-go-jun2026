@@ -606,7 +606,7 @@ body {
 .btn-open.gpt:hover { border-color: var(--purple); color: var(--purple); }
 
 /* ── BIBLIOTECA ── */
-#biblioteca-overlay, #logistica-overlay, #sobre-overlay, #avaliacao-overlay {
+#biblioteca-overlay, #logistica-overlay, #sobre-overlay, #avaliacao-overlay, #links-overlay {
   position: fixed; inset: 0;
   z-index: 200;
   display: none;
@@ -1034,6 +1034,7 @@ body {
       <button class="overlay-close" onclick="fecharLinks()">✕</button>
     </div>
     <div class="overlay-body">
+
       <div style="margin-bottom:20px">
         <div style="font-size:0.62rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin-bottom:12px">🤖 Ferramentas de IA</div>
         <div style="display:flex;flex-direction:column;gap:8px">
@@ -1043,6 +1044,7 @@ body {
           <a href="https://notebooklm.google.com" target="_blank" style="color:var(--text-dim);text-decoration:none;padding:10px 14px;background:var(--navy-light);border-radius:var(--radius);border:1px solid var(--border-dim);display:flex;justify-content:space-between;align-items:center"><span>NotebookLM</span><span style="font-size:0.72rem;color:var(--text-muted)">notebooklm.google.com ↗</span></a>
         </div>
       </div>
+
       <div style="margin-bottom:20px">
         <div style="font-size:0.62rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin-bottom:12px">🩺 Ginecologia e Obstetrícia</div>
         <div style="display:flex;flex-direction:column;gap:8px">
@@ -1052,6 +1054,7 @@ body {
           <a href="https://pubmed.ncbi.nlm.nih.gov" target="_blank" style="color:var(--text-dim);text-decoration:none;padding:10px 14px;background:var(--navy-light);border-radius:var(--radius);border:1px solid var(--border-dim);display:flex;justify-content:space-between;align-items:center"><span>PubMed</span><span style="font-size:0.72rem;color:var(--text-muted)">pubmed.ncbi.nlm.nih.gov ↗</span></a>
         </div>
       </div>
+
       <div style="margin-bottom:20px">
         <div style="font-size:0.62rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin-bottom:12px">🫁 Pneumologia Pediátrica · Rafaela</div>
         <div style="display:flex;flex-direction:column;gap:8px">
@@ -1060,6 +1063,7 @@ body {
           <a href="https://www.nhlbi.nih.gov" target="_blank" style="color:var(--text-dim);text-decoration:none;padding:10px 14px;background:var(--navy-light);border-radius:var(--radius);border:1px solid var(--border-dim);display:flex;justify-content:space-between;align-items:center"><span>NHLBI / NAEPP (EUA)</span><span style="font-size:0.72rem;color:var(--text-muted)">nhlbi.nih.gov ↗</span></a>
         </div>
       </div>
+
       <div style="margin-bottom:20px">
         <div style="font-size:0.62rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin-bottom:12px">🫀 Gastroenterologia Pediátrica · Luciana</div>
         <div style="display:flex;flex-direction:column;gap:8px">
@@ -1071,12 +1075,14 @@ body {
           <a href="https://pubmed.ncbi.nlm.nih.gov/31221575/" target="_blank" style="color:var(--text-dim);text-decoration:none;padding:10px 14px;background:var(--navy-light);border-radius:var(--radius);border:1px solid var(--border-dim);display:flex;justify-content:space-between;align-items:center"><span>PITCHES Trial · Lancet 2019</span><span style="font-size:0.72rem;color:var(--text-muted)">pubmed ↗</span></a>
         </div>
       </div>
+
       <div>
         <div style="font-size:0.62rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin-bottom:12px">🧬 AIMED · InovaMed</div>
         <div style="display:flex;flex-direction:column;gap:8px">
           <a href="https://inovamed.pro" target="_blank" style="color:var(--text-dim);text-decoration:none;padding:10px 14px;background:var(--navy-light);border-radius:var(--radius);border:1px solid var(--border-dim);display:flex;justify-content:space-between;align-items:center"><span>InovaMed</span><span style="font-size:0.72rem;color:var(--text-muted)">inovamed.pro ↗</span></a>
         </div>
       </div>
+
     </div>
   </div>
 </div>
@@ -1112,7 +1118,7 @@ const GLOSSARIO = {
   "TGO":"Transaminase Glutâmico-Oxalacética (AST) — enzima hepática; elevação ≥2x ULN é critério de gravidade em pré-eclâmpsia",
   "CIH":"Colestase Intra-Hepática da Gestação — doença hepática reversível com prurito + ácidos biliares séricos elevados; risco de morte fetal aumentado quando ácidos biliares ≥40 µmol/L",
   "UDCA":"Ácido Ursodesoxicólico — reduz ácidos biliares séricos e prurito na CIH; 10–15 mg/kg/dia VO em 2–3 tomadas",
-  "PITCHES":"Planned delivery Interval for Trial CHolEStasis in pregnancy — RCT britânico (Lancet 2019) que comparou interrupção eletiva a 36+0 semanas vs manejo expectante em CIH leve (ácidos biliares <100 µmol/L). Resultado: interrupção precoce não reduziu desfechos adversos perinatais vs expectante de forma significativa.",
+  "PITCHES":"Planned delivery Interval for Trial CHolEStasis in pregnancy — RCT britânico (Lancet 2019) que comparou interrupção eletiva a 36+0 semanas vs manejo expectante em CIH leve (ácidos biliares <100 µmol/L). Resultado: interrupção precoce não reduziu desfechos adversos perinatais vs expectante de forma significativa. Questiona a interrupção rotineira a 36 semanas na CIH leve.",
   "GINA":"Global Initiative for Asthma — organização internacional que publica diretrizes anuais para diagnóstico e manejo da asma (ginasthma.org)",
   "SBPT":"Sociedade Brasileira de Pneumologia e Tisiologia — principal referência em pneumologia no Brasil",
   "NAEPP":"National Asthma Education and Prevention Program — programa americano (NHLBI) que publica diretrizes para manejo da asma",
@@ -2656,8 +2662,6 @@ function showLogistica(){document.getElementById('logistica-overlay').classList.
 function fecharLogistica(){document.getElementById('logistica-overlay').classList.remove('open');}
 function abrirSobre(){document.getElementById('sobre-overlay').classList.add('open');}
 function fecharSobre(){document.getElementById('sobre-overlay').classList.remove('open');}
-function showLinks(){document.getElementById('links-overlay').classList.add('open');}
-function fecharLinks(){document.getElementById('links-overlay').classList.remove('open');}
 function showLinks(){document.getElementById('links-overlay').classList.add('open');}
 function fecharLinks(){document.getElementById('links-overlay').classList.remove('open');}
 function setLevel(n){currentLevel=n;[1,2,3].forEach(i=>{document.getElementById('lvl'+i).classList.toggle('active',i===n);});const m=PROGRAMA.flatMap(b=>b.modulos).find(m=>m.id===currentModuleId);if(m&&m.prompts)renderPromptBox(m);}
