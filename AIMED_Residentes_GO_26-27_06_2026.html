@@ -613,7 +613,7 @@ body {
   align-items: flex-start;
   justify-content: flex-end;
 }
-#biblioteca-overlay.open, #logistica-overlay.open, #sobre-overlay.open, #avaliacao-overlay.open { display: flex; }
+#biblioteca-overlay.open, #logistica-overlay.open, #sobre-overlay.open, #avaliacao-overlay.open, #links-overlay.open { display: flex; }
 
 /* ── AVALIAÇÃO · TABS E FORMULÁRIOS ── */
 .eval-tabs { display: flex; gap: 6px; padding: 14px 28px 0; border-bottom: 1px solid var(--border-dim); flex-wrap: wrap; }
@@ -908,6 +908,9 @@ body {
     <button class="sidebar-btn" onclick="showAvaliacao()">
       <span class="sidebar-btn-icon">📊</span> Avaliação · Pesquisa
     </button>
+    <button class="sidebar-btn" onclick="showLinks()">
+      <span class="sidebar-btn-icon">🔗</span> Links Úteis
+    </button>
     <button class="sidebar-btn" onclick="abrirSobre()">
       <span class="sidebar-btn-icon">👤</span> Sobre Dr. Mbula
     </button>
@@ -1019,6 +1022,65 @@ body {
   </div>
 </div>
 
+<!-- LINKS OVERLAY -->
+<div id="links-overlay">
+  <div class="overlay-backdrop" onclick="fecharLinks()"></div>
+  <div class="overlay-panel">
+    <div class="overlay-header">
+      <div>
+        <div class="overlay-title">Links Úteis</div>
+        <div class="overlay-sub">Referências clínicas · IA · Especialidades</div>
+      </div>
+      <button class="overlay-close" onclick="fecharLinks()">✕</button>
+    </div>
+    <div class="overlay-body">
+      <div style="margin-bottom:20px">
+        <div style="font-size:0.62rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin-bottom:12px">🤖 Ferramentas de IA</div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <a href="https://gemini.google.com" target="_blank" style="color:var(--text-dim);text-decoration:none;padding:10px 14px;background:var(--navy-light);border-radius:var(--radius);border:1px solid var(--border-dim);display:flex;justify-content:space-between;align-items:center"><span>Gemini</span><span style="font-size:0.72rem;color:var(--text-muted)">gemini.google.com ↗</span></a>
+          <a href="https://claude.ai" target="_blank" style="color:var(--text-dim);text-decoration:none;padding:10px 14px;background:var(--navy-light);border-radius:var(--radius);border:1px solid var(--border-dim);display:flex;justify-content:space-between;align-items:center"><span>Claude</span><span style="font-size:0.72rem;color:var(--text-muted)">claude.ai ↗</span></a>
+          <a href="https://chatgpt.com" target="_blank" style="color:var(--text-dim);text-decoration:none;padding:10px 14px;background:var(--navy-light);border-radius:var(--radius);border:1px solid var(--border-dim);display:flex;justify-content:space-between;align-items:center"><span>ChatGPT</span><span style="font-size:0.72rem;color:var(--text-muted)">chatgpt.com ↗</span></a>
+          <a href="https://notebooklm.google.com" target="_blank" style="color:var(--text-dim);text-decoration:none;padding:10px 14px;background:var(--navy-light);border-radius:var(--radius);border:1px solid var(--border-dim);display:flex;justify-content:space-between;align-items:center"><span>NotebookLM</span><span style="font-size:0.72rem;color:var(--text-muted)">notebooklm.google.com ↗</span></a>
+        </div>
+      </div>
+      <div style="margin-bottom:20px">
+        <div style="font-size:0.62rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin-bottom:12px">🩺 Ginecologia e Obstetrícia</div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <a href="https://www.febrasgo.org.br" target="_blank" style="color:var(--text-dim);text-decoration:none;padding:10px 14px;background:var(--navy-light);border-radius:var(--radius);border:1px solid var(--border-dim);display:flex;justify-content:space-between;align-items:center"><span>FEBRASGO</span><span style="font-size:0.72rem;color:var(--text-muted)">febrasgo.org.br ↗</span></a>
+          <a href="https://www.acog.org" target="_blank" style="color:var(--text-dim);text-decoration:none;padding:10px 14px;background:var(--navy-light);border-radius:var(--radius);border:1px solid var(--border-dim);display:flex;justify-content:space-between;align-items:center"><span>ACOG</span><span style="font-size:0.72rem;color:var(--text-muted)">acog.org ↗</span></a>
+          <a href="https://www.cochranelibrary.com" target="_blank" style="color:var(--text-dim);text-decoration:none;padding:10px 14px;background:var(--navy-light);border-radius:var(--radius);border:1px solid var(--border-dim);display:flex;justify-content:space-between;align-items:center"><span>Cochrane Library</span><span style="font-size:0.72rem;color:var(--text-muted)">cochranelibrary.com ↗</span></a>
+          <a href="https://pubmed.ncbi.nlm.nih.gov" target="_blank" style="color:var(--text-dim);text-decoration:none;padding:10px 14px;background:var(--navy-light);border-radius:var(--radius);border:1px solid var(--border-dim);display:flex;justify-content:space-between;align-items:center"><span>PubMed</span><span style="font-size:0.72rem;color:var(--text-muted)">pubmed.ncbi.nlm.nih.gov ↗</span></a>
+        </div>
+      </div>
+      <div style="margin-bottom:20px">
+        <div style="font-size:0.62rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin-bottom:12px">🫁 Pneumologia Pediátrica · Rafaela</div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <a href="https://ginasthma.org" target="_blank" style="color:var(--text-dim);text-decoration:none;padding:10px 14px;background:var(--navy-light);border-radius:var(--radius);border:1px solid var(--border-dim);display:flex;justify-content:space-between;align-items:center"><span>GINA — Global Initiative for Asthma</span><span style="font-size:0.72rem;color:var(--text-muted)">ginasthma.org ↗</span></a>
+          <a href="https://www.sbpt.org.br" target="_blank" style="color:var(--text-dim);text-decoration:none;padding:10px 14px;background:var(--navy-light);border-radius:var(--radius);border:1px solid var(--border-dim);display:flex;justify-content:space-between;align-items:center"><span>SBPT — Soc. Brasileira de Pneumologia</span><span style="font-size:0.72rem;color:var(--text-muted)">sbpt.org.br ↗</span></a>
+          <a href="https://www.nhlbi.nih.gov" target="_blank" style="color:var(--text-dim);text-decoration:none;padding:10px 14px;background:var(--navy-light);border-radius:var(--radius);border:1px solid var(--border-dim);display:flex;justify-content:space-between;align-items:center"><span>NHLBI / NAEPP (EUA)</span><span style="font-size:0.72rem;color:var(--text-muted)">nhlbi.nih.gov ↗</span></a>
+        </div>
+      </div>
+      <div style="margin-bottom:20px">
+        <div style="font-size:0.62rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin-bottom:12px">🫀 Gastroenterologia Pediátrica · Luciana</div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <a href="https://easl.eu" target="_blank" style="color:var(--text-dim);text-decoration:none;padding:10px 14px;background:var(--navy-light);border-radius:var(--radius);border:1px solid var(--border-dim);display:flex;justify-content:space-between;align-items:center"><span>EASL — European Liver Guidelines</span><span style="font-size:0.72rem;color:var(--text-muted)">easl.eu ↗</span></a>
+          <a href="https://www.aasld.org" target="_blank" style="color:var(--text-dim);text-decoration:none;padding:10px 14px;background:var(--navy-light);border-radius:var(--radius);border:1px solid var(--border-dim);display:flex;justify-content:space-between;align-items:center"><span>AASLD — American Liver Association</span><span style="font-size:0.72rem;color:var(--text-muted)">aasld.org ↗</span></a>
+          <a href="https://www.espghan.org" target="_blank" style="color:var(--text-dim);text-decoration:none;padding:10px 14px;background:var(--navy-light);border-radius:var(--radius);border:1px solid var(--border-dim);display:flex;justify-content:space-between;align-items:center"><span>ESPGHAN — Pediatric Gastro Europe</span><span style="font-size:0.72rem;color:var(--text-muted)">espghan.org ↗</span></a>
+          <a href="https://www.sbhepatologia.org.br" target="_blank" style="color:var(--text-dim);text-decoration:none;padding:10px 14px;background:var(--navy-light);border-radius:var(--radius);border:1px solid var(--border-dim);display:flex;justify-content:space-between;align-items:center"><span>SBH — Soc. Brasileira de Hepatologia</span><span style="font-size:0.72rem;color:var(--text-muted)">sbhepatologia.org.br ↗</span></a>
+          <a href="https://www.icpsupport.org" target="_blank" style="color:var(--text-dim);text-decoration:none;padding:10px 14px;background:var(--navy-light);border-radius:var(--radius);border:1px solid var(--border-dim);display:flex;justify-content:space-between;align-items:center"><span>ICP Support — Colestase Gestacional</span><span style="font-size:0.72rem;color:var(--text-muted)">icpsupport.org ↗</span></a>
+          <a href="https://pubmed.ncbi.nlm.nih.gov/31221575/" target="_blank" style="color:var(--text-dim);text-decoration:none;padding:10px 14px;background:var(--navy-light);border-radius:var(--radius);border:1px solid var(--border-dim);display:flex;justify-content:space-between;align-items:center"><span>PITCHES Trial · Lancet 2019</span><span style="font-size:0.72rem;color:var(--text-muted)">pubmed ↗</span></a>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:0.62rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin-bottom:12px">🧬 AIMED · InovaMed</div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <a href="https://inovamed.pro" target="_blank" style="color:var(--text-dim);text-decoration:none;padding:10px 14px;background:var(--navy-light);border-radius:var(--radius);border:1px solid var(--border-dim);display:flex;justify-content:space-between;align-items:center"><span>InovaMed</span><span style="font-size:0.72rem;color:var(--text-muted)">inovamed.pro ↗</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- TOAST -->
 <div id="toast"></div>
 
@@ -1047,7 +1109,18 @@ const GLOSSARIO = {
   "TP":"Trabalho de Parto — processo fisiológico de expulsão fetal; fases: latente (até 4-6cm) e ativa (>6cm)",
   "NotebookLM":"Ferramenta gratuita do Google para criação de base de conhecimento consultável por IA; usada no curso para Memória Clínica MDV",
   "SES-SC":"Secretaria de Estado da Saúde de Santa Catarina",
-  "TGO":"Transaminase Glutâmico-Oxalacética (AST) — enzima hepática; elevação ≥2x ULN é critério de gravidade em pré-eclâmpsia"
+  "TGO":"Transaminase Glutâmico-Oxalacética (AST) — enzima hepática; elevação ≥2x ULN é critério de gravidade em pré-eclâmpsia",
+  "CIH":"Colestase Intra-Hepática da Gestação — doença hepática reversível com prurito + ácidos biliares séricos elevados; risco de morte fetal aumentado quando ácidos biliares ≥40 µmol/L",
+  "UDCA":"Ácido Ursodesoxicólico — reduz ácidos biliares séricos e prurito na CIH; 10–15 mg/kg/dia VO em 2–3 tomadas",
+  "PITCHES":"Planned delivery Interval for Trial CHolEStasis in pregnancy — RCT britânico (Lancet 2019) que comparou interrupção eletiva a 36+0 semanas vs manejo expectante em CIH leve (ácidos biliares <100 µmol/L). Resultado: interrupção precoce não reduziu desfechos adversos perinatais vs expectante de forma significativa.",
+  "GINA":"Global Initiative for Asthma — organização internacional que publica diretrizes anuais para diagnóstico e manejo da asma (ginasthma.org)",
+  "SBPT":"Sociedade Brasileira de Pneumologia e Tisiologia — principal referência em pneumologia no Brasil",
+  "NAEPP":"National Asthma Education and Prevention Program — programa americano (NHLBI) que publica diretrizes para manejo da asma",
+  "EASL":"European Association for the Study of the Liver — publica guidelines europeias de hepatologia, incluindo CIH (easl.eu)",
+  "AASLD":"American Association for the Study of Liver Diseases — principal referência americana em hepatologia",
+  "ESPGHAN":"European Society for Paediatric Gastroenterology, Hepatology and Nutrition — referência em gastroenterologia pediátrica europeia",
+  "FEP":"Fluxo Expiratório de Pico (Peak Expiratory Flow/PEF) — débito máximo na expiração forçada; <50% do predito = crise grave; 50–70% = moderada; >70% após tratamento = alta segura",
+  "VEF₁":"Volume Expiratório Forçado no 1º segundo — parâmetro espirométrico; <70% do predito = obstrução significativa de vias aéreas"
 };
 
 // ── CURRENT STATE ──
@@ -1065,8 +1138,8 @@ const PROGRAMA = [
       avatar:'JzVWWNMtCbo',
       conteudo:`<div class="quote-hero"><div class="quote-mark">"</div><div class="quote-text"><strong>Uma residente com IA bem treinada supera um especialista sem ela.</strong><br>Este é o dia que muda a sua prática clínica na MDV.</div></div>
 <h3>Por que esta turma é diferente</h3>
-<p>Vocês são residentes de Ginecologia e Obstetrícia da MDV — uma das maternidades de referência de Santa Catarina. Trabalham juntas, nos mesmos protocolos, nos mesmos plantões, com as mesmas situações-limite. Isso significa que tudo que construirmos aqui tem impacto direto no plantão de segunda-feira.</p>
-<p>Este não é um curso genérico de ChatGPT. É a primeira vez que a metodologia <strong>AIMED</strong> é aplicada integralmente em Ginecologia e Obstetrícia no Brasil. Vocês são a turma inaugural.</p>
+<p>A maioria de vocês são residentes de Ginecologia e Obstetrícia da MDV. Mas nesta turma também estão duas Médicas de Família (Maria Simone e Mayja), uma Pneumologista Pediátrica (Rafaela), uma Gastroenterologista Pediátrica (Luciana) e uma Enfermeira de TI (Adriana) — especialidades que cruzam diretamente com o universo obstétrico: o DM gestacional que vai para o ambulatório de MFC, a crise asmática na gestante, a colestase que decide o momento do parto, o alerta de deterioração que a enfermeira vê antes do médico. Isso significa que tudo que construirmos aqui tem impacto direto na prática de todas — amanhã de manhã.</p>
+<p>Este não é um curso genérico de ChatGPT. É a segunda turma da metodologia <strong>AIMED</strong> aplicada em Ginecologia e Obstetrícia no Brasil — e a mais heterogênea até agora: GO, Medicina de Família, Pneumologia Pediátrica, Gastroenterologia Pediátrica e Enfermagem de TI na mesma sala. Cinco perspectivas clínicas distintas sobre os mesmos casos. Isso muda o que é possível construir aqui.</p>
 <div class="callout"><div class="callout-label">Quebra-gelo fundacional</div><p>Antes de qualquer slide: <strong>qual protocolo GO você aplica toda semana mas nunca parou para questionar a fundo?</strong> Guarde essa resposta. Ela vai ser a sua Teoria do Contrário — o fio que conecta os dois dias.</p></div>
 <h3>O que você leva daqui</h3>
 <div class="promise-grid">
@@ -1460,7 +1533,7 @@ Síntese das três vozes: em que condições o protocolo se sustenta? Onde tem f
 <div class="step-item"><div class="step-num">10h</div><div class="step-body"><div class="step-title">Memória Clínica MDV</div><div class="step-desc">NotebookLM carregado com FEBRASGO + dados de Joinville. A ferramenta que nenhum serviço no Brasil tem ainda.</div></div></div>
 <div class="step-item"><div class="step-num">13h30</div><div class="step-body"><div class="step-title">O caso MDV</div><div class="step-desc">Um caso que nenhuma resolve sozinha. Vocês e a IA juntas — com os dados de Joinville que Adriana vai trazer.</div></div></div>
 </div>
-<div class="callout" style="margin-top:24px"><div class="callout-label">Rafaela e Luciana — A pergunta da noite para especialistas</div><p><strong>Rafaela:</strong> a evidência que sustenta corticoterapia sistêmica na asma aguda moderada-grave da gestante é suficientemente robusta para não ter exceção? Existe algum perfil de gestante asmática em crise grave em que você <em>não</em> daria prednisolona? <br><br><strong>Luciana:</strong> se ácidos biliares chegam a 38 µmol/L com 35 semanas e feto com Doppler normal, você interrompe ou espera mais uma semana? O PITCHES trial mudou sua decisão — ou só confirmou o que já fazia?</p></div>`,
+<div class="callout" style="margin-top:24px"><div class="callout-label">Rafaela e Luciana — A pergunta da noite para especialistas</div><p><strong>Rafaela:</strong> a evidência que sustenta corticoterapia sistêmica na asma aguda moderada-grave da gestante é suficientemente robusta para não ter exceção? Existe algum perfil de gestante asmática em crise grave em que você <em>não</em> daria prednisolona? <br><br><strong>Luciana:</strong> se ácidos biliares chegam a 38 µmol/L com 35 semanas e feto com Doppler normal, você interrompe ou espera mais uma semana? O <span class="gloss" data-def="Planned delivery Interval for Trial CHolEStasis in pregnancy — RCT britânico (Lancet 2019) que comparou interrupção eletiva a 36+0 semanas vs manejo expectante em colestase intra-hepática leve (ácidos biliares &lt;100 µmol/L). Resultado: interrupção precoce não reduziu desfechos adversos perinatais de forma significativa vs expectante. Questiona a interrupção rotineira a 36 semanas na CIH leve.">PITCHES trial</span> (Planned delivery Interval for Trial CHolEStasis in pregnancy, Lancet 2019) mudou sua decisão — ou só confirmou o que já fazia?</p></div>`,
       prompts:null, isBreak:false
     }
   ]
@@ -1489,11 +1562,11 @@ Síntese das três vozes: em que condições o protocolo se sustenta? Onde tem f
 <div class="participant-card"><div class="participant-avatar">Gu</div><div><div class="participant-name">Guilherme</div><div class="participant-role">Antibiótico profilático na RPMO pré-termo</div></div></div>
 <div class="participant-card"><div class="participant-avatar">La</div><div><div class="participant-name">Laura</div><div class="participant-role">Progesterona vaginal na ameaça de TP prematuro</div></div></div>
 <div class="participant-card"><div class="participant-avatar">Lu</div><div><div class="participant-name">Luiza</div><div class="participant-role">Restrição hídrica no trabalho de parto ativo</div></div></div>
-<div class="participant-card"><div class="participant-avatar">MS</div><div><div class="participant-name">Maria Simone</div><div class="participant-role">Rastreamento de DM gestacional: OMS vs IADPSG</div></div></div>
-<div class="participant-card"><div class="participant-avatar">My</div><div><div class="participant-name">Mayja</div><div class="participant-role">Ácido fólico pré-natal: dose padrão vs dose alta</div></div></div>
+<div class="participant-card"><div class="participant-avatar">MS</div><div><div class="participant-name">Maria Simone</div><div class="participant-specialty">Médica de Família e Comunidade</div><div class="participant-role">Rastreamento de DM gestacional: OMS vs IADPSG</div></div></div>
+<div class="participant-card"><div class="participant-avatar">My</div><div><div class="participant-name">Mayja</div><div class="participant-specialty">Médica de Família · URG/EMER</div><div class="participant-role">Ácido fólico pré-natal: dose padrão vs dose alta</div></div></div>
 <div class="participant-card"><div class="participant-avatar">Lc</div><div><div class="participant-name">Luciana</div><div class="participant-specialty">Gastroenterologista Pediátrica</div><div class="participant-role">Colestase intra-hepática da gravidez — quando interromper?</div></div></div>
 <div class="participant-card"><div class="participant-avatar">Ra</div><div><div class="participant-name">Rafaela</div><div class="participant-specialty">Pneumologista Pediátrica</div><div class="participant-role">Corticoterapia em asma aguda na gestante</div></div></div>
-<div class="participant-card special"><div class="participant-avatar">Ad</div><div><div class="participant-name">Adriana</div><div class="participant-role">Escala MEOWS vs avaliação clínica intuitiva na triagem obstétrica</div></div></div>
+<div class="participant-card special"><div class="participant-avatar">Ad</div><div><div class="participant-name">Adriana</div><div class="participant-specialty">Enfermeira · Terapia Intensiva</div><div class="participant-role">Escala MEOWS vs avaliação clínica intuitiva na triagem obstétrica</div></div></div>
 </div>`,
       prompts:null
     },
@@ -1690,7 +1763,7 @@ Com base nos dados e protocolos, qual recomendação pode ser proposta para a MD
       summary:'Vocês constroem juntas uma ferramenta real para uso coletivo na MDV. Algo com o nome de vocês, testado em caso real, ativo no plantão de segunda-feira.',
       avatar:'z9-2SDI3N_4',
       conteudo:`<h3>O que é "Nossa Ferramenta MDV"</h3>
-<p>Não é um prompt genérico. É uma ferramenta construída por residentes GO da MDV, para residentes GO da MDV — com os protocolos certos, as situações certas, e o vocabulário clínico do serviço de vocês.</p>
+<p>Não é um prompt genérico. É uma ferramenta construída por esta turma — GO, MFC, Pneumo Pedi, Gastro Pedi e Enfermagem TI — com os protocolos certos, as situações certas, e o vocabulário clínico de cada serviço. Uma MFC vê a gestante antes do parto e depois do parto. Uma enfermeira de TI vê o deterioramento que o médico ainda não nomeou. Cada especialidade contribui com um ângulo que o grupo GO sozinho não teria. O resultado é mais robusto — e mais real.</p>
 <p>No final desta hora, vocês terão algo que pode ser aberto no celular no corredor da maternidade antes de uma decisão difícil. Algo que funciona amanhã. Algo com o nome de vocês.</p>
 <div class="callout"><div class="callout-label">O princípio da co-construção</div><p>A ferramenta que cada uma constrói sozinha é individual. A ferramenta que constroem juntas, com casos reais do serviço, tem memória coletiva. E quando uma residente do próximo ano de residência na MDV abre este AIMED OS, encontra a ferramenta que vocês construíram. Isso é legado.</p></div>
 <h3>A ferramenta que vamos construir</h3>
@@ -1910,10 +1983,10 @@ Para o arquivo do grupo (não vai ao prontuário):
     {id:'cafe-3', horario:'15:40–16:00', titulo:'Café · Intervalo', summary:'Pausa.', avatar:null, conteudo:`<div class="callout"><div class="callout-label">Intervalo · 20 min</div><p>Último café do curso. Use para preparar sua apresentação de Nossa Ferramenta MDV.</p></div>`, prompts:null, isBreak:true},
     {
       id:'etica-go', horario:'16:00–16:30', titulo:'Ética, CFM e Responsabilidade GO',
-      summary:'O que a Resolução CFM 2.454/2026 muda para a residente de GO. Como documentar o uso de IA no prontuário. O que nunca delegar à IA.',
+      summary:'O que a Resolução CFM 2.454/2026 muda para residentes de GO, Pneumo Pedi e Gastro Pedi. Como documentar o uso de IA no prontuário. O que nunca delegar à IA.',
       avatar:'MxfxSj5K_WU',
       conteudo:`<h3>A Resolução CFM 2.454/2026 — o que mudou</h3>
-<p>A Resolução CFM nº 2.454/2026, publicada em fevereiro de 2026, é o primeiro marco regulatório específico do uso de IA na prática médica no Brasil. Para a residente de GO, três pontos são não-negociáveis:</p>
+<p>A Resolução CFM nº 2.454/2026, publicada em fevereiro de 2026, é o primeiro marco regulatório específico do uso de IA na prática médica no Brasil. Para todas as especialidades desta turma — GO, MFC, Pneumo Pedi, Gastro Pedi e Enfermagem — três pontos são não-negociáveis:</p>
 <div class="role-table">
 <div class="role-row"><div class="role-letter" style="font-size:1.1rem">Art</div><div><div class="role-name">Responsabilidade médica</div></div><div class="role-desc">O médico é o único responsável pela decisão clínica, independentemente do uso de IA. A IA não exime — ela informa. O prontuário assinado é seu.</div></div>
 <div class="role-row"><div class="role-letter" style="font-size:1.1rem">Doc</div><div><div class="role-name">Documentação obrigatória</div></div><div class="role-desc">O uso de IA no processo clínico deve ser registrado no prontuário. "Decisão assistida por IA — ferramenta [X] — revisão manual pelo médico responsável." Esta nota protege você.</div></div>
@@ -2583,6 +2656,8 @@ function showLogistica(){document.getElementById('logistica-overlay').classList.
 function fecharLogistica(){document.getElementById('logistica-overlay').classList.remove('open');}
 function abrirSobre(){document.getElementById('sobre-overlay').classList.add('open');}
 function fecharSobre(){document.getElementById('sobre-overlay').classList.remove('open');}
+function showLinks(){document.getElementById('links-overlay').classList.add('open');}
+function fecharLinks(){document.getElementById('links-overlay').classList.remove('open');}
 function setLevel(n){currentLevel=n;[1,2,3].forEach(i=>{document.getElementById('lvl'+i).classList.toggle('active',i===n);});const m=PROGRAMA.flatMap(b=>b.modulos).find(m=>m.id===currentModuleId);if(m&&m.prompts)renderPromptBox(m);}
 // ═══════════════════════════════════════════════════════════════════
 // AVALIAÇÃO · Pesquisa pré-pós (T0/T1/T2) + Diário semanal
@@ -3231,7 +3306,7 @@ function renderLogistica(){
 <div class="log-item"><span class="log-key">Datas</span><span class="log-val">26 e 27 de Junho de 2026 · 2ª Edição</span></div>
 <div class="log-item"><span class="log-key">Local</span><span class="log-val">Hotel Le Canard · Joinville · SC</span></div>
 <div class="log-item"><span class="log-key">Carga horária</span><span class="log-val">14 horas efetivas (70% hands-on)</span></div>
-<div class="log-item"><span class="log-key">Turma</span><span class="log-val">11 GO · 2 MFC · 1 Gastropediatria · 1 Pneumo Pediátrica · 1 Enf/TI · Bruna (preceptora GO)</span></div>
+<div class="log-item"><span class="log-key">Turma</span><span class="log-val">11 GO · 2 MFC (Maria Simone, Mayja) · 1 Gastropediatria (Luciana) · 1 Pneumo Pediátrica (Rafaela) · 1 Enf TI (Adriana) · Bruna (preceptora GO)</span></div>
 <div class="log-item"><span class="log-key">Instrutor</span><span class="log-val">Dr. Mbula Luzingu Barros · InovaMed</span></div>
 </div>
 <div class="log-section">
