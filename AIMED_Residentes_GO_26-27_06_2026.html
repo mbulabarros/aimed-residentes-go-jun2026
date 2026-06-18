@@ -1157,6 +1157,11 @@ Paciente de 29 semanas, primigesta, convulsionou na enfermaria. O que fazer?`},
 <div class="step-item"><div class="step-num">01</div><div class="step-body"><div class="step-title">Gemini — criar Gem GO/MDV</div><div class="step-desc">Abrir gemini.google.com → Gems → Novo Gem. Usar o prompt de perfil abaixo como instruções permanentes.</div></div></div>
 <div class="step-item"><div class="step-num">02</div><div class="step-body"><div class="step-title">Claude — criar Projeto GO/MDV</div><div class="step-desc">claude.ai → Projetos → Novo Projeto → "GO MDV Joinville 2026". Carregar: FEBRASGO 2024 (PDF) + qualquer protocolo MDV disponível.</div></div></div>
 <div class="step-item"><div class="step-num">03</div><div class="step-body"><div class="step-title">GPT — instruções personalizadas</div><div class="step-desc">chatgpt.com → Configurações → Personalizar ChatGPT → inserir perfil GO/MDV em "Como o ChatGPT deve responder".</div></div></div>
+</div>
+<div class="alert-box info" style="margin-top:24px"><div class="alert-label">Especialistas Convidadas · Rafaela e Luciana — Perfil de Especialidade</div><p>Vocês configuram um segundo perfil nas IAs — complementar ao GO/MDV, com foco na interface das suas especialidades com a obstetrícia. Cole nos mesmos campos (Gem, Claude Projects, GPT) como segundo conjunto de instruções ou num Projeto separado.</p></div>
+<div class="platform-grid">
+<div class="platform-card gemini"><div class="platform-name">Rafaela · Pneumologista Pediátrica</div><div class="platform-role">Perfil AIMED para Gem / Claude / GPT</div><ul class="platform-steps"><li><strong>Sou:</strong> Pneumologista Pediátrica, participante AIMED GO — MDV Joinville jun/2026</li><li><strong>Foco:</strong> asma na gestação, corticoterapia sistêmica e inalatória, maturação pulmonar fetal, função respiratória no prematuro</li><li><strong>Referências:</strong> GINA 2024 · SBPT · NAEPP · FEBRASGO (asma na gravidez)</li><li><strong>Interface:</strong> responda com visão do especialista respiratório no manejo da gestante asmática — incluindo impacto pulmonar no prematuro exposto a corticóide</li><li><strong>Sempre:</strong> português · doses destacadas · alertar divergência GINA vs prática brasileira</li></ul></div>
+<div class="platform-card claude"><div class="platform-name">Luciana · Gastroenterologista Pediátrica</div><div class="platform-role">Perfil AIMED para Gem / Claude / GPT</div><ul class="platform-steps"><li><strong>Sou:</strong> Gastroenterologista / Hepatologista Pediátrica, participante AIMED GO — MDV Joinville jun/2026</li><li><strong>Foco:</strong> colestase intra-hepática da gestação (CIH), UDCA, hepatopatia gravídica, timing de interrupção pelo critério hepatológico</li><li><strong>Referências:</strong> EASL 2022 · AASLD · ESPGHAN · FEBRASGO (CIH)</li><li><strong>Interface:</strong> visão do hepatologista no risco de morte fetal por ácidos biliares, coagulopatia materna e decisão de interrupção — quando o fígado manda interromper antes do obstetra</li><li><strong>Sempre:</strong> português · ácidos biliares totais como marcador-guia · alertar quando evidência é fraca</li></ul></div>
 </div>`,
       prompts:{
         titulo:'Perfil Clínico GO/MDV — Residente',
@@ -1310,7 +1315,24 @@ USG (data [DD/MM]):
 <div class="role-row"><div class="role-letter" style="font-size:0.9rem">Mon</div><div><div class="role-name">Monitorização</div></div><div class="role-desc">CTG contínuo obrigatório. Contrações: máximo 5 em 10 min (taquisistolia = suspender ou reduzir). Padrão fetal: qualquer Categoria III = suspender imediatamente.</div></div>
 </div>
 <h3>Misoprostol — doses e contextos</h3>
-<div class="callout"><div class="callout-label">Atenção — doses variam por indicação</div><p>A dose de misoprostol para amadurecimento cervical (25mcg vaginal) é <strong>diferente</strong> da dose para indução em segundo trimestre ou para hemorragia pós-parto. Confundir os contextos é erro grave. O prompt de cálculo sempre exige que você especifique a indicação.</p></div>`,
+<div class="callout"><div class="callout-label">Atenção — doses variam por indicação</div><p>A dose de misoprostol para amadurecimento cervical (25mcg vaginal) é <strong>diferente</strong> da dose para indução em segundo trimestre ou para hemorragia pós-parto. Confundir os contextos é erro grave. O prompt de cálculo sempre exige que você especifique a indicação.</p></div>
+<h3>Rafaela · Asma Aguda na Gestante — Broncodilatadores e Corticóides</h3>
+<p>A gestante em crise asmática moderada-grave recebe o mesmo arsenal da asma fora da gravidez. A gravidez não contraindica o tratamento — o risco do broncoespasmo não controlado para o feto supera qualquer risco teórico dos medicamentos. Hipóxia materna = hipóxia fetal.</p>
+<div class="role-table">
+<div class="role-row"><div class="role-letter" style="font-size:0.85rem">β₂</div><div><div class="role-name">Salbutamol inalatório</div></div><div class="role-desc"><strong>Nebulização:</strong> 2,5–5 mg em SF 3 mL · a cada 20 min · 3 doses na 1ª hora. <strong>MDI com espaçador:</strong> 4–8 jatos (100 mcg/jato) a cada 20 min. Categoria A na gravidez — primeira linha sem restrição de dose.</div></div>
+<div class="role-row"><div class="role-letter" style="font-size:0.85rem">Ipr</div><div><div class="role-name">Ipratrópio</div></div><div class="role-desc"><strong>Nebulização:</strong> 0,5 mg associado ao salbutamol nas 3 primeiras doses (crise grave). Reduz hospitalizações na asma grave — nunca usar isolado, sempre com β₂. MDI: 4–8 jatos (20 mcg/jato).</div></div>
+<div class="role-row"><div class="role-letter" style="font-size:0.85rem">Cor</div><div><div class="role-name">Corticóide sistêmico</div></div><div class="role-desc"><strong>Prednisolona VO:</strong> 40–60 mg/dia por 5–7 dias (crise moderada). <strong>Metilprednisolona EV:</strong> 80–125 mg em dose única (crise grave / hospitalização). Início de ação 4–6h — iniciar precocemente. Preferir prednisolona/metilprednisolona sobre dexametasona: menor passagem placentária.</div></div>
+<div class="role-row"><div class="role-letter" style="font-size:0.85rem">MgSO₄</div><div><div class="role-name">Sulfato de Magnésio (asma)</div></div><div class="role-desc"><strong>Crise grave refratária:</strong> 2 g EV em 20 min — dose única, não infusão contínua (⚠️ diferente do esquema GO). Indicado quando FEP ou VEF₁ &lt;60% após broncodilatadores. Mecanismo: bloqueio Ca²⁺ na musculatura lisa brônquica. Mesmo antídoto: gluconato de cálcio 10% EV lento.</div></div>
+</div>
+<div class="callout"><div class="callout-label">Peak Flow como guia de gravidade na gestante</div><p>FEP &lt;50% do predito = crise <strong>grave</strong> → hospitalizar + MgSO4 se refratária. FEP 50–70% = moderada → avaliar internação. FEP &gt;70% após tratamento = alta com plano de ação escrito. Usar valores pré-gestacionais como referência pessoal da paciente.</p></div>
+<h3>Luciana · Colestase Intra-Hepática da Gestação (CIH) — UDCA e Monitorização</h3>
+<p>A CIH é tratada com UDCA para reduzir ácidos biliares e prurito — mas o tratamento não elimina o risco de morte fetal súbita, que pode ocorrer sem sinais de alerta prévios. A decisão de interrupção é guiada pelo nível de ácidos biliares, não pelo bem-estar fetal isolado.</p>
+<div class="role-table">
+<div class="role-row"><div class="role-letter" style="font-size:0.85rem">UDC</div><div><div class="role-name">Ácido Ursodesoxicólico (UDCA)</div></div><div class="role-desc"><strong>Dose:</strong> 10–15 mg/kg/dia VO dividida em 2–3 tomadas. Exemplo (60 kg): 600–900 mg/dia → 300 mg 8/8h. Início de efeito em 1–2 semanas. Meta: ácidos biliares &lt;10 µmol/L (ideal). Categoria B na gravidez. Reduz prurito e melhora enzimas — efeito sobre morte fetal ainda debatido (PITCHES trial).</div></div>
+<div class="role-row"><div class="role-letter" style="font-size:0.85rem">VitK</div><div><div class="role-name">Vitamina K</div></div><div class="role-desc"><strong>CIH grave / colestase prolongada:</strong> 10 mg VO/dia. Colestase reduz absorção de vitaminas lipossolúveis (A, D, E, K) → risco de coagulopatia materna e hemorragia fetal/neonatal. Monitorar TP/INR em casos com bilirrubina elevada ou CIH grave.</div></div>
+<div class="role-row"><div class="role-letter" style="font-size:0.85rem">Lab</div><div><div class="role-name">Monitorização laboratorial</div></div><div class="role-desc"><strong>Ácidos biliares totais séricos:</strong> marcador mais sensível — &gt;40 µmol/L = risco aumentado de morte fetal. <strong>AST/ALT:</strong> podem elevar 2–10x o ULN. <strong>GGT · bilirrubinas</strong> (direta na colestase grave). <strong>Coagulograma:</strong> TP/TTPA/INR se CIH grave ou icterícia franca.</div></div>
+</div>
+<div class="alert-box warning"><div class="alert-label">⚠️ Critério de interrupção — CIH (EASL 2022 + FEBRASGO)</div><p>Ácidos biliares <strong>≥40 µmol/L</strong>: considerar interrupção a partir de 36 semanas (ou antes se ≥100 µmol/L). Ácidos biliares &lt;40 µmol/L com bom controle: manejar conservadoramente até 37–38 semanas. <strong>A CTG não é monitoração suficiente sozinha na CIH grave</strong> — morte fetal pode ocorrer sem padrão premonitório.</p></div>`,
       prompts:{
         titulo:'Farmacológica Blindada GO — MDV',
         subtitulo:'Cálculo de dose + monitorização + alertas de toxicidade',
@@ -1321,31 +1343,35 @@ E como monitorizo a toxicidade?`},
 [I] Paciente com eclâmpsia: 68kg, IG 30 semanas. Acabou de ter crise convulsiva. Não estava em uso de MgSO4.
 
 [M] Calcule a dose de ataque e manutenção pelo esquema de Zuspan. Especifique a diluição, velocidade de infusão e o que monitorar a cada 1 hora.`},
-        nivel3:{label:'Nível 3 · AIMED Farmacológica GO Completa', desc:'Ferramenta segura para qualquer medicamento GO', texto:`[A] Você é farmacologista clínico especializado em obstetrícia e terapia intensiva materna. Prioriza segurança fetal e materna com verificação dupla de toda dose calculada.
+        nivel3:{label:'Nível 3 · AIMED Farmacológica Universal', desc:'Funciona para qualquer especialidade — GO, Pneumo, Gastro e além', texto:`[A] Você é farmacologista clínico especializado em [ESPECIALIDADE: obstetrícia / pneumologia / gastroenterologia / outra] com expertise em segurança farmacológica na gestação. Prioriza segurança materna e fetal com verificação dupla de toda dose calculada.
 
-[I] Dados da paciente (substitua antes de usar):
-- Peso: [XX] kg | IG: [XX semanas X dias]
-- Função renal: creatinina [X] mg/dL | diurese [X] mL/h nas últimas 2h
-- Medicamento: [MgSO4 / ocitocina / misoprostol / outro]
-- Indicação: [eclâmpsia / pré-eclâmpsia grave / indução / hemorragia / outro]
-- Esquema preferido (se MgSO4): [Zuspan / Pritchard / sem preferência]
+[I] Dados do contexto (substitua antes de usar):
+- Especialidade / contexto: [GO-MDV / asma na gestante / CIH / outro]
+- Peso: [XX] kg | IG (se gestante): [XX semanas X dias]
+- Função orgânica relevante:
+  · Renal: creatinina [X] mg/dL | diurese [X] mL/h
+  · Hepática: TGO [X] / ácidos biliares [X µmol/L] (para CIH)
+  · Respiratória: FEP [X%] / SpO2 [X%] (para asma)
+- Medicamento: [MgSO4-GO / MgSO4-asma / salbutamol / ipratrópio / prednisolona / UDCA / vitamina K / ocitocina / misoprostol / outro]
+- Indicação precisa: [descrever]
 - Outros medicamentos em uso: [lista]
 
 [M] Para o medicamento solicitado, forneça:
 1. DOSE: ataque (se aplicável) + manutenção com cálculo explícito
-2. DILUIÇÃO: concentração final + volume + velocidade de infusão
-3. MONITORIZAÇÃO: parâmetros, frequência e valores de alerta
+2. DILUIÇÃO / PREPARO: concentração final + volume + velocidade ou técnica inalatória
+3. MONITORIZAÇÃO: parâmetros, frequência e valores de alerta (incluir Peak Flow se asma; ácidos biliares se CIH)
 4. SINAIS DE TOXICIDADE: com antídoto e dose do antídoto
 5. INTERAÇÕES: com outros medicamentos listados
+6. SEGURANÇA NA GESTAÇÃO: categoria de risco + evidência disponível + trimestre relevante
 
 [E] Doses em destaque. Cálculos passo a passo. Alertas ⚠️ para parâmetros críticos.
 
 [D]
-- Toda dose calculada aqui requer verificação manual antes da prescrição
-- Se creatinina elevada (>1.2 mg/dL): ajustar dose de MgSO4 e alertar sobre risco aumentado de toxicidade
-- Nunca prescrevia MgSO4 sem gluconato de cálcio disponível à beira do leito
-- Misoprostol: especificar SEMPRE a indicação — doses diferem radicalmente por contexto
-- Ocitocina: concentração na prescrição é obrigatória para evitar erro de infusão`}
+- Toda dose calculada requer verificação manual antes da prescrição
+- MgSO4 asma (2g dose única EV) ≠ MgSO4 GO (4g ataque + manutenção) — especificar contexto
+- UDCA: dose em mg/kg/dia, calcular peso real, dividir em 2–3 tomadas
+- Salbutamol gestante: sem teto de dose em crise grave — tratar a hipóxia
+- Gluconato de cálcio 10% EV lento: antídoto para MgSO4 em qualquer indicação`}
       }
     },
     {
@@ -1433,7 +1459,8 @@ Síntese das três vozes: em que condições o protocolo se sustenta? Onde tem f
 <div class="step-item"><div class="step-num">08h</div><div class="step-body"><div class="step-title">Retomada — o argumento da noite</div><div class="step-desc">Cada residente compartilha seu argumento contrário em uma linha. Trinta segundos. Sem julgamento.</div></div></div>
 <div class="step-item"><div class="step-num">10h</div><div class="step-body"><div class="step-title">Memória Clínica MDV</div><div class="step-desc">NotebookLM carregado com FEBRASGO + dados de Joinville. A ferramenta que nenhum serviço no Brasil tem ainda.</div></div></div>
 <div class="step-item"><div class="step-num">13h30</div><div class="step-body"><div class="step-title">O caso MDV</div><div class="step-desc">Um caso que nenhuma resolve sozinha. Vocês e a IA juntas — com os dados de Joinville que Adriana vai trazer.</div></div></div>
-</div>`,
+</div>
+<div class="callout" style="margin-top:24px"><div class="callout-label">Rafaela e Luciana — A pergunta da noite para especialistas</div><p><strong>Rafaela:</strong> a evidência que sustenta corticoterapia sistêmica na asma aguda moderada-grave da gestante é suficientemente robusta para não ter exceção? Existe algum perfil de gestante asmática em crise grave em que você <em>não</em> daria prednisolona? <br><br><strong>Luciana:</strong> se ácidos biliares chegam a 38 µmol/L com 35 semanas e feto com Doppler normal, você interrompe ou espera mais uma semana? O PITCHES trial mudou sua decisão — ou só confirmou o que já fazia?</p></div>`,
       prompts:null, isBreak:false
     }
   ]
@@ -1793,7 +1820,8 @@ RECURSOS DISPONÍVEIS: [CC disponível? UTI neonatal? Staff presente?]
 <div class="participant-card"><div class="participant-avatar">Mn</div><div><div class="participant-name">Manoela</div><div class="participant-role">CTG Categoria II + Doppler p90: quando este feto deixa de poder esperar? (Sua TdC, ao vivo)</div></div></div>
 <div class="participant-card"><div class="participant-avatar">MF</div><div><div class="participant-name">Maria Fernanda</div><div class="participant-role">IG 32+3: corticóide sim — mas qual a urgência? O tempo de ação muda a decisão de interrupção?</div></div></div>
 <div class="participant-card"><div class="participant-avatar">Vi</div><div><div class="participant-name">Vitória</div><div class="participant-role">Como comunicar para uma paciente que quer ir para casa que ela não pode ir? Com autonomia e segurança.</div></div></div>
-<div class="participant-card"><div class="participant-avatar">Lc</div><div><div class="participant-name">Luciana</div><div class="participant-specialty">Gastroenterologista Pediátrica</div><div class="participant-role">Qual o risco hepatológico de manter esta gestação mais 24h? Colestase ou pré-eclâmpsia domina o risco?</div></div></div>
+<div class="participant-card"><div class="participant-avatar">Lc</div><div><div class="participant-name">Luciana</div><div class="participant-specialty">Gastroenterologista Pediátrica</div><div class="participant-role">Qual o risco hepatológico de manter esta gestação mais 24h? Bilirrubina 1,8 + TGP 95 — isso muda o timing de interrupção?</div></div></div>
+<div class="participant-card"><div class="participant-avatar">Ra</div><div><div class="participant-name">Rafaela</div><div class="participant-specialty">Pneumologista Pediátrica</div><div class="participant-role">O corticóide para maturação pulmonar fetal a 32+3 semanas: qual a janela real de ação — e ela muda a urgência da decisão de interrupção nas próximas 12h?</div></div></div>
 <div class="participant-card"><div class="participant-avatar">Gu</div><div><div class="participant-name">Guilherme</div><div class="participant-role">Quando acionar o neonatologista? Antes ou depois da decisão de via de parto?</div></div></div>
 <div class="participant-card special"><div class="participant-avatar">Ad</div><div><div class="participant-name">Adriana</div><div class="participant-role">Vigilância em Saúde Joinville: qual o desfecho típico com esse perfil? O MEOWS classificaria esta paciente como alerta?</div></div></div>
 <div class="participant-card special"><div class="participant-avatar">Br</div><div><div class="participant-name">Bruna</div><div class="participant-role">Síntese final: o que decidiram e por quê. O que a MDV faria diferente com este caso amanhã?</div></div></div>
