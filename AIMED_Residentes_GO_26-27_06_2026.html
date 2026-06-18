@@ -495,6 +495,7 @@ body {
 }
 .participant-name { font-size: 0.82rem; font-weight: 700; color: var(--text); margin-bottom: 3px; }
 .participant-role { font-size: 0.73rem; color: var(--text-dim); line-height: 1.4; }
+.participant-specialty { font-size: 0.68rem; color: var(--blue); font-style: italic; margin-bottom: 2px; opacity: 0.85; }
 .participant-card.special { border-color: rgba(74,222,128,0.3); background: rgba(74,222,128,0.05); }
 .participant-card.special .participant-avatar { background: rgba(74,222,128,0.15); color: var(--green); border-color: rgba(74,222,128,0.3); }
 
@@ -1463,8 +1464,8 @@ Síntese das três vozes: em que condições o protocolo se sustenta? Onde tem f
 <div class="participant-card"><div class="participant-avatar">Lu</div><div><div class="participant-name">Luiza</div><div class="participant-role">Restrição hídrica no trabalho de parto ativo</div></div></div>
 <div class="participant-card"><div class="participant-avatar">MS</div><div><div class="participant-name">Maria Simone</div><div class="participant-role">Rastreamento de DM gestacional: OMS vs IADPSG</div></div></div>
 <div class="participant-card"><div class="participant-avatar">My</div><div><div class="participant-name">Mayja</div><div class="participant-role">Ácido fólico pré-natal: dose padrão vs dose alta</div></div></div>
-<div class="participant-card"><div class="participant-avatar">Lc</div><div><div class="participant-name">Luciana</div><div class="participant-role">Colestase intra-hepática da gravidez — quando interromper?</div></div></div>
-<div class="participant-card"><div class="participant-avatar">Ra</div><div><div class="participant-name">Rafaela</div><div class="participant-role">Corticoterapia em asma aguda na gestante</div></div></div>
+<div class="participant-card"><div class="participant-avatar">Lc</div><div><div class="participant-name">Luciana</div><div class="participant-specialty">Gastroenterologista Pediátrica</div><div class="participant-role">Colestase intra-hepática da gravidez — quando interromper?</div></div></div>
+<div class="participant-card"><div class="participant-avatar">Ra</div><div><div class="participant-name">Rafaela</div><div class="participant-specialty">Pneumologista Pediátrica</div><div class="participant-role">Corticoterapia em asma aguda na gestante</div></div></div>
 <div class="participant-card special"><div class="participant-avatar">Ad</div><div><div class="participant-name">Adriana</div><div class="participant-role">Escala MEOWS vs avaliação clínica intuitiva na triagem obstétrica</div></div></div>
 </div>`,
       prompts:null
@@ -1792,7 +1793,7 @@ RECURSOS DISPONÍVEIS: [CC disponível? UTI neonatal? Staff presente?]
 <div class="participant-card"><div class="participant-avatar">Mn</div><div><div class="participant-name">Manoela</div><div class="participant-role">CTG Categoria II + Doppler p90: quando este feto deixa de poder esperar? (Sua TdC, ao vivo)</div></div></div>
 <div class="participant-card"><div class="participant-avatar">MF</div><div><div class="participant-name">Maria Fernanda</div><div class="participant-role">IG 32+3: corticóide sim — mas qual a urgência? O tempo de ação muda a decisão de interrupção?</div></div></div>
 <div class="participant-card"><div class="participant-avatar">Vi</div><div><div class="participant-name">Vitória</div><div class="participant-role">Como comunicar para uma paciente que quer ir para casa que ela não pode ir? Com autonomia e segurança.</div></div></div>
-<div class="participant-card"><div class="participant-avatar">Lc</div><div><div class="participant-name">Luciana</div><div class="participant-role">Qual o risco hepatológico de manter esta gestação mais 24h? Colestase ou pré-eclâmpsia domina o risco?</div></div></div>
+<div class="participant-card"><div class="participant-avatar">Lc</div><div><div class="participant-name">Luciana</div><div class="participant-specialty">Gastroenterologista Pediátrica</div><div class="participant-role">Qual o risco hepatológico de manter esta gestação mais 24h? Colestase ou pré-eclâmpsia domina o risco?</div></div></div>
 <div class="participant-card"><div class="participant-avatar">Gu</div><div><div class="participant-name">Guilherme</div><div class="participant-role">Quando acionar o neonatologista? Antes ou depois da decisão de via de parto?</div></div></div>
 <div class="participant-card special"><div class="participant-avatar">Ad</div><div><div class="participant-name">Adriana</div><div class="participant-role">Vigilância em Saúde Joinville: qual o desfecho típico com esse perfil? O MEOWS classificaria esta paciente como alerta?</div></div></div>
 <div class="participant-card special"><div class="participant-avatar">Br</div><div><div class="participant-name">Bruna</div><div class="participant-role">Síntese final: o que decidiram e por quê. O que a MDV faria diferente com este caso amanhã?</div></div></div>
