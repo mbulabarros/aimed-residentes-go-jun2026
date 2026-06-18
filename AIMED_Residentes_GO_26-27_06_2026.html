@@ -2658,6 +2658,8 @@ function abrirSobre(){document.getElementById('sobre-overlay').classList.add('op
 function fecharSobre(){document.getElementById('sobre-overlay').classList.remove('open');}
 function showLinks(){document.getElementById('links-overlay').classList.add('open');}
 function fecharLinks(){document.getElementById('links-overlay').classList.remove('open');}
+function showLinks(){document.getElementById('links-overlay').classList.add('open');}
+function fecharLinks(){document.getElementById('links-overlay').classList.remove('open');}
 function setLevel(n){currentLevel=n;[1,2,3].forEach(i=>{document.getElementById('lvl'+i).classList.toggle('active',i===n);});const m=PROGRAMA.flatMap(b=>b.modulos).find(m=>m.id===currentModuleId);if(m&&m.prompts)renderPromptBox(m);}
 // ═══════════════════════════════════════════════════════════════════
 // AVALIAÇÃO · Pesquisa pré-pós (T0/T1/T2) + Diário semanal
