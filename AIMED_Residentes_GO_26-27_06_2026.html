@@ -1416,6 +1416,7 @@ input[type="date"].calc-input { color-scheme: dark; }
   background: var(--gold);
   color: var(--navy);
 }
+@media print {
 #sidebar, #topbar, #busca-overlay,
   #biblioteca-overlay, #logistica-overlay,
   #avaliacao-overlay, #sobre-overlay, #pre-curso-overlay,
@@ -1424,6 +1425,7 @@ input[type="date"].calc-input { color-scheme: dark; }
   .btn-pdf-card, .btn-pdf-index, .menu-toggle {
     display: none !important;
   }
+}
 /* ── MODAL GEMINI · fluxo robusto copiar + abrir ── */
 #gemini-modal {
   position: fixed; inset: 0;
