@@ -606,14 +606,14 @@ body {
 .btn-open.gpt:hover { border-color: var(--purple); color: var(--purple); }
 
 /* ── BIBLIOTECA ── */
-#biblioteca-overlay, #logistica-overlay, #sobre-overlay, #avaliacao-overlay, #links-overlay {
+#biblioteca-overlay, #logistica-overlay, #sobre-overlay, #avaliacao-overlay, #links-overlay, #calc-overlay, #busca-overlay, #pre-curso-overlay, #memoria-overlay, #instrucoes-overlay {
   position: fixed; inset: 0;
   z-index: 200;
   display: none;
   align-items: flex-start;
   justify-content: flex-end;
 }
-#biblioteca-overlay.open, #logistica-overlay.open, #sobre-overlay.open, #avaliacao-overlay.open, #links-overlay.open { display: flex; }
+#biblioteca-overlay.open, #logistica-overlay.open, #sobre-overlay.open, #avaliacao-overlay.open, #links-overlay.open, #calc-overlay.open, #busca-overlay.open, #pre-curso-overlay.open, #memoria-overlay.open, #instrucoes-overlay.open { display: flex; }
 
 /* ── AVALIAÇÃO · TABS E FORMULÁRIOS ── */
 .eval-tabs { display: flex; gap: 6px; padding: 14px 28px 0; border-bottom: 1px solid var(--border-dim); flex-wrap: wrap; }
@@ -881,6 +881,602 @@ body {
 #main::-webkit-scrollbar { width: 6px; }
 #main::-webkit-scrollbar-track { background: var(--navy); }
 #main::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+
+/* === Ported from May 2026 === */
+function escapeHTML(str) {
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+/* ── BIBLIOTECA ── */
+/* ── TELA DE BOAS-VINDAS PRÉ-CURSO ── */
+.pre-curso-overlay {
+  position: fixed; inset: 0;
+  z-index: 1000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #050e1f 0%, #0a1a35 70%, #112244 100%);
+  padding: 24px;
+  overflow-y: auto;
+  animation: preCursoFadeIn 0.4s ease-out;
+}
+.pre-curso-overlay.open { display: flex; }
+.pre-curso-card {
+  max-width: 620px;
+  width: 100%;
+  text-align: center;
+  padding: clamp(28px, 5vw, 48px) clamp(20px, 4vw, 36px);
+  position: relative;
+}
+.pre-curso-close {
+  position: absolute;
+  top: 8px; right: 8px;
+  background: transparent;
+  border: none;
+  color: var(--text-dim);
+  font-size: 1.4rem;
+  cursor: pointer;
+  padding: 8px 12px;
+  transition: color 0.2s;
+}
+.pre-curso-close:hover { color: var(--gold); }
+.pre-curso-eyebrow {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.66rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 18px;
+}
+.pre-curso-countdown {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  color: var(--gold);
+  line-height: 0.95;
+  margin: 18px 0 8px;
+}
+.pre-curso-countdown-num {
+  font-size: clamp(4rem, 14vw, 7rem);
+  font-weight: 900;
+  color: var(--gold-light);
+  display: block;
+}
+.pre-curso-countdown-label {
+  font-size: clamp(1.1rem, 2.4vw, 1.5rem);
+  color: var(--text-dim);
+  font-style: normal;
+  font-family: 'Playfair Display', serif;
+  font-weight: 400;
+}
+.pre-curso-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.4rem, 3vw, 1.9rem);
+  color: var(--text);
+  font-weight: 700;
+  margin: 14px 0 6px;
+  line-height: 1.2;
+}
+.pre-curso-title em { color: var(--gold); font-style: italic; }
+.pre-curso-date {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  margin-bottom: 32px;
+}
+.pre-curso-tagline {
+  color: var(--text);
+  font-size: 0.92rem;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+.pre-curso-checklist {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0 auto 28px;
+  max-width: 460px;
+}
+.pre-curso-action {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 20px;
+  background: rgba(201,168,76,0.05);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text);
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+  font-size: 0.88rem;
+  transition: all 0.2s;
+  width: 100%;
+}
+.pre-curso-action:hover {
+  background: rgba(201,168,76,0.12);
+  border-color: var(--gold);
+  transform: translateY(-1px);
+}
+.pre-curso-action-num {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--gold);
+  min-width: 24px;
+}
+.pre-curso-action-text { flex: 1; }
+.pre-curso-action-title { font-weight: 600; color: var(--text); margin-bottom: 2px; }
+.pre-curso-action-sub { font-size: 0.74rem; color: var(--text-dim); }
+.pre-curso-action-arrow { color: var(--gold); font-size: 1.1rem; flex-shrink: 0; }
+.pre-curso-skip {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  cursor: pointer;
+  padding: 12px 20px;
+  font-family: inherit;
+  letter-spacing: 0.06em;
+  transition: color 0.2s;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 3px;
+}
+.pre-curso-skip:hover { color: var(--gold); text-decoration-color: var(--gold); }
+@media (max-width: 600px) {
+  .pre-curso-card { padding: 28px 16px; }
+.pre-curso-action { padding: 14px 16px; font-size: 0.84rem; }
+.pre-curso-action-num { font-size: 1.2rem; }
+#biblioteca-overlay, #logistica-overlay, #sobre-overlay, #avaliacao-overlay, #instrucoes-overlay, #links-overlay, #memoria-overlay, #calc-overlay {
+  position: fixed; inset: 0;
+  z-index: 200;
+  display: none;
+  align-items: flex-start;
+  justify-content: flex-end;
+}
+#biblioteca-overlay.open, #logistica-overlay.open, #sobre-overlay.open, #avaliacao-overlay.open, #instrucoes-overlay.open, #links-overlay.open, #memoria-overlay.open, #calc-overlay.open { display: flex; }
+/* ═══════════════════════════════════════════════════════════════
+   BUSCA UNIVERSAL · v1.2
+   ═══════════════════════════════════════════════════════════════ */
+#busca-overlay {
+  position: fixed; inset: 0; z-index: 2000;
+  background: rgba(5,14,31,0.85);
+  display: none;
+  align-items: flex-start; justify-content: center;
+  padding-top: 8vh;
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+#busca-overlay.open { display: flex; }
+.busca-panel {
+  width: min(720px, 92vw);
+  max-height: 80vh;
+  background: var(--navy-mid);
+  border: 1px solid var(--gold);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.6), 0 0 80px rgba(201,168,76,0.12);
+  display: flex; flex-direction: column;
+  overflow: hidden;
+  animation: buscaIn 0.18s ease-out;
+}
+.busca-input-wrap {
+  display: flex; align-items: center; gap: 12px;
+  padding: 18px 22px;
+  border-bottom: 1px solid var(--border-dim);
+}
+.busca-icon { font-size: 1.1rem; color: var(--gold); }
+.busca-input {
+  flex: 1;
+  background: transparent;
+  border: none; outline: none;
+  color: var(--text);
+  font-family: inherit;
+  font-size: 1.05rem;
+  font-weight: 500;
+}
+.busca-input::placeholder { color: var(--text-muted); font-weight: 400; }
+.busca-close-hint {
+  font-size: 0.7rem; color: var(--text-muted);
+  font-family: 'DM Mono', monospace;
+  white-space: nowrap;
+}
+.busca-close-hint kbd {
+  background: var(--navy);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 2px 6px;
+  font-size: 0.66rem;
+  font-family: inherit;
+  color: var(--text-dim);
+}
+.busca-results {
+  flex: 1;
+  overflow-y: auto;
+  padding: 8px 0;
+}
+.busca-results::-webkit-scrollbar { width: 4px; }
+.busca-results::-webkit-scrollbar-thumb { background: var(--border); }
+.busca-group-label {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  padding: 14px 22px 8px;
+}
+.busca-result {
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 11px 22px;
+  cursor: pointer;
+  border-left: 3px solid transparent;
+  transition: background 0.12s ease, border-color 0.12s ease;
+}
+.busca-result:hover, .busca-result.active {
+  background: rgba(201,168,76,0.08);
+  border-left-color: var(--gold);
+}
+.busca-result-icon {
+  font-size: 1.1rem;
+  flex-shrink: 0;
+  margin-top: 1px;
+  width: 24px; text-align: center;
+}
+.busca-result-body { flex: 1; min-width: 0; }
+.busca-result-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 2px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.busca-result-desc {
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  line-height: 1.4;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.busca-result-meta {
+  font-size: 0.66rem;
+  color: var(--text-muted);
+  font-family: 'DM Mono', monospace;
+  margin-top: 4px;
+}
+.busca-result mark {
+  background: rgba(201,168,76,0.28);
+  color: var(--gold-light);
+  padding: 0 2px;
+  border-radius: 2px;
+  font-weight: 600;
+}
+.busca-empty {
+  padding: 40px 22px;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.88rem;
+}
+.busca-hint {
+  padding: 18px 22px;
+  border-top: 1px solid var(--border-dim);
+  display: flex; gap: 18px; flex-wrap: wrap;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  font-family: 'DM Mono', monospace;
+}
+.busca-hint span { display: flex; align-items: center; gap: 6px; }
+.busca-hint kbd {
+  background: var(--navy);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1px 5px;
+  font-size: 0.66rem;
+}
+/* ── CALCULADORAS OBSTÉTRICAS · overlay ── */
+.calc-hero {
+  text-align: center;
+  padding: 18px 0 22px;
+  border-bottom: 1px solid var(--border-dim);
+  margin-bottom: 22px;
+}
+.calc-hero-eyebrow {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  color: var(--teal);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.calc-hero-title {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.6rem, 4vw, 2.2rem);
+  color: var(--gold);
+  line-height: 1.15;
+  margin-bottom: 8px;
+}
+.calc-hero-sub {
+  font-size: 0.88rem;
+  color: var(--text-dim);
+  max-width: 540px;
+  margin: 0 auto;
+}
+.calc-tabs {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--border-dim);
+  scrollbar-width: thin;
+  -webkit-overflow-scrolling: touch;
+}
+.calc-tabs::-webkit-scrollbar { height: 4px; }
+.calc-tabs::-webkit-scrollbar-thumb { background: var(--border-dim); border-radius: 4px; }
+.calc-tab {
+  flex-shrink: 0;
+  background: var(--navy-mid);
+  border: 1px solid var(--border-dim);
+  color: var(--text-dim);
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-family: inherit;
+  font-size: 0.82rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  -webkit-appearance: none;
+}
+.calc-tab:hover { border-color: var(--teal); color: var(--text); }
+.calc-tab.active { background: var(--teal); color: var(--navy); border-color: var(--teal); font-weight: 600; }
+.calc-tab-icon { font-size: 1rem; }
+.calc-panel { display: none; }
+.calc-panel.active { display: block; animation: fadeIn 0.25s ease; }
+.calc-card {
+  background: var(--navy-mid);
+  border: 1px solid var(--border-dim);
+  border-radius: 14px;
+  padding: 22px;
+  margin-bottom: 16px;
+}
+.calc-card-eyebrow {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--teal);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.calc-card-title {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 1.25rem;
+  color: var(--gold);
+  margin-bottom: 4px;
+  font-weight: 500;
+}
+.calc-card-sub {
+  font-size: 0.82rem;
+  color: var(--text-dim);
+  margin-bottom: 18px;
+}
+.calc-form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 14px;
+  margin-bottom: 16px;
+}
+.calc-field { display: flex; flex-direction: column; gap: 4px; }
+.calc-field-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--gold);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.calc-field-help {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+.calc-input {
+  background: var(--navy);
+  border: 1px solid var(--border-dim);
+  border-radius: 8px;
+  padding: 12px 14px;
+  color: var(--text);
+  font-family: inherit;
+  font-size: 0.95rem;
+  transition: border-color 0.2s;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.calc-input:focus { outline: none; border-color: var(--teal); }
+.calc-input.invalid { border-color: var(--coral); }
+.calc-input::placeholder { color: var(--text-muted); }
+input[type="date"].calc-input { color-scheme: dark; }
+.calc-actions {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+.calc-btn {
+  background: var(--teal);
+  color: var(--navy);
+  border: none;
+  border-radius: 8px;
+  padding: 11px 18px;
+  font-family: inherit;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  -webkit-appearance: none;
+}
+.calc-btn:hover { background: var(--gold-light); }
+.calc-btn.secondary { background: transparent; border: 1px solid var(--border-dim); color: var(--text-dim); }
+.calc-btn.secondary:hover { border-color: var(--text-dim); color: var(--text); }
+.calc-result {
+  background: linear-gradient(135deg, rgba(201,168,76,0.10) 0%, rgba(79,195,195,0.06) 100%);
+  border: 2px solid var(--gold);
+  border-radius: 12px;
+  padding: 22px;
+  margin-top: 14px;
+  text-align: center;
+}
+.calc-result.empty {
+  background: transparent;
+  border: 1px dashed var(--border-dim);
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  padding: 30px 22px;
+  font-style: italic;
+}
+.calc-result-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.72rem;
+  color: var(--gold);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.calc-result-main {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(2rem, 5vw, 3rem);
+  color: var(--gold);
+  line-height: 1.1;
+  margin-bottom: 6px;
+}
+.calc-result-secondary {
+  font-size: 0.95rem;
+  color: var(--text);
+  margin-top: 8px;
+}
+.calc-result-secondary strong { color: var(--gold); }
+.calc-result-interpret {
+  margin-top: 14px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  text-align: left;
+}
+.calc-result-interpret.normal { background: rgba(106,184,122,0.10); border-left: 3px solid var(--green); }
+.calc-result-interpret.alert  { background: rgba(240,180,76,0.10); border-left: 3px solid var(--gold); }
+.calc-result-interpret.danger { background: rgba(229,115,115,0.10); border-left: 3px solid var(--coral); }
+.calc-result-interpret strong { display: block; margin-bottom: 4px; }
+.calc-ref {
+  margin-top: 14px;
+  padding: 10px 14px;
+  background: var(--navy);
+  border: 1px solid var(--border-dim);
+  border-radius: 8px;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  line-height: 1.55;
+}
+.calc-ref strong { color: var(--text-dim); }
+.calc-disclaimer {
+  text-align: center;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  padding: 14px;
+  background: rgba(229,115,115,0.06);
+  border: 1px dashed rgba(229,115,115,0.3);
+  border-radius: 10px;
+  margin-bottom: 20px;
+  line-height: 1.55;
+}
+.calc-disclaimer strong { color: var(--coral); }
+@media (max-width: 600px) {
+  .calc-form { grid-template-columns: 1fr 1fr; gap: 10px; }
+.calc-card { padding: 18px 16px; }
+.calc-tab { padding: 9px 12px; font-size: 0.78rem; }
+/* ═══════════════════════════════════════════════════════════════
+   PRÉ-CURSO · QUARTA AÇÃO (TOUR)
+   ═══════════════════════════════════════════════════════════════ */
+.pre-curso-action.tour-action {
+  border-color: var(--gold);
+  background: rgba(201,168,76,0.06);
+}
+.pre-curso-action.tour-action .pre-curso-action-num {
+  background: var(--gold);
+  color: var(--navy);
+}
+#sidebar, #topbar, #busca-overlay,
+  #biblioteca-overlay, #logistica-overlay,
+  #avaliacao-overlay, #sobre-overlay, #pre-curso-overlay,
+  #instrucoes-overlay, #links-overlay,
+  #toast, .lib-actions, .lib-pdf-toolbar, .lib-filters,
+  .btn-pdf-card, .btn-pdf-index, .menu-toggle {
+    display: none !important;
+  }
+/* ── MODAL GEMINI · fluxo robusto copiar + abrir ── */
+#gemini-modal {
+  position: fixed; inset: 0;
+  z-index: 500;
+  display: none;
+  align-items: center; justify-content: center;
+  background: rgba(5, 14, 31, 0.88);
+  backdrop-filter: blur(4px);
+  padding: 20px;
+}
+#gemini-modal.open { display: flex; }
+.gemini-modal-box {
+  background: var(--navy-mid);
+  border: 1px solid var(--gold);
+  border-radius: 14px;
+  max-width: 560px; width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 24px;
+  position: relative;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+}
+.gemini-modal-close {
+  position: absolute; top: 12px; right: 12px;
+  background: transparent; border: none;
+  color: var(--text-dim); font-size: 1.6rem; cursor: pointer;
+  width: 36px; height: 36px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.2s;
+}
+.gemini-modal-close:hover { background: var(--navy-light); color: var(--text); }
+.gemini-modal-eyebrow {
+  font-family: 'DM Mono', monospace; font-size: 0.7rem;
+  color: var(--teal); text-transform: uppercase; letter-spacing: 0.12em;
+  margin-bottom: 6px;
+}
+.gemini-modal-title {
+  font-family: 'Playfair Display', serif; font-style: italic;
+  font-size: 1.6rem; color: var(--gold); margin-bottom: 4px;
+}
+.gemini-modal-sub {
+  font-size: 0.82rem; color: var(--text-dim); margin-bottom: 22px;
+}
+@media (max-width: 600px) {
+  .gemini-modal-box { padding: 18px; max-height: 95vh; }
+.gemini-modal-title { font-size: 1.3rem; }
 </style>
 </head>
 <body>
@@ -908,7 +1504,10 @@ body {
     <button class="sidebar-btn" onclick="showAvaliacao()">
       <span class="sidebar-btn-icon">📊</span> Avaliação · Pesquisa
     </button>
-    <button class="sidebar-btn" onclick="showLinks()">
+    <button class="sidebar-btn" onclick="abrirCalc()"><span class="sidebar-btn-icon">🔢</span> Calculadoras</button>
+<button class="sidebar-btn" onclick="abrirInstrucoes()"><span class="sidebar-btn-icon">📋</span> Instruções</button>
+<button class="sidebar-btn" onclick="abrirMemoriaInfo()"><span class="sidebar-btn-icon">🧠</span> Memória</button>
+<button class="sidebar-btn" onclick="showLinks()">
       <span class="sidebar-btn-icon">🔗</span> Links Úteis
     </button>
     <button class="sidebar-btn" onclick="abrirSobre()">
@@ -1080,6 +1679,591 @@ body {
         <div style="font-size:0.62rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin-bottom:12px">🧬 AIMED · InovaMed</div>
         <div style="display:flex;flex-direction:column;gap:8px">
           <a href="https://inovamed.pro" target="_blank" style="color:var(--text-dim);text-decoration:none;padding:10px 14px;background:var(--navy-light);border-radius:var(--radius);border:1px solid var(--border-dim);display:flex;justify-content:space-between;align-items:center"><span>InovaMed</span><span style="font-size:0.72rem;color:var(--text-muted)">inovamed.pro ↗</span></a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+<div id="calc-overlay">
+  <div class="overlay-backdrop" onclick="fecharCalc()"></div>
+  <div class="overlay-panel">
+    <div class="overlay-header">
+      <div>
+        <div class="overlay-title">Calculadoras Obstétricas</div>
+        <div class="overlay-sub">5 ferramentas embutidas · cálculo offline · zero clique externo</div>
+      </div>
+      <button class="overlay-close" onclick="fecharCalc()">✕</button>
+    </div>
+    <div class="overlay-body">
+
+      <div class="calc-hero">
+        <div class="calc-hero-eyebrow">Ferramentas clínicas · uso no plantão</div>
+        <h1 class="calc-hero-title">Cálculo direto, <em style="font-style:italic">sem sair do AIMED OS</em></h1>
+        <p class="calc-hero-sub">5 calculadoras essenciais com fórmulas validadas, interpretação clínica automática e referência bibliográfica.</p>
+      </div>
+
+      <div class="calc-disclaimer">
+        <strong>Apoio à decisão · não substitui julgamento clínico.</strong>
+        Valide sempre com protocolo institucional e contexto da paciente.
+      </div>
+
+      <div class="calc-tabs" id="calc-tabs"><!-- gerado por JS --></div>
+      <div id="calc-panels"><!-- gerado por JS --></div>
+
+    </div>
+  </div>
+</div>
+
+<div id="busca-overlay" role="dialog" aria-label="Busca no curso" aria-modal="true" onclick="fecharBusca()">
+  <div class="busca-panel" onclick="event.stopPropagation()">
+    <div class="busca-input-wrap">
+      <span class="busca-icon">🔍</span>
+      <input
+        type="search"
+        class="busca-input"
+        id="busca-input"
+        placeholder="Buscar por MgSO4, CTG, PICO, eclâmpsia, NotebookLM, hotel…"
+        autocomplete="off"
+        spellcheck="false"
+        aria-label="Termo de busca"
+      >
+      <span class="busca-close-hint"><kbd>Esc</kbd></span>
+    </div>
+    <div class="busca-results" id="busca-results"></div>
+    <div class="busca-hint">
+      <span><kbd>↑</kbd><kbd>↓</kbd> navegar</span>
+      <span><kbd>Enter</kbd> abrir</span>
+      <span><kbd>Esc</kbd> fechar</span>
+    </div>
+  </div>
+</div>
+
+<div id="pre-curso-overlay" class="pre-curso-overlay">
+  <div class="pre-curso-card">
+    <button class="pre-curso-close" onclick="fecharPreCurso()" aria-label="Fechar">✕</button>
+    <div class="pre-curso-eyebrow">AIMED Residentes GO · 2026</div>
+    <div class="pre-curso-countdown">
+      <span class="pre-curso-countdown-num" id="pre-curso-num">4</span>
+      <span class="pre-curso-countdown-label" id="pre-curso-label">dias para o curso</span>
+    </div>
+    <div class="pre-curso-title">Bem-vinda ao <em>AIMED</em></div>
+    <div class="pre-curso-date">22 e 23 de Maio · Hotel Le Canard · Joinville</div>
+    <div class="pre-curso-tagline">Quatro passos rápidos antes da sexta:</div>
+    <div class="pre-curso-checklist">
+      <button class="pre-curso-action tour-action" onclick="navegarDePreCurso('instrucoes')">
+        <span class="pre-curso-action-num">1</span>
+        <span class="pre-curso-action-text">
+          <div class="pre-curso-action-title">Conhecer o AIMED OS em 90 segundos</div>
+          <div class="pre-curso-action-sub">Tour rápido da plataforma · busca, PDF, app no celular</div>
+        </span>
+        <span class="pre-curso-action-arrow">→</span>
+      </button>
+      <button class="pre-curso-action" onclick="navegarDePreCurso('t0')">
+        <span class="pre-curso-action-num">2</span>
+        <span class="pre-curso-action-text">
+          <div class="pre-curso-action-title">Preencher o T0 da pesquisa</div>
+          <div class="pre-curso-action-sub">5 minutos · linha de base antes do curso</div>
+        </span>
+        <span class="pre-curso-action-arrow">→</span>
+      </button>
+      <button class="pre-curso-action" onclick="navegarDePreCurso('logistica')">
+        <span class="pre-curso-action-num">3</span>
+        <span class="pre-curso-action-text">
+          <div class="pre-curso-action-title">Configurar suas IAs</div>
+          <div class="pre-curso-action-sub">Gemini · Claude · ChatGPT · NotebookLM</div>
+        </span>
+        <span class="pre-curso-action-arrow">→</span>
+      </button>
+      <button class="pre-curso-action" onclick="navegarDePreCurso('metodologia')">
+        <span class="pre-curso-action-num">4</span>
+        <span class="pre-curso-action-text">
+          <div class="pre-curso-action-title">Conhecer a metodologia AIMED</div>
+          <div class="pre-curso-action-sub">A anatomia do prompt médico em 5 componentes</div>
+        </span>
+        <span class="pre-curso-action-arrow">→</span>
+      </button>
+    </div>
+    <button class="pre-curso-skip" onclick="fecharPreCurso()">Continuar para o conteúdo do curso</button>
+  </div>
+</div>
+
+<div id="memoria-overlay">
+  <div class="overlay-backdrop" onclick="fecharMemoriaInfo()"></div>
+  <div class="overlay-panel">
+    <div class="overlay-header">
+      <div>
+        <div class="overlay-title">Memória AIMED</div>
+        <div class="overlay-sub">Sua jornada de 5 semanas, documentada em uma página personalizada</div>
+      </div>
+      <button class="overlay-close" onclick="fecharMemoriaInfo()">✕</button>
+    </div>
+    <div class="overlay-body">
+
+      <div class="mem-hero">
+        <div class="mem-hero-eyebrow">Inédito no Brasil · Educação Médica em IA</div>
+        <h1 class="mem-hero-title">Você não vai sair só com um certificado.<br>Vai sair com a <em style="font-style:italic">sua história</em>.</h1>
+        <p class="mem-hero-sub">Cinco semanas depois do curso, cada uma de vocês recebe uma página personalizada com a sua evolução individual. Documento próprio, compartilhável, baseado nas suas respostas reais.</p>
+      </div>
+
+      <!-- VÍDEO EXPLICATIVO · Avatar Digital Dr. Mbula -->
+      <div class="mem-video-section">
+        <div class="mem-video-eyebrow">▶ Vídeo explicativo · 2min 30s</div>
+        <div class="mem-video-title">Ouça do <em style="font-style:italic">avatar digital do Dr. Mbula</em></div>
+        <div class="mem-video-sub">Tudo o que você precisa saber sobre a Memória AIMED, contado de forma simples.</div>
+        <div class="mem-video-wrap">
+          <iframe style="width:100%;height:100%;border:none;border-radius:var(--radius-lg)" src="https://www.youtube.com/embed/pK8EPQPB8VE?rel=0&modestbranding=1" title="Memória AIMED · Avatar Digital Dr. Mbula" allowfullscreen loading="lazy"></iframe>
+        </div>
+      </div>
+
+      <div class="mem-why">
+        <div class="mem-why-title">O que isso é</div>
+        <div class="mem-why-text">
+          A <strong>Memória AIMED</strong> é uma página única para cada residente, gerada automaticamente a partir das suas respostas no T0 (antes), T1 (logo após) e T2 (4 semanas depois) — mais o seu Diário Semanal. É a primeira vez que um curso brasileiro de IA aplicada à medicina entrega ao aluno o seu próprio relatório longitudinal de evolução. Você não recebe um modelo genérico. Você recebe <strong>o registro da sua trajetória</strong>.
+        </div>
+      </div>
+
+      <div class="mem-section">
+        <h2 class="mem-section-title">Como funciona</h2>
+        <div class="mem-flow">
+          <div class="mem-flow-step">
+            <div class="mem-flow-step-num">Passo 1</div>
+            <div class="mem-flow-step-title">T0 · antes do curso</div>
+            <div class="mem-flow-step-desc">Você responde 10 itens de baseline. Frequência de uso de IA, autoeficácia, confiança, conhecimento da CFM 2.454.</div>
+          </div>
+          <div class="mem-flow-step">
+            <div class="mem-flow-step-num">Passo 2</div>
+            <div class="mem-flow-step-title">T1 · logo após</div>
+            <div class="mem-flow-step-desc">9 itens no domingo à noite. NPS, expectativa atendida, o que vai aplicar primeiro na segunda-feira.</div>
+          </div>
+          <div class="mem-flow-step">
+            <div class="mem-flow-step-num">Passo 3</div>
+            <div class="mem-flow-step-title">Diário das 4 semanas</div>
+            <div class="mem-flow-step-desc">Toda sexta-feira: dias com IA, cumprimento do desafio, observação clínica da semana.</div>
+          </div>
+          <div class="mem-flow-step">
+            <div class="mem-flow-step-num">Passo 4</div>
+            <div class="mem-flow-step-title">T2 · semana 4</div>
+            <div class="mem-flow-step-desc">9 itens finais. Prompts que você customizou, casos reais, mudança mais marcante. É o que vale para a publicação.</div>
+          </div>
+          <div class="mem-flow-step">
+            <div class="mem-flow-step-num">Passo 5</div>
+            <div class="mem-flow-step-title">Semana 5 · entrega</div>
+            <div class="mem-flow-step-desc">Você recebe pelo WhatsApp um link único com sua Memória AIMED personalizada. Pronto.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mem-section">
+        <h2 class="mem-section-title">O que tem na sua Memória</h2>
+        <div class="mem-features">
+          <div class="mem-feature">
+            <div class="mem-feature-icon">📊</div>
+            <div class="mem-feature-text"><strong>Gráficos <span class="sigla">T0→T1→T2</span></strong> · Sua evolução em frequência de uso, autoeficácia e confiança, lado a lado nos três tempos. Setas indicando trajetória.</div>
+          </div>
+          <div class="mem-feature">
+            <div class="mem-feature-icon">🎯</div>
+            <div class="mem-feature-text"><strong>4 números-chave</strong> · Dias usando IA, prompts customizados, configurações criadas, casos reais com IA nas 4 semanas.</div>
+          </div>
+          <div class="mem-feature">
+            <div class="mem-feature-icon">📅</div>
+            <div class="mem-feature-text"><strong>Timeline das 4 semanas</strong> · Cada semana com sua observação registrada, seu desafio cumprido, e as descobertas no caminho.</div>
+          </div>
+          <div class="mem-feature">
+            <div class="mem-feature-icon">💬</div>
+            <div class="mem-feature-text"><strong>Sua mudança mais marcante</strong> · O que você escreveu no T2, em destaque editorial, como citação. Sua voz, sua história.</div>
+          </div>
+          <div class="mem-feature">
+            <div class="mem-feature-icon">🏆</div>
+            <div class="mem-feature-text"><strong>Certificado embutido</strong> · 14h InovaMed + 4 semanas pós-curso. Exportável em PDF de um clique.</div>
+          </div>
+          <div class="mem-feature">
+            <div class="mem-feature-icon">🔗</div>
+            <div class="mem-feature-text"><strong>Botões de compartilhar</strong> · WhatsApp, LinkedIn, copiar link, baixar PDF. Sua memória é sua. Compartilhe à vontade.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mem-section">
+        <h2 class="mem-section-title">Por que isso muda o jogo</h2>
+        <p>Cursos tradicionais entregam <strong>um certificado de papel</strong> idêntico para todos os alunos. A Memória AIMED inverte essa lógica em quatro frentes:</p>
+        <p><strong>1. Granularidade individual</strong> — cada residente tem a sua versão única, com seus números, suas frases, sua trajetória. Não é template.</p>
+        <p><strong>2. Antes e depois visíveis</strong> — gráficos lado a lado tornam a evolução <em>palpável</em>. A maioria dos cursos faz pré-pós e nunca devolve isso ao aluno. Quem coletou os dados fica com eles. Aqui você fica com o seu retrato.</p>
+        <p><strong>3. Transparência metodológica</strong> — os mesmos dados que vão compor a publicação científica na RBGO ficam visíveis para você. Você não é apenas <em>sujeito</em> da pesquisa, é <strong>co-protagonista visível</strong>.</p>
+        <p><strong>4. Sua voz preservada</strong> — o que você escreveu no T2 sobre "a mudança mais marcante" aparece em destaque editorial. Não é texto seu sumindo num banco de dados de pesquisador. É o seu registro.</p>
+      </div>
+
+      <div class="mem-section">
+        <h2 class="mem-section-title">Privacidade · LGPD</h2>
+        <p>A Memória AIMED é gerada a partir do <strong>seu apelido de pareamento</strong> (ex: ML47) — o mesmo que você usa no T0/T1/T2. Não há nome completo, telefone, CPF ou qualquer dado identificável estruturado na página pública. O link só fica acessível para quem o recebe via WhatsApp. Você decide com quem compartilhar.</p>
+        <p>A base científica disso é o <strong>pareamento por apelido</strong>, padrão em pesquisa de educação médica, que permite acompanhamento longitudinal sem violação de privacidade. É o que blinda metodologicamente nossa publicação na RBGO.</p>
+      </div>
+
+      <div class="mem-section">
+        <h2 class="mem-section-title">Glossário · o que significa cada sigla</h2>
+        <p>O instrumento usa termos específicos da pesquisa em educação médica. Aqui ficam definidos para consulta rápida sempre que precisar.</p>
+        <div class="mem-features">
+          <div class="mem-feature">
+            <div class="mem-feature-icon">📍</div>
+            <div class="mem-feature-text"><strong><span class="sigla">T0</span></strong> · Linha de base. Respostas dadas <em>antes</em> do curso, até segunda-feira 21/05. Mede o ponto de partida de cada residente.</div>
+          </div>
+          <div class="mem-feature">
+            <div class="mem-feature-icon">🎯</div>
+            <div class="mem-feature-text"><strong><span class="sigla">T1</span></strong> · Pós-imediato. Respostas dadas no <em>domingo à noite após o curso</em>. Mede o impacto inicial — entusiasmo, NPS, primeira aplicação prevista.</div>
+          </div>
+          <div class="mem-feature">
+            <div class="mem-feature-icon">📊</div>
+            <div class="mem-feature-text"><strong><span class="sigla">T2</span></strong> · Pós-quatro-semanas. Respostas dadas no <em>final do Bloco 5</em>. Mede o uso real consolidado — é o que vale para a publicação científica.</div>
+          </div>
+          <div class="mem-feature">
+            <div class="mem-feature-icon">⭐</div>
+            <div class="mem-feature-text"><strong><span class="sigla">NPS</span></strong> · Net Promoter Score. Escala 0-10 que mede probabilidade de recomendar o curso. 9-10 = promotora · 7-8 = passiva · ≤6 = detratora.</div>
+          </div>
+          <div class="mem-feature">
+            <div class="mem-feature-icon">⚔️</div>
+            <div class="mem-feature-text"><strong><span class="sigla">TdC</span></strong> · Teoria do Contrário. Método AIMED no qual cada residente defende argumento <em>oposto</em> à prática institucional, em três fases ao longo do curso. Treina raciocínio crítico ativo.</div>
+          </div>
+          <div class="mem-feature">
+            <div class="mem-feature-icon">🧠</div>
+            <div class="mem-feature-text"><strong>Autoeficácia</strong> · Percepção de "sou capaz de escrever um prompt clínico eficaz". Escala Likert 1-5, presente nos três tempos do estudo.</div>
+          </div>
+          <div class="mem-feature">
+            <div class="mem-feature-icon">🔬</div>
+            <div class="mem-feature-text"><strong>Estudo quasi-experimental pré-pós</strong> · Desenho de pesquisa que compara o mesmo grupo de participantes em momentos diferentes (<span class="sigla">T0 → T1 → T2</span>). Padrão em educação médica.</div>
+          </div>
+          <div class="mem-feature">
+            <div class="mem-feature-icon">🪪</div>
+            <div class="mem-feature-text"><strong>Apelido de pareamento</strong> · Código auto-gerado (ex: <span class="sigla">ML47</span>) que permite cruzar <span class="sigla">T0/T1/T2</span> da mesma residente sem coletar nome ou telefone. Conformidade com LGPD.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mem-cta">
+        <div class="mem-cta-quote">
+          "Vocês não estão saindo daqui com um certificado de papel. Vão sair daqui com cinco semanas de coleta de dados — e na semana 5, cada uma de vocês recebe uma <strong>Memória AIMED personalizada</strong> com sua jornada inteira. É a primeira vez no Brasil que um curso de IA aplicada à medicina faz isso. E não vai ser a última."
+        </div>
+        <div class="mem-cta-attr">— Encerramento do curso · 23 de Maio de 2026</div>
+        <a class="mem-preview-btn" href="memoria.html?id=DEMO" onclick="try{window.history.replaceState(null,'','#memoria')}catch(e){}">👁 Ver pré-visualização (exemplo)</a>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div id="instrucoes-overlay">
+  <div class="overlay-backdrop" onclick="fecharInstrucoes()"></div>
+  <div class="overlay-panel">
+    <div class="overlay-header">
+      <div>
+        <div class="overlay-title">Como usar o AIMED OS</div>
+        <div class="overlay-sub">Manual rápido da plataforma · 5 minutos para conhecer tudo</div>
+      </div>
+      <button class="overlay-close" onclick="fecharInstrucoes()" aria-label="Fechar">✕</button>
+    </div>
+    <div class="overlay-body">
+
+      <div class="instr-hero">
+        <div class="instr-eyebrow">Bem-vinda à plataforma</div>
+        <div class="instr-title">O AIMED OS é o <em>seu portal-livro-ferramenta</em> do curso</div>
+        <div class="instr-intro">Foi construído para acompanhar você antes, durante e depois dos dois dias presenciais. <strong>Permanente, sem expiração</strong>, instalável como app no celular. Esta página é o manual rápido — abra sempre que tiver dúvida sobre alguma função.</div>
+      </div>
+
+      <div class="instr-toc">
+        <button class="instr-toc-btn" onclick="abrirInstrSecao('navegar')"><span class="instr-toc-num">01</span> Navegar pelo conteúdo</button>
+        <button class="instr-toc-btn" onclick="abrirInstrSecao('busca')"><span class="instr-toc-num">02</span> Usar a busca (Ctrl+K)</button>
+        <button class="instr-toc-btn" onclick="abrirInstrSecao('pdf')"><span class="instr-toc-num">03</span> Gerar e salvar PDFs</button>
+        <button class="instr-toc-btn" onclick="abrirInstrSecao('instalar')"><span class="instr-toc-num">04</span> Instalar como app no celular</button>
+        <button class="instr-toc-btn" onclick="abrirInstrSecao('aimed')"><span class="instr-toc-num">05</span> A metodologia AIMED</button>
+        <button class="instr-toc-btn" onclick="abrirInstrSecao('pesquisa')"><span class="instr-toc-num">06</span> Questionários T0/T1/T2</button>
+        <button class="instr-toc-btn" onclick="abrirInstrSecao('ias')"><span class="instr-toc-num">07</span> Configurar suas IAs</button>
+      </div>
+
+      <!-- 01 NAVEGAR -->
+      <div class="instr-section" id="instr-navegar">
+        <button class="instr-section-header" onclick="toggleInstrSecao('navegar')">
+          <div class="instr-section-icon">🧭</div>
+          <div class="instr-section-title">01 · Navegar pelo conteúdo</div>
+          <div class="instr-section-chevron">▼</div>
+        </button>
+        <div class="instr-section-body">
+          <h4>Estrutura geral</h4>
+          <p>O curso está organizado em <strong>5 blocos</strong>, cada um com seu papel:</p>
+          <ul>
+            <li><strong>Bloco 1 · Arquiteto</strong> — sexta tarde · fundamentos da metodologia AIMED</li>
+            <li><strong>Bloco 2 · Clínico GO</strong> — sexta noite · aplicação obstétrica (CTG, USG, cálculos)</li>
+            <li><strong>Bloco 3 · Pesquisador</strong> — sábado manhã · da dúvida à pergunta PICO</li>
+            <li><strong>Bloco 4 · Integrador</strong> — sábado tarde · caso composto MDV + ética</li>
+            <li><strong>Bloco 5 · Crescimento</strong> — pós-curso · 4 semanas de consolidação</li>
+          </ul>
+
+          <h4>Como circular entre os módulos</h4>
+          <ul>
+            <li>Clique em qualquer módulo da <strong>sidebar esquerda</strong> para abrir.</li>
+            <li>No final de cada módulo, use os botões <strong>"← Anterior"</strong> e <strong>"Próximo →"</strong>.</li>
+            <li>O <strong>breadcrumb no topo</strong> (ex: "Bloco 2 › Cálculos MDV") sempre mostra onde você está.</li>
+          </ul>
+
+          <h4>Os 3 níveis de profundidade (N1 · N2 · N3)</h4>
+          <p>No canto superior direito de cada módulo com prompts, há três botões: <strong>N1, N2, N3</strong>. Eles trocam a versão do prompt em tempo real:</p>
+          <ul>
+            <li><strong>N1 · Direto</strong> — pergunta simples, sem framework. Para começar.</li>
+            <li><strong>N2 · Padrão</strong> — prompt com caso clínico estruturado. Uso diário.</li>
+            <li><strong>N3 · AIMED Completo</strong> — ferramenta clínica completa, para incorporar à rotina.</li>
+          </ul>
+          <div class="instr-tip"><span class="instr-tip-icon">💡</span><span>Comece sempre no <strong>N2</strong>. É o que será trabalhado em aula. N1 é para casos triviais, N3 é a forma definitiva da ferramenta.</span></div>
+
+          <h4>Glossário interativo</h4>
+          <p>Termos sublinhados em pontilhado (ex: <strong>MgSO4</strong>, <strong>CTG</strong>, <strong>HELLP</strong>) mostram a definição quando você passa o mouse ou toca neles. São 41 termos no total.</p>
+        </div>
+      </div>
+
+      <!-- 02 BUSCA -->
+      <div class="instr-section" id="instr-busca">
+        <button class="instr-section-header" onclick="toggleInstrSecao('busca')">
+          <div class="instr-section-icon">🔍</div>
+          <div class="instr-section-title">02 · Usar a busca universal (Ctrl+K)</div>
+          <div class="instr-section-chevron">▼</div>
+        </button>
+        <div class="instr-section-body">
+          <p>A busca varre <strong>todo o conteúdo do curso</strong> — módulos, prompts, glossário, biblioteca e logística — em um único campo. Use sempre que quiser achar algo rápido.</p>
+
+          <h4>Atalhos para abrir</h4>
+          <div class="instr-kbd-row">
+            <div class="instr-kbd-item"><kbd>Ctrl</kbd><kbd>K</kbd> abre a busca (Windows/Linux)</div>
+            <div class="instr-kbd-item"><kbd>⌘</kbd><kbd>K</kbd> abre a busca (Mac)</div>
+            <div class="instr-kbd-item"><kbd>/</kbd> também abre</div>
+          </div>
+          <p>Ou clique no botão <strong>"🔍 Buscar no curso…"</strong> no topo da sidebar.</p>
+
+          <h4>Dentro da busca</h4>
+          <div class="instr-kbd-row">
+            <div class="instr-kbd-item"><kbd>↑</kbd><kbd>↓</kbd> navega entre resultados</div>
+            <div class="instr-kbd-item"><kbd>Enter</kbd> abre o selecionado</div>
+            <div class="instr-kbd-item"><kbd>Esc</kbd> fecha</div>
+          </div>
+
+          <h4>Exemplos de busca que funcionam bem</h4>
+          <ul>
+            <li><strong>"MgSO4"</strong> — encontra o módulo de cálculos, o termo no glossário e o prompt da farmacológica blindada</li>
+            <li><strong>"PICO"</strong> — leva ao módulo de pesquisa orquestrada e ao prompt do transformador PICO</li>
+            <li><strong>"hotel"</strong> ou <strong>"le canard"</strong> — abre a logística no item Local do Curso</li>
+            <li><strong>"eclampsia"</strong> — funciona com ou sem acento (busca acento-insensível)</li>
+            <li><strong>"CTG"</strong> — todos os contextos onde cardiotocografia aparece</li>
+          </ul>
+
+          <div class="instr-tip"><span class="instr-tip-icon">💡</span><span>A busca também encontra <strong>esta página de instruções</strong>. Pesquise "instalar app" ou "como usar" para ver.</span></div>
+        </div>
+      </div>
+
+      <!-- 03 PDF -->
+      <div class="instr-section" id="instr-pdf">
+        <button class="instr-section-header" onclick="toggleInstrSecao('pdf')">
+          <div class="instr-section-icon">📥</div>
+          <div class="instr-section-title">03 · Gerar e salvar PDFs</div>
+          <div class="instr-section-chevron">▼</div>
+        </button>
+        <div class="instr-section-body">
+          <p>Você pode salvar os prompts da Biblioteca AIMED GO como PDFs para usar offline no celular, imprimir, ou compartilhar com colegas.</p>
+
+          <h4>Como gerar</h4>
+          <ol>
+            <li>Abra a <strong>Biblioteca AIMED GO</strong> pela sidebar.</li>
+            <li>Para baixar todos: clique em <strong>"📥 Baixar índice geral"</strong> no topo.</li>
+            <li>Para baixar um prompt específico: expanda o card e clique em <strong>"📥 PDF"</strong>.</li>
+            <li>O navegador abre a janela de impressão — escolha <strong>"Salvar como PDF"</strong> no destino.</li>
+            <li>O PDF é salvo na pasta de Downloads do seu dispositivo.</li>
+          </ol>
+
+          <h4>O que cada PDF contém</h4>
+          <ul>
+            <li><strong>Cabeçalho dourado AIMED</strong> com a data em que foi gerado.</li>
+            <li><strong>O prompt completo</strong> em monospace, pronto para copiar e colar.</li>
+            <li><strong>Instruções de uso</strong> ("como usar este prompt").</li>
+            <li><strong>Rodapé</strong> com a URL permanente do AIMED OS.</li>
+          </ul>
+
+          <div class="instr-tip"><span class="instr-tip-icon">💡</span><span>No celular, ao salvar como PDF, escolha enviá-lo para o app <strong>"Arquivos"</strong> (iOS) ou para o <strong>Google Drive</strong> (Android). Assim ele fica acessível offline no plantão.</span></div>
+        </div>
+      </div>
+
+      <!-- 04 INSTALAR -->
+      <div class="instr-section" id="instr-instalar">
+        <button class="instr-section-header" onclick="toggleInstrSecao('instalar')">
+          <div class="instr-section-icon">📱</div>
+          <div class="instr-section-title">04 · Instalar como app no celular</div>
+          <div class="instr-section-chevron">▼</div>
+        </button>
+        <div class="instr-section-body">
+          <p>O AIMED OS funciona como <strong>aplicativo nativo</strong> no celular — sem app store, sem download de MB. Uma vez instalado, abre em tela cheia, com ícone próprio, e funciona <strong>mesmo sem internet</strong> (cache do PWA).</p>
+
+          <div class="instr-platform-grid">
+            <div class="instr-platform">
+              <div class="instr-platform-name">📱 iPhone / iPad · Safari</div>
+              <ol>
+                <li>Abra o site no Safari.</li>
+                <li>Toque no botão <strong>compartilhar</strong> (quadrado com seta para cima).</li>
+                <li>Role e toque em <strong>"Adicionar à Tela de Início"</strong>.</li>
+                <li>Confirme o nome "AIMED GO" e toque em <strong>"Adicionar"</strong>.</li>
+                <li>Toque no ícone — abre em tela cheia.</li>
+              </ol>
+            </div>
+            <div class="instr-platform">
+              <div class="instr-platform-name">🤖 Android · Chrome</div>
+              <ol>
+                <li>Abra o site no Chrome.</li>
+                <li>Toque nos <strong>três pontinhos</strong> (canto superior direito).</li>
+                <li>Procure <strong>"Instalar aplicativo"</strong> ou <strong>"Adicionar à tela inicial"</strong>.</li>
+                <li>Confirme. Ícone vai para a gaveta de apps.</li>
+                <li>Toque — abre como app nativo.</li>
+              </ol>
+            </div>
+          </div>
+
+          <div class="instr-tip"><span class="instr-tip-icon">💡</span><span>No Android, se a opção "Instalar aplicativo" não aparecer no menu, segure o ícone de recarregar (🔄) e escolha <strong>"Recarregar ignorando o cache"</strong>. Aguarde 30 segundos e tente de novo.</span></div>
+
+          <h4>Por que instalar?</h4>
+          <ul>
+            <li><strong>Tela cheia</strong> — sem barra de endereço, máximo aproveitamento.</li>
+            <li><strong>Ícone próprio</strong> — "A" dourado em fundo navy, identidade AIMED.</li>
+            <li><strong>Acesso instantâneo</strong> — um toque, plantão ou madrugada.</li>
+            <li><strong>Cache local</strong> — depois da primeira visita, abre rápido mesmo em 3G.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 05 AIMED -->
+      <div class="instr-section" id="instr-aimed">
+        <button class="instr-section-header" onclick="toggleInstrSecao('aimed')">
+          <div class="instr-section-icon">🧠</div>
+          <div class="instr-section-title">05 · A metodologia AIMED em 5 componentes</div>
+          <div class="instr-section-chevron">▼</div>
+        </button>
+        <div class="instr-section-body">
+          <p>O <strong>AIMED</strong> é a metodologia autoral por trás de todos os prompts deste curso. É um framework estruturado para transformar dúvidas clínicas em comandos precisos e reprodutíveis para a IA.</p>
+
+          <div class="instr-aimed-grid">
+            <div class="instr-aimed-comp">
+              <div class="instr-aimed-letter">A</div>
+              <div class="instr-aimed-name">Assistente</div>
+              <div class="instr-aimed-desc">Papel da IA. A variável de maior impacto.</div>
+            </div>
+            <div class="instr-aimed-comp">
+              <div class="instr-aimed-letter">I</div>
+              <div class="instr-aimed-name">Informações</div>
+              <div class="instr-aimed-desc">Dados da paciente, contexto clínico.</div>
+            </div>
+            <div class="instr-aimed-comp">
+              <div class="instr-aimed-letter">M</div>
+              <div class="instr-aimed-name">Missão</div>
+              <div class="instr-aimed-desc">A pergunta concreta a ser respondida.</div>
+            </div>
+            <div class="instr-aimed-comp">
+              <div class="instr-aimed-letter">E</div>
+              <div class="instr-aimed-name">Estrutura</div>
+              <div class="instr-aimed-desc">Como a resposta deve ser organizada.</div>
+            </div>
+            <div class="instr-aimed-comp">
+              <div class="instr-aimed-letter">D</div>
+              <div class="instr-aimed-name">Diretrizes</div>
+              <div class="instr-aimed-desc">Restrições, segurança, fontes.</div>
+            </div>
+          </div>
+
+          <p>Cada prompt N3 do curso é construído com os cinco componentes na ordem. A força não está em preencher cada campo — está na <strong>sinergia entre eles</strong>, como na passagem de um caso para uma interconsulta.</p>
+
+          <div class="instr-tip"><span class="instr-tip-icon">💡</span><span>Quer entender a fundo? Vá para o módulo <strong>"Metodologia AIMED · A Anatomia do Prompt Médico"</strong> (Bloco 1, sexta tarde). Lá tem a dissecação completa, com exemplos.</span></div>
+        </div>
+      </div>
+
+      <!-- 06 PESQUISA -->
+      <div class="instr-section" id="instr-pesquisa">
+        <button class="instr-section-header" onclick="toggleInstrSecao('pesquisa')">
+          <div class="instr-section-icon">📊</div>
+          <div class="instr-section-title">06 · Questionários T0 · T1 · T2 (pesquisa)</div>
+          <div class="instr-section-chevron">▼</div>
+        </button>
+        <div class="instr-section-body">
+          <p>O AIMED Residentes GO é também um <strong>estudo de educação médica</strong>. Os três questionários medem o impacto real do curso na sua prática.</p>
+
+          <h4>Os três momentos</h4>
+          <ul>
+            <li><strong>T0 · Antes do curso</strong> — responda <strong>antes do dia 22/05</strong>. 5 minutos. Linha de base.</li>
+            <li><strong>T1 · Logo após o curso</strong> — responda no <strong>domingo 24/05 à noite</strong>. Impacto imediato + NPS.</li>
+            <li><strong>T2 · 4 semanas depois</strong> — responda em <strong>22/06/2026</strong>. Mede o que sobreviveu na sua rotina.</li>
+          </ul>
+
+          <h4>Como preencher</h4>
+          <ol>
+            <li>Clique em <strong>"📊 Avaliação · Pesquisa"</strong> na sidebar.</li>
+            <li>Selecione a aba T0, T1 ou T2.</li>
+            <li>Preencha. As respostas <strong>são salvas automaticamente</strong> conforme você digita.</li>
+            <li>Ao final, clique em <strong>"📱 Enviar pelo grupo WhatsApp"</strong>.</li>
+            <li>O texto formatado é gerado — cole no grupo do curso.</li>
+          </ol>
+
+          <h4>Apelido de pareamento — o detalhe importante</h4>
+          <p>No T0, você escolhe um <strong>apelido</strong> (ex: "ML47" = iniciais + dois últimos dígitos do telefone). <strong>Use exatamente o mesmo apelido nos três questionários.</strong> Sem ele, não é possível parear suas respostas e seus dados ficam fora da análise.</p>
+
+          <div class="instr-tip"><span class="instr-tip-icon">💡</span><span>O certificado do curso é emitido após o envio do <strong>T1</strong>. O T2 é voluntário, mas é onde mora a evidência real do efeito de longo prazo — vale a pena.</span></div>
+        </div>
+      </div>
+
+      <!-- 07 IAS -->
+      <div class="instr-section" id="instr-ias">
+        <button class="instr-section-header" onclick="toggleInstrSecao('ias')">
+          <div class="instr-section-icon">⚙️</div>
+          <div class="instr-section-title">07 · Configurar Gemini · Claude · ChatGPT · NotebookLM</div>
+          <div class="instr-section-chevron">▼</div>
+        </button>
+        <div class="instr-section-body">
+          <p>Para aproveitar o curso ao máximo, configure as IAs <strong>antes da sexta-feira</strong>. Cada uma tem um papel específico no fluxo AIMED.</p>
+
+          <div class="instr-platform-grid">
+            <div class="instr-platform">
+              <div class="instr-platform-name">🔷 Gemini · Busca</div>
+              <ol>
+                <li>Acesse <strong>gemini.google.com</strong>.</li>
+                <li>Crie um <strong>Gem personalizado GO</strong>.</li>
+                <li>Cole o "Perfil Clínico GO/MDV" do módulo de Personalização (Bloco 1).</li>
+                <li>Ative o <strong>Google Scholar</strong> nas opções.</li>
+              </ol>
+            </div>
+            <div class="instr-platform">
+              <div class="instr-platform-name">🟠 Claude · Análise crítica</div>
+              <ol>
+                <li>Acesse <strong>claude.ai</strong>.</li>
+                <li>Crie um <strong>Projeto chamado "GO/MDV"</strong>.</li>
+                <li>Cole o Perfil Clínico nas instruções do projeto.</li>
+                <li>Use para análise de artigos em PDF.</li>
+              </ol>
+            </div>
+            <div class="instr-platform">
+              <div class="instr-platform-name">🟢 ChatGPT · Síntese</div>
+              <ol>
+                <li>Acesse <strong>chat.openai.com</strong>.</li>
+                <li>Crie um <strong>GPT personalizado GO</strong>.</li>
+                <li>Cole o Perfil Clínico nas instruções.</li>
+                <li>Use para sintetizar análises do Claude.</li>
+              </ol>
+            </div>
+            <div class="instr-platform">
+              <div class="instr-platform-name">📓 NotebookLM · Memória</div>
+              <ol>
+                <li>Acesse <strong>notebooklm.google.com</strong>.</li>
+                <li>Crie um <strong>Caderno "Memória Clínica MDV"</strong>.</li>
+                <li>Carregue protocolos MDV + diretrizes FEBRASGO + dados Dariza.</li>
+                <li>Use para consultas internas ao próprio acervo.</li>
+              </ol>
+            </div>
+          </div>
+
+          <div class="instr-tip"><span class="instr-tip-icon">💡</span><span>O detalhe completo, com prompts prontos para colar, está em <strong>"Personalização das IAs · Gemini + Claude GO/MDV"</strong> (Bloco 1, sexta tarde). Aqui é só o resumo.</span></div>
+
+          <h4>Sem conseguir configurar antes?</h4>
+          <p>Sem problema. Os primeiros minutos do café da sexta-feira (18h00–18h15) são reservados para resolver dúvidas de configuração com apoio direto. Traga o celular ou notebook carregado.</p>
         </div>
       </div>
 
@@ -3363,6 +4547,923 @@ document.addEventListener('DOMContentLoaded',()=>{
   buildSidebar();
   navigateTo('abertura-go');
 });
+
+
+/* === Ported from May 2026 === */
+
+
+function copiarPromptParaIA(elementId){
+  // Compatibilidade: handler legado para o caminho anchor + onclick.
+  // Hoje o fluxo principal do Gemini é abrirGeminiModal — esta função fica para retrocompatibilidade.
+  try{
+    const el=document.getElementById(elementId);
+    if(!el)return true;
+    const text=el.innerText;
+    copiarSincrono(text);
+    if(navigator.clipboard&&window.isSecureContext){
+      navigator.clipboard.writeText(text).catch(()=>{});
+    }
+    showToast('Prompt copiado — cole no Gemini (Ctrl+V no PC · toque longo + Colar no celular)');
+  }catch(e){}
+  return true;
+}
+
+function abrirGeminiModal(elementId){
+  const el=document.getElementById(elementId);
+  if(!el)return;
+  _geminiModalTexto=el.innerText;
+  // Pré-preenche preview e tenta copiar automaticamente (best effort)
+  const preview=document.getElementById('gemini-prompt-preview');
+  if(preview)preview.textContent=_geminiModalTexto;
+  // Reset visual do botão copiar
+  const btn=document.getElementById('gemini-copy-btn');
+  if(btn){btn.classList.remove('copiado');btn.textContent='📋 Copiar prompt';}
+  // Mostrar botão "Abrir no app" apenas em Android Chrome (intent:// URL)
+  // Em iOS o app abre via Universal Links automaticamente pelo https://; em desktop não há app.
+  // WebView (WhatsApp, Instagram, etc.) também não suporta intent:// bem — ocultar.
+  const appBtn=document.getElementById('gemini-open-app');
+  if(appBtn)appBtn.style.display=IS_ANDROID?'block':'none';
+  document.getElementById('gemini-modal').classList.add('open');
+  // Best effort: copiar já na abertura (alguns navegadores aceitam, outros não)
+  try{copiarSincrono(_geminiModalTexto);}catch(e){}
+}
+
+function copiarGeminiPrompt(){
+  let okSync=false;
+  try{okSync=copiarSincrono(_geminiModalTexto);}catch(e){}
+  if(navigator.clipboard&&window.isSecureContext){
+    navigator.clipboard.writeText(_geminiModalTexto).catch(()=>{});
+  }
+  const btn=document.getElementById('gemini-copy-btn');
+  if(btn){
+    btn.classList.add('copiado');
+    btn.textContent='✓ Copiado! Agora abra o Gemini abaixo';
+    setTimeout(()=>{btn.classList.remove('copiado');btn.textContent='📋 Copiar prompt';},3500);
+  }
+  showToast('Prompt copiado · agora toque em "Abrir gemini.google.com"');
+}
+
+function fecharGeminiModal(){
+  document.getElementById('gemini-modal').classList.remove('open');
+}
+
+function abrirNovaAba(url){
+  // Mantido para uso fora dos botões de IA (ex.: WhatsApp).
+  // Para os botões de IA, anchors <a target="_blank"> diretos no HTML são mais robustos em mobile.
+  try{
+    const a=document.createElement('a');
+    a.href=url;
+    a.target='_blank';
+    a.rel='noopener noreferrer';
+    a.style.display='none';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    return true;
+  }catch(e){
+    // Fallback: window.open SEM features string (evita interpretação como popup)
+    const w=window.open(url,'_blank');
+    if(w){ try{w.opener=null;}catch(_){ } return true; }
+    return false;
+  }
+}
+
+function abrirMemoriaInfo(){
+  document.getElementById('memoria-overlay').classList.add('open');
+  // Atualiza URL com hash para que back do navegador funcione e links externos consigam reabrir
+  try { history.replaceState(null, '', '#memoria'); } catch(e){}
+}
+
+function fecharMemoriaInfo(){
+  document.getElementById('memoria-overlay').classList.remove('open');
+  // Remove hash ao fechar para não confundir navegação subsequente
+  try { history.replaceState(null, '', window.location.pathname + window.location.search); } catch(e){}
+}
+
+function checkMemoriaHash(){
+  if(window.location.hash === '#memoria'){
+    // Pequeno delay para garantir que o DOM/sidebar já carregou
+    setTimeout(()=>{ abrirMemoriaInfo(); }, 300);
+  }
+}
+
+function fmtIG(diasTotal){
+  if(diasTotal == null || isNaN(diasTotal) || diasTotal < 0) return '—';
+  const sem = Math.floor(diasTotal / 7);
+  const d   = Math.round(diasTotal % 7);
+  return sem + 'sem ' + d + 'd';
+}
+
+function fmtDPP(date){
+  if(!date || isNaN(date.getTime())) return '—';
+  const dd = String(date.getDate()).padStart(2,'0');
+  const mm = String(date.getMonth()+1).padStart(2,'0');
+  const yy = date.getFullYear();
+  return dd + '/' + mm + '/' + yy;
+}
+
+function diffDias(d1, d2){
+  return Math.round((d1 - d2) / 86400000);
+}
+
+function lerNum(id){
+  const el = document.getElementById(id);
+  if(!el) return null;
+  const v = el.value.trim().replace(',', '.');
+  if(v === '') return null;
+  const n = parseFloat(v);
+  return isNaN(n) ? null : n;
+}
+
+function lerData(id){
+  const el = document.getElementById(id);
+  if(!el || !el.value) return null;
+  const d = new Date(el.value + 'T00:00:00');
+  return isNaN(d.getTime()) ? null : d;
+}
+
+function lerInt(id){
+  const v = lerNum(id);
+  return v == null ? null : Math.round(v);
+}
+
+function setInvalido(id, invalido){
+  const el = document.getElementById(id);
+  if(el) el.classList.toggle('invalid', !!invalido);
+}
+
+function calcIG_DUM(){
+  const dum = lerData('calc-dum-data');
+  setInvalido('calc-dum-data', false);
+  const out = document.getElementById('calc-dum-result');
+  if(!dum){ out.className='calc-result empty'; out.innerHTML='Preencha a data da última menstruação para ver o resultado.'; return; }
+  const hoje = new Date(); hoje.setHours(0,0,0,0);
+  const diasIG = diffDias(hoje, dum);
+  if(diasIG < 0 || diasIG > 320){
+    setInvalido('calc-dum-data', true);
+    out.className='calc-result empty';
+    out.innerHTML='Data fora do intervalo esperado (0–320 dias atrás).';
+    return;
+  }
+  const dpp = new Date(dum.getTime() + 280 * 86400000);
+  const ig = fmtIG(diasIG);
+  let interpret = '';
+  const sem = Math.floor(diasIG/7);
+  if(sem < 12)        interpret = '<div class="calc-result-interpret normal"><strong>1º trimestre</strong>Considerar datação por USG (CCN) — geralmente mais acurada que DUM nesta fase.</div>';
+  else if(sem < 28)   interpret = '<div class="calc-result-interpret normal"><strong>2º trimestre</strong>Período de morfológico, rastreios bioquímicos e seguimento ambulatorial.</div>';
+  else if(sem < 37)   interpret = '<div class="calc-result-interpret alert"><strong>3º trimestre · pré-termo</strong>Considerar corticoide para maturação pulmonar se trabalho de parto.</div>';
+  else if(sem < 42)   interpret = '<div class="calc-result-interpret normal"><strong>Termo</strong>Conduta conforme protocolo institucional.</div>';
+  else                interpret = '<div class="calc-result-interpret danger"><strong>Pós-termo</strong>Reavaliar datação e considerar indução conforme protocolo.</div>';
+
+  out.className='calc-result';
+  out.innerHTML =
+    '<div class="calc-result-label">Idade gestacional</div>'+
+    '<div class="calc-result-main">'+ig+'</div>'+
+    '<div class="calc-result-secondary"><strong>DPP:</strong> '+fmtDPP(dpp)+' · <strong>40 sem</strong></div>'+
+    interpret;
+}
+
+function calcIG_USG(){
+  const dataUSG = lerData('calc-usg-data');
+  const semUSG  = lerInt('calc-usg-sem');
+  const dUSG    = lerNum('calc-usg-dias');
+  const out = document.getElementById('calc-usg-result');
+  setInvalido('calc-usg-data', false);
+  setInvalido('calc-usg-sem', false);
+  setInvalido('calc-usg-dias', false);
+
+  if(!dataUSG || semUSG == null || dUSG == null){
+    out.className='calc-result empty';
+    out.innerHTML='Preencha a data do USG, semanas e dias para ver o resultado.';
+    return;
+  }
+  let invalido = false;
+  if(semUSG < 5 || semUSG > 42){ setInvalido('calc-usg-sem', true); invalido = true; }
+  if(dUSG < 0 || dUSG > 6){ setInvalido('calc-usg-dias', true); invalido = true; }
+  const hoje = new Date(); hoje.setHours(0,0,0,0);
+  const diasDesde = diffDias(hoje, dataUSG);
+  if(diasDesde < 0 || diasDesde > 280){ setInvalido('calc-usg-data', true); invalido = true; }
+  if(invalido){ out.className='calc-result empty'; out.innerHTML='Verifique os campos destacados.'; return; }
+
+  const diasIGTotal = semUSG * 7 + dUSG + diasDesde;
+  const dpp = new Date(hoje.getTime() + (280 - diasIGTotal) * 86400000);
+  out.className='calc-result';
+  out.innerHTML =
+    '<div class="calc-result-label">IG atual</div>'+
+    '<div class="calc-result-main">'+fmtIG(diasIGTotal)+'</div>'+
+    '<div class="calc-result-secondary"><strong>DPP estimada:</strong> '+fmtDPP(dpp)+'</div>'+
+    '<div class="calc-result-interpret normal"><strong>Datação por USG</strong>É a referência quando há divergência maior que 7 dias com a DUM no 1º trimestre, ou 10 dias no 2º trimestre.</div>';
+}
+
+function calcCCN(){
+  const ccn = lerNum('calc-ccn-valor');
+  const out = document.getElementById('calc-ccn-result');
+  setInvalido('calc-ccn-valor', false);
+  if(ccn == null){ out.className='calc-result empty'; out.innerHTML='Insira o CCN em milímetros (range: 5–84 mm).'; return; }
+  if(ccn < 5 || ccn > 84){
+    setInvalido('calc-ccn-valor', true);
+    out.className='calc-result empty';
+    out.innerHTML='CCN fora do intervalo válido da fórmula (5–84 mm = ~5sem 4d a 13sem 6d).';
+    return;
+  }
+  const diasIG = 8.052 * Math.sqrt(ccn) + 23.73;
+  const dpp = new Date(); dpp.setHours(0,0,0,0);
+  dpp.setTime(dpp.getTime() + (280 - diasIG) * 86400000);
+  out.className='calc-result';
+  out.innerHTML =
+    '<div class="calc-result-label">Idade gestacional (Robinson-Fleming)</div>'+
+    '<div class="calc-result-main">'+fmtIG(diasIG)+'</div>'+
+    '<div class="calc-result-secondary"><strong>DPP estimada:</strong> '+fmtDPP(dpp)+'</div>'+
+    '<div class="calc-result-interpret normal"><strong>Acurácia máxima no 1º trimestre</strong>CCN é o método mais acurado de datação entre 7 e 13 semanas (erro ±5 dias).</div>';
+}
+
+function calcEFW(){
+  // Aceitar entrada em mm (mais comum no USG) — converter para cm internamente
+  let bpd = lerNum('calc-efw-bpd');
+  let hc  = lerNum('calc-efw-hc');
+  let ac  = lerNum('calc-efw-ac');
+  let fl  = lerNum('calc-efw-fl');
+  const out = document.getElementById('calc-efw-result');
+  setInvalido('calc-efw-bpd', false);
+  setInvalido('calc-efw-hc',  false);
+  setInvalido('calc-efw-ac',  false);
+  setInvalido('calc-efw-fl',  false);
+
+  if(bpd == null || hc == null || ac == null || fl == null){
+    out.className='calc-result empty';
+    out.innerHTML='Preencha BPD, HC, AC e FL (em mm) para ver o peso fetal estimado.';
+    return;
+  }
+  // Validação de ranges plausíveis em mm (faixa ampla de 16 a 40 semanas)
+  let inv = false;
+  if(bpd < 30 || bpd > 110){ setInvalido('calc-efw-bpd', true); inv = true; }
+  if(hc  < 120 || hc > 380){ setInvalido('calc-efw-hc',  true); inv = true; }
+  if(ac  < 100 || ac > 400){ setInvalido('calc-efw-ac',  true); inv = true; }
+  if(fl  < 20  || fl > 90){  setInvalido('calc-efw-fl',  true); inv = true; }
+  if(inv){ out.className='calc-result empty'; out.innerHTML='Verifique medidas — fora do range plausível (em mm).'; return; }
+
+  // Converter mm → cm (Hadlock-4 usa cm)
+  bpd /= 10; hc /= 10; ac /= 10; fl /= 10;
+  // log10(EFW) = 1.3596 - 0.00386(AC×FL) + 0.0064(HC) + 0.00061(BPD×AC) + 0.0424(AC) + 0.174(FL)
+  const logEFW = 1.3596
+               - 0.00386 * ac * fl
+               + 0.0064  * hc
+               + 0.00061 * bpd * ac
+               + 0.0424  * ac
+               + 0.174   * fl;
+  const efw = Math.pow(10, logEFW); // gramas
+  const efwKg = (efw/1000).toFixed(3);
+  // SD ~14% (Hadlock 1985)
+  const dp = efw * 0.14;
+  const min = Math.round(efw - 2*dp);
+  const max = Math.round(efw + 2*dp);
+
+  let interpret = '';
+  if(efw < 1000)       interpret = '<div class="calc-result-interpret alert"><strong>Peso muito baixo</strong>Considerar restrição de crescimento — correlacionar com Doppler e biometria seriada.</div>';
+  else if(efw < 2500)  interpret = '<div class="calc-result-interpret normal"><strong>Pré-termo / abaixo do termo</strong>Avaliar percentil para a idade gestacional.</div>';
+  else if(efw < 4000)  interpret = '<div class="calc-result-interpret normal"><strong>Peso adequado para termo</strong>Compatível com gestação a termo de evolução normal.</div>';
+  else                 interpret = '<div class="calc-result-interpret alert"><strong>Macrossomia</strong>≥ 4000 g — avaliar via de parto e risco materno-fetal (DMG, distocia de ombros).</div>';
+
+  out.className='calc-result';
+  out.innerHTML =
+    '<div class="calc-result-label">Peso fetal estimado (Hadlock-4)</div>'+
+    '<div class="calc-result-main">'+Math.round(efw)+' g</div>'+
+    '<div class="calc-result-secondary">'+efwKg+' kg · IC 95%: <strong>'+min+'–'+max+' g</strong></div>'+
+    interpret;
+}
+
+function calcPSV(){
+  const ig  = lerNum('calc-psv-ig');
+  const psv = lerNum('calc-psv-valor');
+  const out = document.getElementById('calc-psv-result');
+  setInvalido('calc-psv-ig', false);
+  setInvalido('calc-psv-valor', false);
+
+  if(ig == null || psv == null){
+    out.className='calc-result empty';
+    out.innerHTML='Preencha a idade gestacional (semanas) e a PSV medida (cm/s).';
+    return;
+  }
+  let inv = false;
+  if(ig < 18 || ig > 40){ setInvalido('calc-psv-ig', true); inv = true; }
+  if(psv < 10 || psv > 200){ setInvalido('calc-psv-valor', true); inv = true; }
+  if(inv){ out.className='calc-result empty'; out.innerHTML='IG válida: 18–40 sem · PSV plausível: 10–200 cm/s.'; return; }
+
+  // Mediana Mari 2000 aproximada: PSV (cm/s) = exp(0.046 × IG + 2.31)
+  const psvMediana = Math.exp(0.046 * ig + 2.31);
+  const mom = psv / psvMediana;
+
+  let cls, label, interp;
+  if(mom < 1.0)        { cls='normal'; label='Normal';    interp='Sem evidência de circulação cerebral hiperdinâmica.'; }
+  else if(mom < 1.30)  { cls='normal'; label='Normal alto';interp='Dentro do limite superior. Manter seguimento conforme protocolo.'; }
+  else if(mom < 1.50)  { cls='alert';  label='Limítrofe';  interp='Repetir em 24–48h. Correlacionar com clínica e demais parâmetros.'; }
+  else                 { cls='danger'; label='Suspeita de anemia fetal moderada/grave'; interp='≥ 1.5 MoM → considerar cordocentese e/ou transfusão intrauterina conforme contexto. Discutir com medicina fetal.'; }
+
+  out.className='calc-result';
+  out.innerHTML =
+    '<div class="calc-result-label">Múltiplos da mediana · MoM</div>'+
+    '<div class="calc-result-main">'+mom.toFixed(2)+' MoM</div>'+
+    '<div class="calc-result-secondary"><strong>PSV mediana ('+ig+'sem):</strong> '+psvMediana.toFixed(1)+' cm/s</div>'+
+    '<div class="calc-result-interpret '+cls+'"><strong>'+label+'</strong>'+interp+'</div>';
+}
+
+function abrirCalc(){
+  document.getElementById('calc-overlay').classList.add('open');
+  renderCalcTabs();
+  switchCalcTab(calcTabAtual);
+}
+
+function fecharCalc(){
+  document.getElementById('calc-overlay').classList.remove('open');
+}
+
+function renderCalcTabs(){
+  const tabs = document.getElementById('calc-tabs');
+  let html = '';
+  CALCULADORAS.forEach(c=>{
+    html += '<button class="calc-tab'+(c.id===calcTabAtual?' active':'')+'" onclick="switchCalcTab(\''+c.id+'\')">'+
+            '<span class="calc-tab-icon">'+c.icon+'</span> '+c.nome+'</button>';
+  });
+  tabs.innerHTML = html;
+}
+
+function switchCalcTab(id){
+  calcTabAtual = id;
+  // Atualiza tabs
+  document.querySelectorAll('#calc-tabs .calc-tab').forEach((t,i)=>{
+    t.classList.toggle('active', CALCULADORAS[i].id === id);
+  });
+  // Renderiza o painel
+  const panels = document.getElementById('calc-panels');
+  const renderer = CALC_RENDER[id];
+  if(renderer) panels.innerHTML = '<div class="calc-panel active">'+renderer()+'</div>';
+}
+
+function renderLinks(){
+  let html='<div style="font-size:0.78rem;color:var(--text-dim);line-height:1.55;margin-bottom:24px;padding:14px 16px;background:rgba(201,168,76,0.06);border-left:3px solid var(--gold);border-radius:6px">'+
+    '<strong style="color:var(--gold)">💡 Hub clínico permanente.</strong> Esses links abrem em aba nova — use no plantão, no estudo, na construção dos casos. Cada recurso aqui foi escolhido por relevância para a residência GO brasileira.'+
+    '</div>';
+  LINKS_ESSENCIAIS.forEach(sec=>{
+    html+='<div class="links-section">';
+    html+='<div class="links-section-header">';
+    html+='<div class="links-section-icon">'+sec.icon+'</div>';
+    html+='<div><div class="links-section-title">'+sec.categoria+'</div>';
+    if(sec.sub) html+='<div class="links-section-sub">'+sec.sub+'</div>';
+    html+='</div></div>';
+    html+='<div class="links-grid">';
+    sec.items.forEach(it=>{
+      const isPlaceholder=it.url==='#';
+      const isInternal=!!it.internal;
+      // Em Android Chrome (não-WebView), preferir Intent URL quando disponível
+      // — abre direto no app nativo com fallback gracioso para navegador se app não instalado.
+      // Em iOS/Desktop/WebView, usar URL https normal.
+      const hrefFinal=(IS_ANDROID && it.intent) ? it.intent : it.url;
+      let attrs;
+      if(isInternal){
+        // Item interno: fecha overlay Links e dispara a função especificada
+        attrs='href="#" onclick="event.preventDefault();fecharLinks();setTimeout(function(){'+it.internal+'()},250);return false;"';
+      } else if(isPlaceholder){
+        attrs='href="#" onclick="event.preventDefault();return false;" style="opacity:0.55;cursor:not-allowed"';
+      } else {
+        attrs='href="'+hrefFinal+'" target="_blank" rel="noopener noreferrer"';
+      }
+      html+='<a class="link-card'+(isInternal?' link-card-internal':'')+'" '+attrs+'>';
+      html+='<div class="link-card-icon">'+(it.icon||'🔗')+'</div>';
+      html+='<div class="link-card-body">';
+      html+='<div class="link-card-name">'+it.nome+(isInternal?' <span class="link-badge-internal">embutido</span>':'')+'</div>';
+      html+='<div class="link-card-desc">'+it.desc+'</div>';
+      html+='</div>';
+      const arrow = isInternal ? '→' : (isPlaceholder?'·':'↗');
+      html+='<div class="link-card-arrow">'+arrow+'</div>';
+      html+='</a>';
+    });
+    html+='</div></div>';
+  });
+  return html;
+}
+
+function getFavorites(){
+  try{ return JSON.parse(localStorage.getItem('aimed-favorites-v1')||'[]'); }
+  catch(e){ return []; }
+}
+
+function isFavorite(id){ return getFavorites().includes(id); }
+
+function toggleFavorite(id, event){
+  if(event){ event.stopPropagation(); event.preventDefault(); }
+  let favs=getFavorites();
+  if(favs.includes(id)){ favs=favs.filter(x=>x!==id); }
+  else { favs.push(id); }
+  try{ localStorage.setItem('aimed-favorites-v1', JSON.stringify(favs)); }catch(e){}
+  // Atualizar a estrela visualmente sem re-renderizar tudo
+  const btn=document.querySelector('.lib-fav-btn[data-fav-id="'+id+'"]');
+  if(btn){
+    btn.classList.toggle('active', favs.includes(id));
+    btn.textContent = favs.includes(id) ? '★' : '☆';
+    btn.setAttribute('aria-label', favs.includes(id)?'Remover dos favoritos':'Marcar como favorito');
+  }
+  // Se o filtro corrente é Favoritos, re-renderizar Biblioteca para refletir
+  if(currentSpecFilter==='favoritos'){
+    const body=document.getElementById('biblioteca-body');
+    if(body) body.innerHTML=renderBiblioteca();
+    bindLibCardClicks();
+  }
+}
+
+function bindLibCardClicks(){
+  document.querySelectorAll('.lib-card').forEach(card=>{
+    card.addEventListener('click',e=>{
+      if(e.target.closest('.lib-actions'))return;
+      if(e.target.closest('.lib-fav-btn'))return;
+      card.classList.toggle('open');
+    });
+  });
+}
+
+function abrirInstrucoes(){
+  document.getElementById('instrucoes-overlay').classList.add('open');
+}
+
+function fecharInstrucoes(){
+  document.getElementById('instrucoes-overlay').classList.remove('open');
+}
+
+function toggleInstrSecao(id){
+  const sec = document.getElementById('instr-'+id);
+  if(!sec) return;
+  sec.classList.toggle('open');
+}
+
+function abrirInstrSecao(id){
+  // Fecha todas, abre a escolhida e rola até ela
+  document.querySelectorAll('.instr-section').forEach(s=>s.classList.remove('open'));
+  const sec = document.getElementById('instr-'+id);
+  if(!sec) return;
+  sec.classList.add('open');
+  setTimeout(()=>sec.scrollIntoView({behavior:'smooth',block:'start'}),60);
+}
+
+function setThemeFilter(theme){
+  currentThemeFilter=theme;
+  const body=document.getElementById('biblioteca-body');
+  if(body){
+    body.innerHTML=renderBiblioteca();
+    bindLibCardClicks();
+  }
+}
+
+function diasParaCurso(){
+  // Conta dias de CALENDÁRIO no fuso de Joinville (UTC-3),
+  // não horas corridas — assim "hoje 16 → curso 22" sempre dá 6,
+  // independentemente da hora atual.
+  const agora = new Date();
+  const TZ_OFFSET_MS = -3 * 60 * 60 * 1000; // UTC-3 (Joinville)
+  const inicioCurso_Joinville = new Date('2026-05-22T00:00:00-03:00');
+  const hojeNoFuso = new Date(agora.getTime() + TZ_OFFSET_MS);
+  const inicioHoje = new Date(Date.UTC(
+    hojeNoFuso.getUTCFullYear(),
+    hojeNoFuso.getUTCMonth(),
+    hojeNoFuso.getUTCDate()
+  ));
+  const inicioCursoUTC = new Date(Date.UTC(
+    inicioCurso_Joinville.getUTCFullYear(),
+    inicioCurso_Joinville.getUTCMonth(),
+    inicioCurso_Joinville.getUTCDate()
+  ));
+  const diff = inicioCursoUTC - inicioHoje;
+  if (diff < 0) return -1;
+  return Math.round(diff / (1000 * 60 * 60 * 24));
+}
+
+function abrirPreCurso(){
+  const dias=diasParaCurso();
+  const numEl=document.getElementById('pre-curso-num');
+  const labelEl=document.getElementById('pre-curso-label');
+  if(dias===0){numEl.textContent='Hoje';numEl.style.fontSize='clamp(2.6rem, 8vw, 4.2rem)';labelEl.textContent='começa o curso';}
+  else if(dias===1){numEl.textContent='1';labelEl.textContent='dia para o curso';}
+  else {numEl.textContent=dias;labelEl.textContent='dias para o curso';}
+  document.getElementById('pre-curso-overlay').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+
+function fecharPreCurso(){
+  document.getElementById('pre-curso-overlay').classList.remove('open');
+  document.body.style.overflow='';
+  try{localStorage.setItem('aimed_precurso_visto','1');}catch(e){}
+}
+
+function navegarDePreCurso(acao){
+  fecharPreCurso();
+  setTimeout(()=>{
+    if(acao==='t0'){showAvaliacao();}
+    else if(acao==='logistica'){showLogistica();}
+    else if(acao==='metodologia'){navigateTo('metodologia-aimed-go');}
+    else if(acao==='instrucoes'){abrirInstrucoes();}
+  },200);
+}
+
+function normalizar(s){
+  return (s||'').toString()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+    .toLowerCase()
+    .replace(/<[^>]+>/g,' ')
+    .replace(/\s+/g,' ')
+    .trim();
+}
+
+function construirIndiceBusca(){
+  const idx = [];
+  // 1) Módulos do PROGRAMA (todos os blocos, todos os módulos, todos os 3 níveis)
+  PROGRAMA.forEach(bloco=>{
+    (bloco.modulos||[]).forEach(mod=>{
+      if(mod.isBreak) return;
+      // texto base do módulo: conteúdo + summary + título
+      const baseTexto = normalizar((mod.titulo||'')+' '+(mod.summary||'')+' '+(mod.conteudo||''));
+      idx.push({
+        tipo:'modulo',
+        grupo:'Módulos do Curso',
+        icone:'📖',
+        titulo: mod.titulo,
+        descricao: mod.summary || `Bloco ${bloco.numero} · ${bloco.role}`,
+        meta: `Bloco ${bloco.numero} · ${bloco.role} · ${mod.horario||''}`,
+        textoBusca: baseTexto + ' bloco ' + bloco.numero + ' ' + normalizar(bloco.role),
+        acao: ()=>navigateTo(mod.id)
+      });
+      // 1b) Prompts dentro de módulos (N1/N2/N3)
+      if(mod.prompts){
+        ['nivel1','nivel2','nivel3'].forEach(nv=>{
+          const niv = mod.prompts[nv];
+          if(!niv) return;
+          idx.push({
+            tipo:'prompt-modulo',
+            grupo:'Prompts dos Módulos',
+            icone:'⚙️',
+            titulo: `${mod.prompts.titulo||mod.titulo} · ${niv.label||nv}`,
+            descricao: niv.desc || mod.prompts.subtitulo || '',
+            meta: `Em: ${mod.titulo}`,
+            textoBusca: normalizar((mod.prompts.titulo||'')+' '+(niv.label||'')+' '+(niv.desc||'')+' '+(niv.texto||'')+' '+mod.titulo),
+            acao: ()=>navigateTo(mod.id)
+          });
+        });
+      }
+    });
+  });
+  // 2) Biblioteca AIMED GO (18 prompts)
+  BIBLIOTECA.forEach(item=>{
+    idx.push({
+      tipo:'biblioteca',
+      grupo:'Biblioteca AIMED GO',
+      icone: item.icon || '📚',
+      titulo: item.titulo,
+      descricao: item.desc || '',
+      meta: 'Biblioteca · prompt clínico',
+      textoBusca: normalizar(item.titulo+' '+item.desc+' '+item.prompt),
+      acao: ()=>{ showBiblioteca(); setTimeout(()=>{
+        const card=document.getElementById('lib-'+item.id);
+        if(card){ card.classList.add('open'); card.scrollIntoView({behavior:'smooth',block:'center'}); }
+      },120); }
+    });
+  });
+  // 3) Glossário
+  Object.entries(GLOSSARIO).forEach(([termo,def])=>{
+    idx.push({
+      tipo:'glossario',
+      grupo:'Glossário Clínico',
+      icone:'📑',
+      titulo: termo,
+      descricao: def,
+      meta: 'Glossário GO',
+      textoBusca: normalizar(termo+' '+def),
+      acao: ()=>showToast(`${termo}: ${def}`)
+    });
+  });
+  // 4) Logística — itens-chave hardcoded para busca rápida
+  const logKeys = [
+    {t:'Local do Curso', d:'Hotel Le Canard · Rua XV de Novembro, 2075 · Glória · Joinville/SC'},
+    {t:'Datas', d:'22 e 23 de Maio de 2026 · Sexta e Sábado'},
+    {t:'Carga horária', d:'14 horas presenciais + 4 semanas pós-curso'},
+    {t:'Coffee breaks', d:'3 intervalos nos dois dias · networking entre as residentes'},
+    {t:'Configuração de IAs', d:'Gemini · Claude · ChatGPT · NotebookLM — configurar antes da sexta'},
+    {t:'Material a trazer', d:'Notebook ou tablet · celular carregado · curiosidade'},
+    {t:'Grupo WhatsApp', d:'Grupo permanente para envio de T0/T1/T2 e suporte pós-curso'},
+    {t:'Certificado', d:'Emitido após preenchimento do T1 (domingo 24/05)'}
+  ];
+  logKeys.forEach(l=>{
+    idx.push({
+      tipo:'logistica',
+      grupo:'Logística do Curso',
+      icone:'🏨',
+      titulo: l.t,
+      descricao: l.d,
+      meta: 'Logística · Hotel Le Canard',
+      textoBusca: normalizar(l.t+' '+l.d),
+      acao: ()=>showLogistica()
+    });
+  });
+  // 5) Sobre / Autor
+  idx.push({
+    tipo:'sobre',
+    grupo:'Sobre',
+    icone:'👤',
+    titulo:'Dr. Mbula Luzingu Barros',
+    descricao:'Médico intensivista pediátrico · Arquiteto de IA · Fundador da InovaMed · Autor da metodologia AIMED.',
+    meta:'Autoria',
+    textoBusca: normalizar('mbula luzingu barros inovamed aimed intensivista pediatrico santa catarina 100 pontos ses sc autor'),
+    acao: ()=>abrirSobre()
+  });
+  // 6) Avaliação
+  ['T0 · Antes do Curso','T1 · Logo Após o Curso','T2 · Após 4 Semanas','Diário Clínico AIMED'].forEach((t,i)=>{
+    idx.push({
+      tipo:'avaliacao',
+      grupo:'Avaliação · Pesquisa',
+      icone:'📊',
+      titulo: t,
+      descricao: i===0?'Linha de base · responda antes do dia 22/05'
+                : i===1?'Pós-imediato · responda no domingo 24/05'
+                : i===2?'Follow-up · 4 semanas após o curso'
+                : 'Registro pessoal contínuo do uso de IA no plantão',
+      meta:'Pesquisa AIMED',
+      textoBusca: normalizar(t+' avaliacao pesquisa nps likert apelido'),
+      acao: ()=>showAvaliacao()
+    });
+  });
+  // 7) Instruções · Como usar o AIMED OS
+  const INSTRUCOES = [
+    {id:'navegar', titulo:'Como navegar pelo conteúdo', desc:'Sidebar, blocos, breadcrumb, níveis N1/N2/N3, glossário interativo', extra:'sidebar bloco modulo nivel n1 n2 n3 breadcrumb glossario navegacao'},
+    {id:'busca', titulo:'Como usar a busca universal (Ctrl+K)', desc:'Atalhos de teclado, exemplos, navegação por seta', extra:'ctrl k cmd k atalho teclado busca pesquisa enter esc seta'},
+    {id:'pdf', titulo:'Como gerar e salvar PDFs', desc:'Baixar prompts individuais ou índice geral da Biblioteca', extra:'pdf imprimir salvar baixar download biblioteca offline'},
+    {id:'instalar', titulo:'Como instalar como app no celular', desc:'iPhone (Safari) e Android (Chrome) · tela inicial · tela cheia', extra:'instalar pwa app celular iphone ipad android safari chrome tela inicial home screen icone'},
+    {id:'aimed', titulo:'A metodologia AIMED em 5 componentes', desc:'Assistente · Informações · Missão · Estrutura · Diretrizes', extra:'aimed metodologia framework prompt componente assistente informacoes missao estrutura diretrizes'},
+    {id:'pesquisa', titulo:'Questionários T0 · T1 · T2 (pesquisa)', desc:'Três momentos de avaliação · apelido de pareamento · certificado', extra:'t0 t1 t2 pesquisa avaliacao questionario apelido pareamento certificado'},
+    {id:'ias', titulo:'Configurar Gemini · Claude · ChatGPT · NotebookLM', desc:'Como personalizar cada IA para GO/MDV antes da sexta', extra:'configurar gemini claude chatgpt gpt notebooklm ia personalizar gem projeto'}
+  ];
+  INSTRUCOES.forEach(i=>{
+    idx.push({
+      tipo:'instrucao',
+      grupo:'Como usar o AIMED OS',
+      icone:'❓',
+      titulo: i.titulo,
+      descricao: i.desc,
+      meta: 'Manual da plataforma',
+      textoBusca: normalizar(i.titulo+' '+i.desc+' '+(i.extra||'')),
+      acao: ()=>{ abrirInstrucoes(); setTimeout(()=>abrirInstrSecao(i.id),120); }
+    });
+  });
+  return idx;
+}
+
+function abrirBusca(){
+  if(BUSCA_INDICE.length===0) BUSCA_INDICE = construirIndiceBusca();
+  document.getElementById('busca-overlay').classList.add('open');
+  document.body.style.overflow='hidden';
+  const input = document.getElementById('busca-input');
+  input.value='';
+  buscaResultadoAtivo=0;
+  buscaResultadosAtuais=[];
+  renderResultadosBusca('');
+  setTimeout(()=>input.focus(),50);
+}
+
+function fecharBusca(){
+  document.getElementById('busca-overlay').classList.remove('open');
+  document.body.style.overflow='';
+}
+
+function executarBusca(q){
+  const qn = normalizar(q);
+  if(qn.length<2) return [];
+  const termos = qn.split(' ').filter(t=>t.length>=2);
+  if(termos.length===0) return [];
+  const scored = [];
+  for(const item of BUSCA_INDICE){
+    let score = 0;
+    let allMatch = true;
+    for(const t of termos){
+      const tituloN = normalizar(item.titulo);
+      const ocorreTitulo = tituloN.includes(t);
+      const ocorreCorpo  = item.textoBusca.includes(t);
+      if(!ocorreTitulo && !ocorreCorpo){ allMatch=false; break; }
+      if(ocorreTitulo) score += 10;
+      if(tituloN.startsWith(t)) score += 6;
+      if(ocorreCorpo)  score += 1;
+    }
+    if(allMatch) scored.push({item,score});
+  }
+  scored.sort((a,b)=>b.score-a.score);
+  return scored.slice(0,30).map(s=>s.item);
+}
+
+function highlightTermos(texto, q){
+  const qn = normalizar(q);
+  if(qn.length<2) return texto;
+  const termos = qn.split(' ').filter(t=>t.length>=2);
+  let out = texto;
+  for(const t of termos){
+    // regex insensível a acento — busca a forma normalizada na string original
+    const re = new RegExp('('+t.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi');
+    // primeiro highlight em string normalizada não muda visual; aplicar direto
+    out = out.replace(re,'<mark>$1</mark>');
+    // também tenta com acento (palavras como pré-eclâmpsia)
+  }
+  // Fallback: também marca a versão acentuada via mapeamento simples
+  for(const t of termos){
+    const variantes = gerarVariantesAcentuadas(t);
+    variantes.forEach(v=>{
+      const re=new RegExp('('+v.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi');
+      out = out.replace(re,(m)=>m.includes('<mark>')?m:'<mark>'+m+'</mark>');
+    });
+  }
+  return out;
+}
+
+function gerarVariantesAcentuadas(t){
+  // Para cada letra "ascii" gera variantes com acento comum em PT
+  const map={a:'aáàâãä',e:'eéèêë',i:'iíìî',o:'oóòôõ',u:'uúùû',c:'cç'};
+  let res=[t];
+  for(let i=0;i<t.length;i++){
+    const c=t[i];
+    if(map[c]){
+      const novo=[];
+      for(const r of res){
+        for(const ch of map[c]){
+          novo.push(r.substring(0,i)+ch+r.substring(i+1));
+        }
+      }
+      res=novo;
+    }
+  }
+  return res.slice(0,8); // limita combinações
+}
+
+function renderResultadosBusca(q){
+  const box = document.getElementById('busca-results');
+  if(!q || q.length<2){
+    buscaResultadosAtuais = [];
+    box.innerHTML = `<div class="busca-empty">Digite pelo menos 2 letras.<br><span style="font-size:0.78rem;opacity:0.7">Ex: <em>MgSO4</em>, <em>CTG</em>, <em>PICO</em>, <em>hotel</em>, <em>NotebookLM</em>.</span></div>`;
+    return;
+  }
+  const resultados = executarBusca(q);
+  buscaResultadosAtuais = resultados;
+  buscaResultadoAtivo = 0;
+  if(resultados.length===0){
+    box.innerHTML = `<div class="busca-empty">Nenhum resultado para "<strong style="color:var(--text)">${q}</strong>".<br><span style="font-size:0.78rem;opacity:0.7">Tente sinônimo ou termo mais curto.</span></div>`;
+    return;
+  }
+  // Agrupar por grupo, preservando ordem por score
+  const grupos = {};
+  const ordemGrupos = [];
+  resultados.forEach(r=>{
+    if(!grupos[r.grupo]){ grupos[r.grupo]=[]; ordemGrupos.push(r.grupo); }
+    grupos[r.grupo].push(r);
+  });
+  let html = '';
+  let idxGlobal = 0;
+  ordemGrupos.forEach(g=>{
+    html += `<div class="busca-group-label">${g}</div>`;
+    grupos[g].forEach(r=>{
+      const isActive = idxGlobal===buscaResultadoAtivo;
+      html += `<div class="busca-result ${isActive?'active':''}" data-idx="${idxGlobal}" onclick="ativarResultadoBusca(${idxGlobal}, event)">
+        <div class="busca-result-icon">${r.icone}</div>
+        <div class="busca-result-body">
+          <div class="busca-result-title">${highlightTermos(r.titulo, q)}</div>
+          <div class="busca-result-desc">${highlightTermos(r.descricao||'', q)}</div>
+          <div class="busca-result-meta">${r.meta||''}</div>
+        </div>
+      </div>`;
+      idxGlobal++;
+    });
+  });
+  box.innerHTML = html;
+}
+
+function ativarResultadoBusca(idx, ev){
+  // Parar borbulhamento defensivamente — evita que o clique chegue em
+  // listeners atrás (toggle de overlay, navigateTo de sidebar, etc).
+  if(ev){
+    try{ ev.preventDefault(); ev.stopPropagation(); }catch(e){}
+  }
+  const r = buscaResultadosAtuais[idx];
+  if(!r || typeof r.acao !== 'function') return;
+  // Fechamos a busca PRIMEIRO, depois disparamos a ação num tick separado.
+  // Isso garante que nenhum click residual da busca afete a navegação.
+  fecharBusca();
+  setTimeout(()=>{ try{ r.acao(); }catch(e){ console.error('Busca·ação falhou:',e); } }, 60);
+}
+
+function moverResultadoBusca(delta){
+  if(buscaResultadosAtuais.length===0) return;
+  buscaResultadoAtivo = (buscaResultadoAtivo + delta + buscaResultadosAtuais.length) % buscaResultadosAtuais.length;
+  // re-render só a classe active
+  document.querySelectorAll('.busca-result').forEach(el=>{
+    if(parseInt(el.dataset.idx)===buscaResultadoAtivo){
+      el.classList.add('active');
+      el.scrollIntoView({block:'nearest'});
+    } else {
+      el.classList.remove('active');
+    }
+  });
+}
+
+function inicializarBusca(){
+  const input = document.getElementById('busca-input');
+  if(!input) return;
+  input.addEventListener('input',e=>renderResultadosBusca(e.target.value));
+  input.addEventListener('keydown',e=>{
+    if(e.key==='ArrowDown'){ e.preventDefault(); moverResultadoBusca(1); }
+    else if(e.key==='ArrowUp'){ e.preventDefault(); moverResultadoBusca(-1); }
+    else if(e.key==='Enter'){
+      e.preventDefault();
+      if(buscaResultadosAtuais[buscaResultadoAtivo]){
+        ativarResultadoBusca(buscaResultadoAtivo, e);
+      }
+    }
+  });
+  // Detectar Mac e ajustar o atalho exibido
+  if(navigator.platform.toUpperCase().indexOf('MAC')>=0){
+    const sc=document.getElementById('ssb-shortcut');
+    if(sc) sc.textContent='⌘ K';
+  }
+}
+
+function montarHeaderPDF(){
+  const hoje = new Date();
+  const data = hoje.toLocaleDateString('pt-BR',{day:'2-digit',month:'2-digit',year:'numeric'});
+  return `<div class="pdf-header">
+    <div class="pdf-brand">AIMED</div>
+    <div class="pdf-tagline">Residentes GO · MDV · Joinville · 22-23 Maio 2026 · Gerado em ${data}</div>
+  </div>`;
+}
+
+function montarFooterPDF(){
+  return `<div class="pdf-footer">
+    <strong>AIMED</strong> · Metodologia autoral do Dr. Mbula Luzingu Barros · InovaMed<br>
+    Plataforma permanente do curso: mbulabarros.github.io/aimed-residentes-go
+  </div>`;
+}
+
+function gerarPDFPrompt(itemId){
+  const item = BIBLIOTECA.find(b=>b.id===itemId);
+  if(!item){ showToast('Prompt não encontrado'); return; }
+  const tagLabels={universal:'Universal',go:'GO Especialidade',ultra:'Ultra',habit:'Hábito',unique:'Inédito BR'};
+  const tagsTexto = (item.tags||[]).map(t=>tagLabels[t]||t).join(' · ');
+  const area = document.getElementById('print-area');
+  area.innerHTML = montarHeaderPDF() + `
+    <div class="pdf-title">${item.icon||''} ${escapeHTML(item.titulo)}</div>
+    <div class="pdf-subtitle">${escapeHTML(item.desc||'')}</div>
+    <div class="pdf-card-meta"><strong>Tags:</strong> ${escapeHTML(tagsTexto)}</div>
+    <div class="pdf-section-label">Prompt</div>
+    <div class="pdf-prompt-box">${escapeHTML(item.prompt)}</div>
+    <div class="pdf-section-label">Como usar</div>
+    <div style="font-size:10pt;line-height:1.6;color:#333">
+      1. Copie o bloco acima.<br>
+      2. Cole no Claude (Projeto GO/MDV), Gemini ou ChatGPT.<br>
+      3. Substitua os campos entre <strong>[colchetes]</strong> pelos dados da sua paciente.<br>
+      4. Confira sempre os resultados — IA é segunda opinião, não substitui o juízo clínico.
+    </div>
+  ` + montarFooterPDF();
+  // Pequeno delay para o DOM aplicar antes do print
+  setTimeout(()=>{
+    window.print();
+    setTimeout(()=>{ area.innerHTML=''; },500);
+  },80);
+}
+
+function gerarPDFIndice(){
+  const tagLabels={universal:'Universal',go:'GO Especialidade',ultra:'Ultra',habit:'Hábito',unique:'Inédito BR'};
+  const visiveis = EDITION.specsVisiveis;
+  const lista = BIBLIOTECA.filter(b=>{
+    const sp = b.specs||['universal'];
+    return sp.some(s=>visiveis.includes(s));
+  });
+  let html = montarHeaderPDF() + `
+    <div class="pdf-title">Biblioteca AIMED GO · Índice Geral</div>
+    <div class="pdf-subtitle">${lista.length} prompts clínicos de alta performance · Edição Residentes GO · MDV · Maio 2026</div>
+    <div class="pdf-section-label">Índice de prompts</div>
+  `;
+  lista.forEach(item=>{
+    const tagsTexto = (item.tags||[]).map(t=>tagLabels[t]||t).join(' · ');
+    html += `<div class="pdf-index-item">
+      <div class="pdf-index-icon">${item.icon||'•'}</div>
+      <div class="pdf-index-body">
+        <div class="pdf-index-title">${escapeHTML(item.titulo)}</div>
+        <div class="pdf-index-desc">${escapeHTML(item.desc||'')}<br><span style="color:#888;font-size:8pt">${escapeHTML(tagsTexto)}</span></div>
+      </div>
+    </div>`;
+  });
+  html += `<div class="pdf-section-label" style="margin-top:24px">Como usar este índice</div>
+    <div style="font-size:10pt;line-height:1.6;color:#333">
+      Cada prompt da biblioteca pode ser baixado individualmente como PDF próprio<br>
+      pelo botão <strong>"📥 PDF"</strong> dentro de cada card no portal AIMED OS.<br>
+      Salve no celular para acesso offline durante o plantão.
+    </div>`;
+  html += montarFooterPDF();
+  const area = document.getElementById('print-area');
+  area.innerHTML = html;
+  setTimeout(()=>{
+    window.print();
+    setTimeout(()=>{ area.innerHTML=''; },500);
+  },80);
+}
 </script>
 </body>
 </html>
