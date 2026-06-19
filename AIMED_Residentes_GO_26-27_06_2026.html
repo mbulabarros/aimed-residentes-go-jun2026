@@ -1476,27 +1476,38 @@ input[type="date"].calc-input { color-scheme: dark; }
 <nav id="sidebar">
   <div class="sidebar-brand">
     <div class="brand-logo">AIMED</div>
-    <div class="brand-sub">Residentes GO · MDV · Joinville</div>
+    <div class="brand-sub">Residentes G.O. · MDV · Joinville · 2ª Edição</div>
     <div class="brand-date">26 e 27 de Junho · 2026 · Hotel Le Canard <span style="font-size:0.7em;opacity:0.7">· 2ª Edição</span></div>
   </div>
 
   <div id="sidebar-nav"><!-- preenchido pelo JS --></div>
 
   <div class="sidebar-actions">
+    <button class="sidebar-search-btn" onclick="abrirBusca()" aria-label="Buscar (atalho Ctrl+K)">
+      <span class="ssb-icon">🔍</span>
+      <span class="ssb-label">Buscar no curso…</span>
+      <span class="ssb-shortcut" id="ssb-shortcut">Ctrl K</span>
+    </button>
+    <button class="sidebar-btn btn-instrucoes" onclick="abrirInstrucoes()">
+      <span class="sidebar-btn-icon">❓</span> Como usar o AIMED OS
+    </button>
     <button class="sidebar-btn" onclick="showLogistica()">
       <span class="sidebar-btn-icon">🏨</span> Logística do Curso
     </button>
     <button class="sidebar-btn" onclick="showBiblioteca()">
       <span class="sidebar-btn-icon">📚</span> Biblioteca AIMED GO
     </button>
+    <button class="sidebar-btn" onclick="showLinks()">
+      <span class="sidebar-btn-icon">🔗</span> Links Essenciais
+    </button>
+    <button class="sidebar-btn btn-memoria" onclick="abrirMemoriaInfo()">
+      <span class="sidebar-btn-icon">✨</span> Memória AIMED
+    </button>
+    <button class="sidebar-btn btn-calc" onclick="abrirCalc()">
+      <span class="sidebar-btn-icon">🧮</span> Calculadoras Obstétricas
+    </button>
     <button class="sidebar-btn" onclick="showAvaliacao()">
       <span class="sidebar-btn-icon">📊</span> Avaliação · Pesquisa
-    </button>
-    <button class="sidebar-btn" onclick="abrirCalc()"><span class="sidebar-btn-icon">🔢</span> Calculadoras</button>
-<button class="sidebar-btn" onclick="abrirInstrucoes()"><span class="sidebar-btn-icon">📋</span> Instruções</button>
-<button class="sidebar-btn" onclick="abrirMemoriaInfo()"><span class="sidebar-btn-icon">🧠</span> Memória</button>
-<button class="sidebar-btn" onclick="showLinks()">
-      <span class="sidebar-btn-icon">🔗</span> Links Úteis
     </button>
     <button class="sidebar-btn" onclick="abrirSobre()">
       <span class="sidebar-btn-icon">👤</span> Sobre Dr. Mbula
@@ -1508,6 +1519,10 @@ input[type="date"].calc-input { color-scheme: dark; }
 <main id="main">
   <div id="topbar">
     <button class="menu-toggle" onclick="toggleSidebar()" aria-label="Abrir menu">☰</button>
+    <div class="topbar-brand">
+      <span class="topbar-brand-title">AIMED</span>
+      <span class="topbar-brand-sub">Residentes G.O. · 2ª Edição</span>
+    </div>
     <div class="topbar-breadcrumb">
       <span id="tb-block">Bloco 1</span>
       <span class="sep">›</span>
@@ -1794,7 +1809,7 @@ input[type="date"].calc-input { color-scheme: dark; }
       <div class="mem-hero">
         <div class="mem-hero-eyebrow">Inédito no Brasil · Educação Médica em IA</div>
         <h1 class="mem-hero-title">Você não vai sair só com um certificado.<br>Vai sair com a <em style="font-style:italic">sua história</em>.</h1>
-        <p class="mem-hero-sub">Cinco semanas depois do curso, cada uma de vocês recebe uma página personalizada com a sua evolução individual. Documento próprio, compartilhável, baseado nas suas respostas reais.</p>
+        <p class="mem-hero-sub">Cinco semanas depois do curso, cada um/a de vocês recebe uma página personalizada com a sua evolução individual. Documento próprio, compartilhável, baseado nas suas respostas reais.</p>
       </div>
 
       <!-- VÍDEO EXPLICATIVO · Avatar Digital Dr. Mbula -->
@@ -1896,7 +1911,7 @@ input[type="date"].calc-input { color-scheme: dark; }
         <div class="mem-features">
           <div class="mem-feature">
             <div class="mem-feature-icon">📍</div>
-            <div class="mem-feature-text"><strong><span class="sigla">T0</span></strong> · Linha de base. Respostas dadas <em>antes</em> do curso, até segunda-feira 21/05. Mede o ponto de partida de cada residente.</div>
+            <div class="mem-feature-text"><strong><span class="sigla">T0</span></strong> · Linha de base. Respostas dadas <em>antes</em> do curso, até quinta-feira 25/06. Mede o ponto de partida de cada residente.</div>
           </div>
           <div class="mem-feature">
             <div class="mem-feature-icon">🎯</div>
@@ -1931,7 +1946,7 @@ input[type="date"].calc-input { color-scheme: dark; }
 
       <div class="mem-cta">
         <div class="mem-cta-quote">
-          "Vocês não estão saindo daqui com um certificado de papel. Vão sair daqui com cinco semanas de coleta de dados — e na semana 5, cada uma de vocês recebe uma <strong>Memória AIMED personalizada</strong> com sua jornada inteira. É a primeira vez no Brasil que um curso de IA aplicada à medicina faz isso. E não vai ser a última."
+          "Vocês não estão saindo daqui com um certificado de papel. Vão sair daqui com cinco semanas de coleta de dados — e na semana 5, cada um/a de vocês recebe uma <strong>Memória AIMED personalizada</strong> com sua jornada inteira. É a primeira vez no Brasil que um curso de IA aplicada à medicina faz isso. E não vai ser a última."
         </div>
         <div class="mem-cta-attr">— Encerramento do curso · 27 de Junho de 2026</div>
         <a class="mem-preview-btn" href="memoria.html?id=DEMO" onclick="try{window.history.replaceState(null,'','#memoria')}catch(e){}">👁 Ver pré-visualização (exemplo)</a>
@@ -2179,8 +2194,8 @@ input[type="date"].calc-input { color-scheme: dark; }
           <h4>Os três momentos</h4>
           <ul>
             <li><strong>T0 · Antes do curso</strong> — responda <strong>antes do dia 26/06</strong>. 5 minutos. Linha de base.</li>
-            <li><strong>T1 · Logo após o curso</strong> — responda no <strong>domingo 24/05 à noite</strong>. Impacto imediato + NPS.</li>
-            <li><strong>T2 · 4 semanas depois</strong> — responda em <strong>22/06/2026</strong>. Mede o que sobreviveu na sua rotina.</li>
+            <li><strong>T1 · Logo após o curso</strong> — responda no <strong>domingo 28/06 à noite</strong>. Impacto imediato + NPS.</li>
+            <li><strong>T2 · 4 semanas depois</strong> — responda em <strong>24/07/2026</strong>. Mede o que sobreviveu na sua rotina.</li>
           </ul>
 
           <h4>Como preencher</h4>
@@ -2608,7 +2623,7 @@ const PROGRAMA = [
       id:'abertura-go', horario:'16:00–16:15', titulo:'Abertura e Quebra-Gelo MDV',
       summary:'O curso começa com uma pergunta, não com um slide. Cada residente identifica o protocolo GO que aplica toda semana sem jamais questionar a fundo.',
       avatar:'JzVWWNMtCbo',
-      conteudo:`<div class="quote-hero"><div class="quote-mark">"</div><div class="quote-text"><strong>Uma residente com IA bem treinada supera um especialista sem ela.</strong><br>Este é o dia que muda a sua prática clínica na MDV.</div></div>
+      conteudo:`<div class="quote-hero"><div class="quote-mark">"</div><div class="quote-text"><strong>Um profissional com IA bem treinada supera um especialista sem ela.</strong><br>Este é o dia que muda a sua prática clínica na MDV.</div></div>
 <h3>Por que esta turma é diferente</h3>
 <p>A maioria de vocês são residentes de Ginecologia e Obstetrícia da MDV. Mas nesta turma também estão duas Médicas de Família (Maria Simone e Mayja), uma Pneumologista Pediátrica (Rafaela), uma Gastroenterologista Pediátrica (Luciana) e uma Enfermeira de Terapia Intensiva (Adriana) — especialidades que cruzam diretamente com o universo obstétrico: o DM gestacional que vai para o ambulatório de MFC, a crise asmática na gestante, a colestase que decide o momento do parto, o alerta de deterioração que a enfermeira vê antes do médico. Isso significa que tudo que construirmos aqui tem impacto direto na prática de todas — amanhã de manhã.</p>
 <p>Este não é um curso genérico de ChatGPT. É a segunda turma da metodologia <strong>AIMED</strong> aplicada em Ginecologia e Obstetrícia no Brasil — e a mais heterogênea até agora: GO, Medicina de Família, Pneumologia Pediátrica, Gastroenterologia Pediátrica e Enfermagem de Terapia Intensiva na mesma sala. Cinco perspectivas clínicas distintas sobre os mesmos casos. Isso muda o que é possível construir aqui.</p>
@@ -2711,10 +2726,10 @@ Paciente de 29 semanas, primigesta, convulsionou na enfermaria. O que fazer?`},
       prompts:{
         titulo:'Perfil Clínico GO/MDV — Residente',
         subtitulo:'Cole nas instruções do Gem, Projeto Claude e GPT',
-        nivel1:{label:'Nível 1 · Perfil básico', desc:'Identificação mínima', texto:`Sou médica residente de Ginecologia e Obstetrícia.
+        nivel1:{label:'Nível 1 · Perfil básico', desc:'Identificação mínima', texto:`Sou residente de Ginecologia e Obstetrícia.
 Trabalho em maternidade de referência no sul do Brasil.
 Responda sempre em português, com foco clínico prático.`},
-        nivel2:{label:'Nível 2 · Perfil GO/MDV', desc:'Contexto institucional real', texto:`Sou médica residente de Ginecologia e Obstetrícia na Maternidade Darcy Vargas (MDV), Joinville/SC — maternidade de referência do norte catarinense.
+        nivel2:{label:'Nível 2 · Perfil GO/MDV', desc:'Contexto institucional real', texto:`Sou residente de Ginecologia e Obstetrícia na Maternidade Darcy Vargas (MDV), Joinville/SC — maternidade de referência do norte catarinense.
 
 Contexto clínico:
 - Referência para gestação de alto risco, prematuridade e complicações obstétricas
@@ -2725,7 +2740,7 @@ Contexto clínico:
 Responda sempre em português. Priorize aplicabilidade clínica imediata. Cite FEBRASGO quando relevante. Alerte para divergências entre evidência internacional e prática brasileira.`},
         nivel3:{label:'Nível 3 · Perfil AIMED GO/MDV Completo', desc:'Memória institucional máxima — ideal para Claude Projects', texto:`[PERFIL CLÍNICO PERMANENTE — RESIDENTE GO/MDV]
 
-Sou médica residente de Ginecologia e Obstetrícia na Maternidade Darcy Vargas (MDV), Joinville/SC.
+Sou residente de Ginecologia e Obstetrícia na Maternidade Darcy Vargas (MDV), Joinville/SC.
 
 CONTEXTO INSTITUCIONAL:
 - MDV: maternidade de referência do norte catarinense, escola de residência GO
@@ -3047,7 +3062,7 @@ Síntese das três vozes: em que condições o protocolo se sustenta? Onde tem f
       summary:'A dúvida clínica bruta virou argumento contrário ontem à noite. Agora vira pergunta de pesquisa estruturada. O PICO é o que separa a intuição da investigação.',
       avatar:'Z1xs_BIF7V4',
       conteudo:`<h3>Por que a maioria das buscas médicas falha</h3>
-<p>A residente abre o PubMed e digita "pre-eclampsia magnesium sulfate". Recebe 4.200 resultados. Não sabe o que escolher. Fecha o PubMed e segue o protocolo sem questionar.</p>
+<p>O/A residente abre o PubMed e digita "pre-eclampsia magnesium sulfate". Recebe 4.200 resultados. Não sabe o que escolher. Fecha o PubMed e segue o protocolo sem questionar.</p>
 <p>O <span class="gloss" data-def="P=Paciente · I=Intervenção · C=Comparação · O=Outcome — framework para construir pergunta de pesquisa clínica">PICO</span> resolve isso. Não é burocracia acadêmica — é o código de transformação da dúvida em busca eficiente.</p>
 <div class="role-table">
 <div class="role-row"><div class="role-letter">P</div><div><div class="role-name">Paciente / Problema</div></div><div class="role-desc">Quem é sua paciente com precisão. Não "gestante com pré-eclâmpsia" — mas "gestante com pré-eclâmpsia SEM critérios de gravidade, IG 34-36 semanas, maternidade terciária brasileira".</div></div>
@@ -5554,11 +5569,11 @@ function construirIndiceBusca(){
     {t:'Local do Curso', d:'Hotel Le Canard · Rua XV de Novembro, 2075 · Glória · Joinville/SC'},
     {t:'Datas', d:'26 e 27 de Junho de 2026 · Sexta e Sábado'},
     {t:'Carga horária', d:'14 horas presenciais + 4 semanas pós-curso'},
-    {t:'Coffee breaks', d:'3 intervalos nos dois dias · networking entre as residentes'},
+    {t:'Coffee breaks', d:'3 intervalos nos dois dias · networking entre os/as residentes'},
     {t:'Configuração de IAs', d:'Gemini · Claude · ChatGPT · NotebookLM — configurar antes da sexta'},
     {t:'Material a trazer', d:'Notebook ou tablet · celular carregado · curiosidade'},
     {t:'Grupo WhatsApp', d:'Grupo permanente para envio de T0/T1/T2 e suporte pós-curso'},
-    {t:'Certificado', d:'Emitido após preenchimento do T1 (domingo 24/05)'}
+    {t:'Certificado', d:'Emitido após preenchimento do T1 (domingo 28/06)'}
   ];
   logKeys.forEach(l=>{
     idx.push({
@@ -5591,7 +5606,7 @@ function construirIndiceBusca(){
       icone:'📊',
       titulo: t,
       descricao: i===0?'Linha de base · responda antes do dia 26/06'
-                : i===1?'Pós-imediato · responda no domingo 24/05'
+                : i===1?'Pós-imediato · responda no domingo 28/06'
                 : i===2?'Follow-up · 4 semanas após o curso'
                 : 'Registro pessoal contínuo do uso de IA no plantão',
       meta:'Pesquisa AIMED',
