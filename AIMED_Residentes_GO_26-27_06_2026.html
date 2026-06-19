@@ -883,15 +883,6 @@ body {
 #main::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
 
 
-/* === Ported from May 2026 === */
-function escapeHTML(str) {
-  return String(str)
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#039;');
-}
 /* ── BIBLIOTECA ── */
 /* ── TELA DE BOAS-VINDAS PRÉ-CURSO ── */
 .pre-curso-overlay {
@@ -1035,6 +1026,7 @@ function escapeHTML(str) {
   .pre-curso-card { padding: 28px 16px; }
 .pre-curso-action { padding: 14px 16px; font-size: 0.84rem; }
 .pre-curso-action-num { font-size: 1.2rem; }
+}
 #biblioteca-overlay, #logistica-overlay, #sobre-overlay, #avaliacao-overlay, #instrucoes-overlay, #links-overlay, #memoria-overlay, #calc-overlay {
   position: fixed; inset: 0;
   z-index: 200;
@@ -1412,6 +1404,7 @@ input[type="date"].calc-input { color-scheme: dark; }
   .calc-form { grid-template-columns: 1fr 1fr; gap: 10px; }
 .calc-card { padding: 18px 16px; }
 .calc-tab { padding: 9px 12px; font-size: 0.78rem; }
+}
 /* ═══════════════════════════════════════════════════════════════
    PRÉ-CURSO · QUARTA AÇÃO (TOUR)
    ═══════════════════════════════════════════════════════════════ */
@@ -1476,7 +1469,8 @@ input[type="date"].calc-input { color-scheme: dark; }
 }
 @media (max-width: 600px) {
   .gemini-modal-box { padding: 18px; max-height: 95vh; }
-.gemini-modal-title { font-size: 1.3rem; }
+  .gemini-modal-title { font-size: 1.3rem; }
+}
 </style>
 </head>
 <body>
