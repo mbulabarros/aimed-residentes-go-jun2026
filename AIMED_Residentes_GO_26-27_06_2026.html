@@ -883,6 +883,244 @@ body {
 #main::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
 
 
+
+
+
+
+/* === Data objects ported from May 2026 === */
+
+const CALCULADORAS = [
+  { id:'dum', icon:'📅', nome:'IG · DUM',     full:'Idade gestacional pela DUM',          sub:'+ Data Provável do Parto (Naegele)' },
+  { id:'usg', icon:'🔍', nome:'IG · USG',     full:'Idade gestacional pelo USG',          sub:'Extrapolação a partir do USG anterior' },
+  { id:'ccn', icon:'👶', nome:'IG · CCN',     full:'Datação pelo CCN',                    sub:'1º trimestre · Robinson-Fleming 1975' },
+  { id:'efw', icon:'⚖️',  nome:'EFW Hadlock',  full:'Peso fetal estimado · Hadlock-4',    sub:'BPD + HC + AC + FL · 1985' },
+  { id:'psv', icon:'🩸', nome:'Doppler ACM',  full:'Doppler da artéria cerebral média', sub:'PSV → MoM · Mari 2000 (anemia fetal)' }
+];
+
+const CALC_RENDER = {
+  dum: function(){
+    return ''+
+      '<div class="calc-card">'+
+        '<div class="calc-card-eyebrow">Calculadora 1 de 5</div>'+
+        '<div class="calc-card-title">Idade gestacional pela DUM</div>'+
+        '<div class="calc-card-sub">Cálculo direto a partir da data da última menstruação. Inclui DPP pela regra de Naegele (DUM + 280 dias).</div>'+
+        '<div class="calc-form">'+
+          '<div class="calc-field">'+
+            '<label class="calc-field-label">Data da DUM</label>'+
+            '<input type="date" class="calc-input" id="calc-dum-data" oninput="calcIG_DUM()">'+
+            '<span class="calc-field-help">Primeiro dia do último período menstrual</span>'+
+          '</div>'+
+        '</div>'+
+        '<div class="calc-result empty" id="calc-dum-result">Preencha a data da última menstruação para ver o resultado.</div>'+
+        '<div class="calc-ref"><strong>Referência:</strong> Naegele F. Erfahrungen und Abhandlungen aus dem Gebiete der Krankheiten des weiblichen Geschlechts. Mannheim, 1812. · Acurácia ±2 semanas em ciclos regulares de 28 dias.</div>'+
+      '</div>';
+  },
+  usg: function(){
+    return ''+
+      '<div class="calc-card">'+
+        '<div class="calc-card-eyebrow">Calculadora 2 de 5</div>'+
+        '<div class="calc-card-title">Idade gestacional pelo USG</div>'+
+        '<div class="calc-card-sub">Extrapola a IG atual a partir da IG aferida em USG anterior. Mais acurada que DUM quando há divergência significativa.</div>'+
+        '<div class="calc-form">'+
+          '<div class="calc-field">'+
+            '<label class="calc-field-label">Data do USG</label>'+
+            '<input type="date" class="calc-input" id="calc-usg-data" oninput="calcIG_USG()">'+
+          '</div>'+
+          '<div class="calc-field">'+
+            '<label class="calc-field-label">IG no USG · semanas</label>'+
+            '<input type="number" class="calc-input" id="calc-usg-sem" placeholder="ex: 20" min="5" max="42" oninput="calcIG_USG()">'+
+          '</div>'+
+          '<div class="calc-field">'+
+            '<label class="calc-field-label">IG no USG · dias</label>'+
+            '<input type="number" class="calc-input" id="calc-usg-dias" placeholder="0 a 6" min="0" max="6" oninput="calcIG_USG()">'+
+          '</div>'+
+        '</div>'+
+        '<div class="calc-result empty" id="calc-usg-result">Preencha a data do USG, semanas e dias para ver o resultado.</div>'+
+        '<div class="calc-ref"><strong>Regra prática:</strong> usar datação por USG se diferença em relação à DUM > 7 dias no 1º trimestre, > 10 dias no 2º. ACOG Committee Opinion 700, 2017.</div>'+
+      '</div>';
+  },
+  ccn: function(){
+    return ''+
+      '<div class="calc-card">'+
+        '<div class="calc-card-eyebrow">Calculadora 3 de 5</div>'+
+        '<div class="calc-card-title">Datação pelo CCN · Robinson-Fleming</div>'+
+        '<div class="calc-card-sub">Método de eleição para datação no 1º trimestre (entre 5 e 14 semanas). Fórmula: IG(dias) = 8.052 × √CCN(mm) + 23.73</div>'+
+        '<div class="calc-form">'+
+          '<div class="calc-field">'+
+            '<label class="calc-field-label">CCN (mm)</label>'+
+            '<input type="number" class="calc-input" id="calc-ccn-valor" placeholder="ex: 45" min="5" max="84" step="0.1" oninput="calcCCN()">'+
+            '<span class="calc-field-help">Comprimento cabeça-nádega · 5 a 84 mm</span>'+
+          '</div>'+
+        '</div>'+
+        '<div class="calc-result empty" id="calc-ccn-result">Insira o CCN em milímetros (range: 5–84 mm).</div>'+
+        '<div class="calc-ref"><strong>Referência:</strong> Robinson HP, Fleming JE. A critical evaluation of sonar crown-rump length measurements. Br J Obstet Gynaecol. 1975;82(9):702-10. · Erro padrão ±5 dias.</div>'+
+      '</div>';
+  },
+  efw: function(){
+    return ''+
+      '<div class="calc-card">'+
+        '<div class="calc-card-eyebrow">Calculadora 4 de 5</div>'+
+        '<div class="calc-card-title">Peso fetal estimado · Hadlock-4</div>'+
+        '<div class="calc-card-sub">Fórmula de 4 parâmetros (mais acurada): BPD + HC + AC + FL. Aceitar medidas em milímetros — conversão automática.</div>'+
+        '<div class="calc-form">'+
+          '<div class="calc-field">'+
+            '<label class="calc-field-label">BPD (mm)</label>'+
+            '<input type="number" class="calc-input" id="calc-efw-bpd" placeholder="ex: 85" min="30" max="110" step="0.1" oninput="calcEFW()">'+
+            '<span class="calc-field-help">Diâmetro biparietal</span>'+
+          '</div>'+
+          '<div class="calc-field">'+
+            '<label class="calc-field-label">HC (mm)</label>'+
+            '<input type="number" class="calc-input" id="calc-efw-hc" placeholder="ex: 310" min="120" max="380" step="0.1" oninput="calcEFW()">'+
+            '<span class="calc-field-help">Circunferência cefálica</span>'+
+          '</div>'+
+          '<div class="calc-field">'+
+            '<label class="calc-field-label">AC (mm)</label>'+
+            '<input type="number" class="calc-input" id="calc-efw-ac" placeholder="ex: 290" min="100" max="400" step="0.1" oninput="calcEFW()">'+
+            '<span class="calc-field-help">Circunferência abdominal</span>'+
+          '</div>'+
+          '<div class="calc-field">'+
+            '<label class="calc-field-label">FL (mm)</label>'+
+            '<input type="number" class="calc-input" id="calc-efw-fl" placeholder="ex: 65" min="20" max="90" step="0.1" oninput="calcEFW()">'+
+            '<span class="calc-field-help">Comprimento do fêmur</span>'+
+          '</div>'+
+        '</div>'+
+        '<div class="calc-result empty" id="calc-efw-result">Preencha BPD, HC, AC e FL (em mm) para ver o peso fetal estimado.</div>'+
+        '<div class="calc-ref"><strong>Referência:</strong> Hadlock FP, Harrist RB, Sharman RS, Deter RL, Park SK. Estimation of fetal weight with the use of head, body, and femur measurements. Am J Obstet Gynecol. 1985;151(3):333-7. · DP ±14%.</div>'+
+      '</div>';
+  },
+  psv: function(){
+    return ''+
+      '<div class="calc-card">'+
+        '<div class="calc-card-eyebrow">Calculadora 5 de 5</div>'+
+        '<div class="calc-card-title">Doppler ACM · Mari 2000</div>'+
+        '<div class="calc-card-sub">Avaliação de anemia fetal pela velocidade sistólica máxima (PSV) da artéria cerebral média. Calcula múltiplos da mediana (MoM) com interpretação automática.</div>'+
+        '<div class="calc-form">'+
+          '<div class="calc-field">'+
+            '<label class="calc-field-label">IG (semanas)</label>'+
+            '<input type="number" class="calc-input" id="calc-psv-ig" placeholder="ex: 28" min="18" max="40" oninput="calcPSV()">'+
+            '<span class="calc-field-help">Range válido: 18 a 40 sem</span>'+
+          '</div>'+
+          '<div class="calc-field">'+
+            '<label class="calc-field-label">PSV ACM (cm/s)</label>'+
+            '<input type="number" class="calc-input" id="calc-psv-valor" placeholder="ex: 65" min="10" max="200" step="0.1" oninput="calcPSV()">'+
+            '<span class="calc-field-help">Pico sistólico medido no Doppler</span>'+
+          '</div>'+
+        '</div>'+
+        '<div class="calc-result empty" id="calc-psv-result">Preencha a idade gestacional (semanas) e a PSV medida (cm/s).</div>'+
+        '<div class="calc-ref"><strong>Referência:</strong> Mari G, Deter RL, Carpenter RL, et al. Noninvasive diagnosis by Doppler ultrasonography of fetal anemia due to maternal red-cell alloimmunization. N Engl J Med. 2000;342(1):9-14. · Threshold ≥1.5 MoM: sensibilidade 100%, especificidade 88%.</div>'+
+      '</div>';
+  }
+};
+
+let BUSCA_INDICE = [];
+
+const LINKS_ESSENCIAIS = [
+  {
+    categoria: 'Diretrizes & Protocolos',
+    icon: '📋',
+    sub: 'Documentos oficiais para consulta semanal',
+    items: [
+      { nome:'FEBRASGO · Site Oficial', desc:'Notícias, Posicionamentos, Publicações, Manuais · navegue pelo menu superior', url:'https://www.febrasgo.org.br/pt/noticias', icon:'📘' },
+      { nome:'Gestação de Alto Risco · MS', desc:'Manual oficial do Ministério da Saúde', url:'https://bvsms.saude.gov.br/bvs/publicacoes/manual_tecnico_gestacao_alto_risco.pdf', icon:'🏥' },
+      { nome:'CFM · Resoluções', desc:'Inclui Res. 2.454/2026 sobre IA na medicina', url:'https://portal.cfm.org.br/resolucoes', icon:'⚖️' },
+      { nome:'SBP · Documentos Científicos', desc:'Para casos perinatais e neonatais', url:'https://www.sbp.com.br/imprensa/documentos-cientificos/', icon:'📕' }
+    ]
+  },
+  {
+    categoria: 'IAs Clínicas',
+    icon: '🤖',
+    sub: 'Suas aliadas diárias · uso no plantão e no estudo',
+    items: [
+      { nome:'Gemini', desc:'Busca · Google Scholar · imagens', url:'https://gemini.google.com', icon:'💎',
+        intent:'intent://gemini.google.com#Intent;scheme=https;package=com.google.android.apps.bard;S.browser_fallback_url=https%3A%2F%2Fgemini.google.com;end' },
+      { nome:'Claude', desc:'Análise crítica de PDFs · Projeto GO/MDV', url:'https://claude.ai', icon:'🟣',
+        intent:'intent://claude.ai#Intent;scheme=https;package=com.anthropic.claude;S.browser_fallback_url=https%3A%2F%2Fclaude.ai;end' },
+      { nome:'ChatGPT', desc:'Síntese · estruturação de raciocínio', url:'https://chatgpt.com', icon:'🟢',
+        intent:'intent://chatgpt.com#Intent;scheme=https;package=com.openai.chatgpt;S.browser_fallback_url=https%3A%2F%2Fchatgpt.com;end' },
+      { nome:'GPTs Customizados', desc:'Scholar GPT · Consensus · GPTs médicos especializados', url:'https://chatgpt.com/gpts', icon:'🧩',
+        intent:'intent://chatgpt.com/gpts#Intent;scheme=https;package=com.openai.chatgpt;S.browser_fallback_url=https%3A%2F%2Fchatgpt.com%2Fgpts;end' },
+      { nome:'NotebookLM', desc:'Memória clínica · acervo pedagógico', url:'https://notebooklm.google.com', icon:'📓' },
+      { nome:'Perplexity', desc:'Busca científica com citações inline', url:'https://www.perplexity.ai', icon:'🔍',
+        intent:'intent://www.perplexity.ai#Intent;scheme=https;package=ai.perplexity.app.android;S.browser_fallback_url=https%3A%2F%2Fwww.perplexity.ai;end' },
+      { nome:'OpenEvidence', desc:'IA especializada em evidência médica', url:'https://www.openevidence.com', icon:'🩺' }
+    ]
+  },
+  {
+    categoria: 'Bases de Evidência',
+    icon: '🔬',
+    sub: 'Para revisões PICO e estudo dirigido',
+    items: [
+      { nome:'PubMed', desc:'Busca rápida em plantão', url:'https://pubmed.ncbi.nlm.nih.gov/', icon:'🧬' },
+      { nome:'Cochrane Library', desc:'Revisões sistemáticas · gold standard', url:'https://www.cochranelibrary.com/', icon:'📊' },
+      { nome:'SciELO Brasil', desc:'Estudos brasileiros em PT-BR', url:'https://www.scielo.br/', icon:'🇧🇷' },
+      { nome:'BVS Saúde', desc:'Meta-busca em português · LILACS', url:'https://bvsalud.org/', icon:'🔎' },
+      { nome:'Google Scholar', desc:'Citações cruzadas e citação reversa', url:'https://scholar.google.com.br/', icon:'🎓' }
+    ]
+  },
+  {
+    categoria: 'Cálculos Clínicos & Bedside',
+    icon: '🧮',
+    sub: 'Para uso direto no plantão',
+    items: [
+      { nome:'Calculadoras AIMED · embutidas', desc:'5 calculadoras com interpretação clínica · abre internamente, sem clique externo', icon:'⭐', internal:'abrirCalc' },
+      { nome:'Manuais MSD · Recursos', desc:'Calculadoras e ferramentas clínicas em português', url:'https://www.msdmanuals.com/pt-br/profissional/recursos', icon:'⏱️' },
+      { nome:'FMF · Fetal Medicine Foundation', desc:'Calculadoras fetais · pré-eclâmpsia · biometria · Doppler', url:'https://fetalmedicine.org/', icon:'⚠️' },
+      { nome:'Whitebook', desc:'App médico brasileiro · diretrizes · doses', url:'https://whitebook.com.br/', icon:'💊' },
+      { nome:'Sanar Medicina', desc:'Consulta rápida · resumos clínicos', url:'https://www.sanarmedicina.com/', icon:'📱' },
+      { nome:'MDCalc', desc:'Scores clínicos internacionais', url:'https://www.mdcalc.com/', icon:'🌐' }
+    ]
+  },
+  {
+    categoria: 'Recursos AIMED & Institucionais',
+    icon: '🎯',
+    sub: 'Pesquisa, comunicação e hub principal',
+    items: [
+      { nome:'InovaMed Pro', desc:'Hub principal · Dr. Mbula', url:'https://inovamed.pro', icon:'🌟' },
+      { nome:'GitHub · Releases', desc:'Versões e PDFs da plataforma', url:'https://github.com/mbulabarros/aimed-residentes-go/releases', icon:'🏷️' },
+      { nome:'Questionário T1 · WhatsApp', desc:'Envie suas respostas no grupo · 1 semana pós-curso', url:'https://wa.me/?text='+encodeURIComponent('📊 AIMED · Questionário T1 · 1 semana pós-curso\n\nMinhas respostas:\n\n1. Frequência de uso das IAs nesta semana: ____\n2. Prompt da Biblioteca que mais usei: ____\n3. Caso onde a IA mudou minha conduta: ____\n4. Maior dificuldade encontrada: ____\n5. Pergunta que quero levar para o grupo: ____'), icon:'📋' },
+      { nome:'Diário Semanal · WhatsApp', desc:'Compartilhe o aprendizado da semana com o grupo', url:'https://wa.me/?text='+encodeURIComponent('📅 AIMED · Diário Semanal · Semana ___\n\n🔹 Caso onde usei IA esta semana:\n____\n\n🔹 Prompt que funcionou bem:\n____\n\n🔹 Achado que me surpreendeu:\n____\n\n🔹 O que vou ajustar na próxima semana:\n____'), icon:'📅' }
+    ]
+  }
+];
+
+/* === Data constants ported from May 2026 === */
+
+const THEME_LABELS = {
+  diagnostico:'Diagnóstico',
+  farmacologia:'Farmacologia',
+  emergencia:'Emergência',
+  raciocinio:'Raciocínio Crítico',
+  pesquisa:'Pesquisa',
+  documentacao:'Documentação',
+  planejamento:'Planejamento Clínico',
+  auditoria:'Auditoria & Óbito'
+};
+
+const THEME_ICONS = {
+  diagnostico:'🔬', farmacologia:'💊', emergencia:'⚡',
+  raciocinio:'🧠', pesquisa:'🔍', documentacao:'📝',
+  planejamento:'🏥', auditoria:'📊'
+};
+
+const PROMPT_THEMES = {
+  'pesquisa':'pesquisa',
+  'tc-ultra':'raciocinio',
+  'medicamentos-go':'farmacologia',
+  'emergencia-go':'emergencia',
+  'ctg-usg':'diagnostico',
+  'obito-materno':'auditoria',
+  'anti-alucinacao-go':'raciocinio',
+  'pre-plantao-go':'planejamento',
+  'prenatal-ar':'diagnostico',
+  'escriba-audio':'documentacao',
+  'gastro-colica-rge':'diagnostico',
+  'gastro-diarreia-aguda':'emergencia',
+  'pneumo-bronquiolite':'emergencia',
+  'pneumo-asma-stepup':'farmacologia',
+  'mfc-multimorbidade':'planejamento',
+  'mfc-saude-mental':'planejamento'
+};
+
 /* === Ported from May 2026 === */
 function escapeHTML(str) {
   return String(str)
