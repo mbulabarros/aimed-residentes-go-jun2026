@@ -1751,7 +1751,7 @@ input[type="date"].calc-input { color-scheme: dark; }
       <span class="pre-curso-countdown-label" id="pre-curso-label">dias para o curso</span>
     </div>
     <div class="pre-curso-title">Bem-vinda ao <em>AIMED</em></div>
-    <div class="pre-curso-date">22 e 23 de Maio · Hotel Le Canard · Joinville</div>
+    <div class="pre-curso-date">26 e 27 de Junho · Hotel Le Canard · Joinville</div>
     <div class="pre-curso-tagline">Quatro passos rápidos antes da sexta:</div>
     <div class="pre-curso-checklist">
       <button class="pre-curso-action tour-action" onclick="navegarDePreCurso('instrucoes')">
@@ -1945,7 +1945,7 @@ input[type="date"].calc-input { color-scheme: dark; }
         <div class="mem-cta-quote">
           "Vocês não estão saindo daqui com um certificado de papel. Vão sair daqui com cinco semanas de coleta de dados — e na semana 5, cada uma de vocês recebe uma <strong>Memória AIMED personalizada</strong> com sua jornada inteira. É a primeira vez no Brasil que um curso de IA aplicada à medicina faz isso. E não vai ser a última."
         </div>
-        <div class="mem-cta-attr">— Encerramento do curso · 23 de Maio de 2026</div>
+        <div class="mem-cta-attr">— Encerramento do curso · 27 de Junho de 2026</div>
         <a class="mem-preview-btn" href="memoria.html?id=DEMO" onclick="try{window.history.replaceState(null,'','#memoria')}catch(e){}">👁 Ver pré-visualização (exemplo)</a>
       </div>
 
@@ -2190,7 +2190,7 @@ input[type="date"].calc-input { color-scheme: dark; }
 
           <h4>Os três momentos</h4>
           <ul>
-            <li><strong>T0 · Antes do curso</strong> — responda <strong>antes do dia 22/05</strong>. 5 minutos. Linha de base.</li>
+            <li><strong>T0 · Antes do curso</strong> — responda <strong>antes do dia 26/06</strong>. 5 minutos. Linha de base.</li>
             <li><strong>T1 · Logo após o curso</strong> — responda no <strong>domingo 24/05 à noite</strong>. Impacto imediato + NPS.</li>
             <li><strong>T2 · 4 semanas depois</strong> — responda em <strong>22/06/2026</strong>. Mede o que sobreviveu na sua rotina.</li>
           </ul>
@@ -5221,7 +5221,7 @@ function buildSidebar(){
   PROGRAMA.forEach(bloco=>{
     const corMap={1:'var(--teal)',2:'var(--gold)',3:'var(--purple)',4:'var(--coral)',5:'var(--green)'};
     const cor=corMap[bloco.numero];
-    const diaLabel=bloco.dia===1?'Sexta · 22/Mai':bloco.dia===2?'Sábado · 23/Mai':'Pós-Curso';
+    const diaLabel=bloco.dia===1?'Sexta · 26/Jun':bloco.dia===2?'Sábado · 27/Jun':'Pós-Curso';
     html+=`<div class="block-header block-${bloco.numero}"><div class="block-dot"></div><div class="block-header-text">Bloco 0${bloco.numero} · ${bloco.role}</div></div>`;
     html+=`<div style="padding:0 24px 4px;font-size:0.6rem;color:var(--text-muted);font-family:'DM Mono',monospace">${diaLabel}</div>`;
     bloco.modulos.forEach(m=>{
@@ -5341,7 +5341,7 @@ function renderLogistica(){
 <div class="log-sched-item"><span class="log-sched-time">20:50 – 21:00</span><span class="log-sched-desc">Ponte para o Dia 2 · 3 perguntas em papel</span><span class="log-sched-block b2">B2</span></div>
 </div>
 <div class="log-sched-day">
-<div class="log-sched-date">Sábado · 23 de Maio · 2026</div>
+<div class="log-sched-date">Sábado · 27 de Junho · 2026</div>
 <div class="log-sched-item"><span class="log-sched-time">08:00 – 08:15</span><span class="log-sched-desc">Retomada — O Argumento da Noite</span><span class="log-sched-block b3">B3</span></div>
 <div class="log-sched-item"><span class="log-sched-time">08:15 – 09:15</span><span class="log-sched-desc">Da Dúvida GO à Pergunta PICO</span><span class="log-sched-block b3">B3</span></div>
 <div class="log-sched-item"><span class="log-sched-time">09:15 – 10:00</span><span class="log-sched-desc">As Três IAs na Análise Científica GO</span><span class="log-sched-block b3">B3</span></div>
@@ -5967,7 +5967,7 @@ function construirIndiceBusca(){
   // 4) Logística — itens-chave hardcoded para busca rápida
   const logKeys = [
     {t:'Local do Curso', d:'Hotel Le Canard · Rua XV de Novembro, 2075 · Glória · Joinville/SC'},
-    {t:'Datas', d:'22 e 23 de Maio de 2026 · Sexta e Sábado'},
+    {t:'Datas', d:'26 e 27 de Junho de 2026 · Sexta e Sábado'},
     {t:'Carga horária', d:'14 horas presenciais + 4 semanas pós-curso'},
     {t:'Coffee breaks', d:'3 intervalos nos dois dias · networking entre as residentes'},
     {t:'Configuração de IAs', d:'Gemini · Claude · ChatGPT · NotebookLM — configurar antes da sexta'},
@@ -6005,7 +6005,7 @@ function construirIndiceBusca(){
       grupo:'Avaliação · Pesquisa',
       icone:'📊',
       titulo: t,
-      descricao: i===0?'Linha de base · responda antes do dia 22/05'
+      descricao: i===0?'Linha de base · responda antes do dia 26/06'
                 : i===1?'Pós-imediato · responda no domingo 24/05'
                 : i===2?'Follow-up · 4 semanas após o curso'
                 : 'Registro pessoal contínuo do uso de IA no plantão',
