@@ -1027,14 +1027,6 @@ body {
 .pre-curso-action { padding: 14px 16px; font-size: 0.84rem; }
 .pre-curso-action-num { font-size: 1.2rem; }
 }
-#biblioteca-overlay, #logistica-overlay, #sobre-overlay, #avaliacao-overlay, #instrucoes-overlay, #links-overlay, #memoria-overlay, #calc-overlay {
-  position: fixed; inset: 0;
-  z-index: 200;
-  display: none;
-  align-items: flex-start;
-  justify-content: flex-end;
-}
-#biblioteca-overlay.open, #logistica-overlay.open, #sobre-overlay.open, #avaliacao-overlay.open, #instrucoes-overlay.open, #links-overlay.open, #memoria-overlay.open, #calc-overlay.open { display: flex; }
 /* ═══════════════════════════════════════════════════════════════
    BUSCA UNIVERSAL · v1.2
    ═══════════════════════════════════════════════════════════════ */
@@ -1515,7 +1507,7 @@ input[type="date"].calc-input { color-scheme: dark; }
 <!-- MAIN -->
 <main id="main">
   <div id="topbar">
-    <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+    <button class="menu-toggle" onclick="toggleSidebar()" aria-label="Abrir menu">☰</button>
     <div class="topbar-breadcrumb">
       <span id="tb-block">Bloco 1</span>
       <span class="sep">›</span>
@@ -1544,7 +1536,7 @@ input[type="date"].calc-input { color-scheme: dark; }
         <div class="overlay-title">Biblioteca AIMED GO</div>
         <div class="overlay-sub">Prompts clínicos de alta performance · GO · MDV · Joinville 2026</div>
       </div>
-      <button class="overlay-close" onclick="fecharBiblioteca()">✕</button>
+      <button class="overlay-close" onclick="fecharBiblioteca()" aria-label="Fechar">✕</button>
     </div>
     <div class="overlay-body" id="biblioteca-body"><!-- JS --></div>
   </div>
@@ -1559,7 +1551,7 @@ input[type="date"].calc-input { color-scheme: dark; }
         <div class="overlay-title">Logística do Curso</div>
         <div class="overlay-sub">AIMED Residentes GO · 26-27 de Junho de 2026 · 2ª Edição</div>
       </div>
-      <button class="overlay-close" onclick="fecharLogistica()">✕</button>
+      <button class="overlay-close" onclick="fecharLogistica()" aria-label="Fechar">✕</button>
     </div>
     <div class="overlay-body" id="logistica-body"><!-- JS --></div>
   </div>
@@ -1574,7 +1566,7 @@ input[type="date"].calc-input { color-scheme: dark; }
         <div class="overlay-title">Avaliação · Pesquisa AIMED GO</div>
         <div class="overlay-sub">Estudo quasi-experimental pré-pós · 3 momentos + diário semanal</div>
       </div>
-      <button class="overlay-close" onclick="fecharAvaliacao()">✕</button>
+      <button class="overlay-close" onclick="fecharAvaliacao()" aria-label="Fechar">✕</button>
     </div>
     <div class="eval-tabs" id="eval-tabs">
       <button class="eval-tab active" data-pane="t0" onclick="switchEvalTab('t0')">T0 · Pré-curso</button>
@@ -1595,7 +1587,7 @@ input[type="date"].calc-input { color-scheme: dark; }
         <div class="overlay-title">Dr. Mbula Luzingu Barros</div>
         <div class="overlay-sub">Criador da Metodologia AIMED · Fundador InovaMed</div>
       </div>
-      <button class="overlay-close" onclick="fecharSobre()">✕</button>
+      <button class="overlay-close" onclick="fecharSobre()" aria-label="Fechar">✕</button>
     </div>
     <div class="overlay-body">
       <div class="callout">
@@ -1626,55 +1618,55 @@ input[type="date"].calc-input { color-scheme: dark; }
         <div class="overlay-title">Links Úteis</div>
         <div class="overlay-sub">Referências clínicas · IA · Especialidades</div>
       </div>
-      <button class="overlay-close" onclick="fecharLinks()">✕</button>
+      <button class="overlay-close" onclick="fecharLinks()" aria-label="Fechar">✕</button>
     </div>
     <div class="overlay-body">
 
       <div style="margin-bottom:20px">
         <div style="font-size:0.62rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin-bottom:12px">🤖 Ferramentas de IA</div>
         <div style="display:flex;flex-direction:column;gap:8px">
-          <a href="https://gemini.google.com" target="_blank" style="color:var(--text-dim);text-decoration:none;padding:10px 14px;background:var(--navy-light);border-radius:var(--radius);border:1px solid var(--border-dim);display:flex;justify-content:space-between;align-items:center"><span>Gemini</span><span style="font-size:0.72rem;color:var(--text-muted)">gemini.google.com ↗</span></a>
-          <a href="https://claude.ai" target="_blank" style="color:var(--text-dim);text-decoration:none;padding:10px 14px;background:var(--navy-light);border-radius:var(--radius);border:1px solid var(--border-dim);display:flex;justify-content:space-between;align-items:center"><span>Claude</span><span style="font-size:0.72rem;color:var(--text-muted)">claude.ai ↗</span></a>
-          <a href="https://chatgpt.com" target="_blank" style="color:var(--text-dim);text-decoration:none;padding:10px 14px;background:var(--navy-light);border-radius:var(--radius);border:1px solid var(--border-dim);display:flex;justify-content:space-between;align-items:center"><span>ChatGPT</span><span style="font-size:0.72rem;color:var(--text-muted)">chatgpt.com ↗</span></a>
-          <a href="https://notebooklm.google.com" target="_blank" style="color:var(--text-dim);text-decoration:none;padding:10px 14px;background:var(--navy-light);border-radius:var(--radius);border:1px solid var(--border-dim);display:flex;justify-content:space-between;align-items:center"><span>NotebookLM</span><span style="font-size:0.72rem;color:var(--text-muted)">notebooklm.google.com ↗</span></a>
+          <a href="https://gemini.google.com" target="_blank" rel="noopener noreferrer" style="color:var(--text-dim);text-decoration:none;padding:10px 14px;background:var(--navy-light);border-radius:var(--radius);border:1px solid var(--border-dim);display:flex;justify-content:space-between;align-items:center"><span>Gemini</span><span style="font-size:0.72rem;color:var(--text-muted)">gemini.google.com ↗</span></a>
+          <a href="https://claude.ai" target="_blank" rel="noopener noreferrer" style="color:var(--text-dim);text-decoration:none;padding:10px 14px;background:var(--navy-light);border-radius:var(--radius);border:1px solid var(--border-dim);display:flex;justify-content:space-between;align-items:center"><span>Claude</span><span style="font-size:0.72rem;color:var(--text-muted)">claude.ai ↗</span></a>
+          <a href="https://chatgpt.com" target="_blank" rel="noopener noreferrer" style="color:var(--text-dim);text-decoration:none;padding:10px 14px;background:var(--navy-light);border-radius:var(--radius);border:1px solid var(--border-dim);display:flex;justify-content:space-between;align-items:center"><span>ChatGPT</span><span style="font-size:0.72rem;color:var(--text-muted)">chatgpt.com ↗</span></a>
+          <a href="https://notebooklm.google.com" target="_blank" rel="noopener noreferrer" style="color:var(--text-dim);text-decoration:none;padding:10px 14px;background:var(--navy-light);border-radius:var(--radius);border:1px solid var(--border-dim);display:flex;justify-content:space-between;align-items:center"><span>NotebookLM</span><span style="font-size:0.72rem;color:var(--text-muted)">notebooklm.google.com ↗</span></a>
         </div>
       </div>
 
       <div style="margin-bottom:20px">
         <div style="font-size:0.62rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin-bottom:12px">🩺 Ginecologia e Obstetrícia</div>
         <div style="display:flex;flex-direction:column;gap:8px">
-          <a href="https://www.febrasgo.org.br" target="_blank" style="color:var(--text-dim);text-decoration:none;padding:10px 14px;background:var(--navy-light);border-radius:var(--radius);border:1px solid var(--border-dim);display:flex;justify-content:space-between;align-items:center"><span>FEBRASGO</span><span style="font-size:0.72rem;color:var(--text-muted)">febrasgo.org.br ↗</span></a>
-          <a href="https://www.acog.org" target="_blank" style="color:var(--text-dim);text-decoration:none;padding:10px 14px;background:var(--navy-light);border-radius:var(--radius);border:1px solid var(--border-dim);display:flex;justify-content:space-between;align-items:center"><span>ACOG</span><span style="font-size:0.72rem;color:var(--text-muted)">acog.org ↗</span></a>
-          <a href="https://www.cochranelibrary.com" target="_blank" style="color:var(--text-dim);text-decoration:none;padding:10px 14px;background:var(--navy-light);border-radius:var(--radius);border:1px solid var(--border-dim);display:flex;justify-content:space-between;align-items:center"><span>Cochrane Library</span><span style="font-size:0.72rem;color:var(--text-muted)">cochranelibrary.com ↗</span></a>
-          <a href="https://pubmed.ncbi.nlm.nih.gov" target="_blank" style="color:var(--text-dim);text-decoration:none;padding:10px 14px;background:var(--navy-light);border-radius:var(--radius);border:1px solid var(--border-dim);display:flex;justify-content:space-between;align-items:center"><span>PubMed</span><span style="font-size:0.72rem;color:var(--text-muted)">pubmed.ncbi.nlm.nih.gov ↗</span></a>
+          <a href="https://www.febrasgo.org.br" target="_blank" rel="noopener noreferrer" style="color:var(--text-dim);text-decoration:none;padding:10px 14px;background:var(--navy-light);border-radius:var(--radius);border:1px solid var(--border-dim);display:flex;justify-content:space-between;align-items:center"><span>FEBRASGO</span><span style="font-size:0.72rem;color:var(--text-muted)">febrasgo.org.br ↗</span></a>
+          <a href="https://www.acog.org" target="_blank" rel="noopener noreferrer" style="color:var(--text-dim);text-decoration:none;padding:10px 14px;background:var(--navy-light);border-radius:var(--radius);border:1px solid var(--border-dim);display:flex;justify-content:space-between;align-items:center"><span>ACOG</span><span style="font-size:0.72rem;color:var(--text-muted)">acog.org ↗</span></a>
+          <a href="https://www.cochranelibrary.com" target="_blank" rel="noopener noreferrer" style="color:var(--text-dim);text-decoration:none;padding:10px 14px;background:var(--navy-light);border-radius:var(--radius);border:1px solid var(--border-dim);display:flex;justify-content:space-between;align-items:center"><span>Cochrane Library</span><span style="font-size:0.72rem;color:var(--text-muted)">cochranelibrary.com ↗</span></a>
+          <a href="https://pubmed.ncbi.nlm.nih.gov" target="_blank" rel="noopener noreferrer" style="color:var(--text-dim);text-decoration:none;padding:10px 14px;background:var(--navy-light);border-radius:var(--radius);border:1px solid var(--border-dim);display:flex;justify-content:space-between;align-items:center"><span>PubMed</span><span style="font-size:0.72rem;color:var(--text-muted)">pubmed.ncbi.nlm.nih.gov ↗</span></a>
         </div>
       </div>
 
       <div style="margin-bottom:20px">
         <div style="font-size:0.62rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin-bottom:12px">🫁 Pneumologia Pediátrica · Rafaela</div>
         <div style="display:flex;flex-direction:column;gap:8px">
-          <a href="https://ginasthma.org" target="_blank" style="color:var(--text-dim);text-decoration:none;padding:10px 14px;background:var(--navy-light);border-radius:var(--radius);border:1px solid var(--border-dim);display:flex;justify-content:space-between;align-items:center"><span>GINA — Global Initiative for Asthma</span><span style="font-size:0.72rem;color:var(--text-muted)">ginasthma.org ↗</span></a>
-          <a href="https://www.sbpt.org.br" target="_blank" style="color:var(--text-dim);text-decoration:none;padding:10px 14px;background:var(--navy-light);border-radius:var(--radius);border:1px solid var(--border-dim);display:flex;justify-content:space-between;align-items:center"><span>SBPT — Soc. Brasileira de Pneumologia</span><span style="font-size:0.72rem;color:var(--text-muted)">sbpt.org.br ↗</span></a>
-          <a href="https://www.nhlbi.nih.gov" target="_blank" style="color:var(--text-dim);text-decoration:none;padding:10px 14px;background:var(--navy-light);border-radius:var(--radius);border:1px solid var(--border-dim);display:flex;justify-content:space-between;align-items:center"><span>NHLBI / NAEPP (EUA)</span><span style="font-size:0.72rem;color:var(--text-muted)">nhlbi.nih.gov ↗</span></a>
+          <a href="https://ginasthma.org" target="_blank" rel="noopener noreferrer" style="color:var(--text-dim);text-decoration:none;padding:10px 14px;background:var(--navy-light);border-radius:var(--radius);border:1px solid var(--border-dim);display:flex;justify-content:space-between;align-items:center"><span>GINA — Global Initiative for Asthma</span><span style="font-size:0.72rem;color:var(--text-muted)">ginasthma.org ↗</span></a>
+          <a href="https://www.sbpt.org.br" target="_blank" rel="noopener noreferrer" style="color:var(--text-dim);text-decoration:none;padding:10px 14px;background:var(--navy-light);border-radius:var(--radius);border:1px solid var(--border-dim);display:flex;justify-content:space-between;align-items:center"><span>SBPT — Soc. Brasileira de Pneumologia</span><span style="font-size:0.72rem;color:var(--text-muted)">sbpt.org.br ↗</span></a>
+          <a href="https://www.nhlbi.nih.gov" target="_blank" rel="noopener noreferrer" style="color:var(--text-dim);text-decoration:none;padding:10px 14px;background:var(--navy-light);border-radius:var(--radius);border:1px solid var(--border-dim);display:flex;justify-content:space-between;align-items:center"><span>NHLBI / NAEPP (EUA)</span><span style="font-size:0.72rem;color:var(--text-muted)">nhlbi.nih.gov ↗</span></a>
         </div>
       </div>
 
       <div style="margin-bottom:20px">
         <div style="font-size:0.62rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin-bottom:12px">🫀 Gastroenterologia Pediátrica · Luciana</div>
         <div style="display:flex;flex-direction:column;gap:8px">
-          <a href="https://easl.eu" target="_blank" style="color:var(--text-dim);text-decoration:none;padding:10px 14px;background:var(--navy-light);border-radius:var(--radius);border:1px solid var(--border-dim);display:flex;justify-content:space-between;align-items:center"><span>EASL — European Liver Guidelines</span><span style="font-size:0.72rem;color:var(--text-muted)">easl.eu ↗</span></a>
-          <a href="https://www.aasld.org" target="_blank" style="color:var(--text-dim);text-decoration:none;padding:10px 14px;background:var(--navy-light);border-radius:var(--radius);border:1px solid var(--border-dim);display:flex;justify-content:space-between;align-items:center"><span>AASLD — American Liver Association</span><span style="font-size:0.72rem;color:var(--text-muted)">aasld.org ↗</span></a>
-          <a href="https://www.espghan.org" target="_blank" style="color:var(--text-dim);text-decoration:none;padding:10px 14px;background:var(--navy-light);border-radius:var(--radius);border:1px solid var(--border-dim);display:flex;justify-content:space-between;align-items:center"><span>ESPGHAN — Pediatric Gastro Europe</span><span style="font-size:0.72rem;color:var(--text-muted)">espghan.org ↗</span></a>
-          <a href="https://www.sbhepatologia.org.br" target="_blank" style="color:var(--text-dim);text-decoration:none;padding:10px 14px;background:var(--navy-light);border-radius:var(--radius);border:1px solid var(--border-dim);display:flex;justify-content:space-between;align-items:center"><span>SBH — Soc. Brasileira de Hepatologia</span><span style="font-size:0.72rem;color:var(--text-muted)">sbhepatologia.org.br ↗</span></a>
-          <a href="https://www.icpsupport.org" target="_blank" style="color:var(--text-dim);text-decoration:none;padding:10px 14px;background:var(--navy-light);border-radius:var(--radius);border:1px solid var(--border-dim);display:flex;justify-content:space-between;align-items:center"><span>ICP Support — Colestase Gestacional</span><span style="font-size:0.72rem;color:var(--text-muted)">icpsupport.org ↗</span></a>
-          <a href="https://pubmed.ncbi.nlm.nih.gov/31221575/" target="_blank" style="color:var(--text-dim);text-decoration:none;padding:10px 14px;background:var(--navy-light);border-radius:var(--radius);border:1px solid var(--border-dim);display:flex;justify-content:space-between;align-items:center"><span>PITCHES Trial · Lancet 2019</span><span style="font-size:0.72rem;color:var(--text-muted)">pubmed ↗</span></a>
+          <a href="https://easl.eu" target="_blank" rel="noopener noreferrer" style="color:var(--text-dim);text-decoration:none;padding:10px 14px;background:var(--navy-light);border-radius:var(--radius);border:1px solid var(--border-dim);display:flex;justify-content:space-between;align-items:center"><span>EASL — European Liver Guidelines</span><span style="font-size:0.72rem;color:var(--text-muted)">easl.eu ↗</span></a>
+          <a href="https://www.aasld.org" target="_blank" rel="noopener noreferrer" style="color:var(--text-dim);text-decoration:none;padding:10px 14px;background:var(--navy-light);border-radius:var(--radius);border:1px solid var(--border-dim);display:flex;justify-content:space-between;align-items:center"><span>AASLD — American Liver Association</span><span style="font-size:0.72rem;color:var(--text-muted)">aasld.org ↗</span></a>
+          <a href="https://www.espghan.org" target="_blank" rel="noopener noreferrer" style="color:var(--text-dim);text-decoration:none;padding:10px 14px;background:var(--navy-light);border-radius:var(--radius);border:1px solid var(--border-dim);display:flex;justify-content:space-between;align-items:center"><span>ESPGHAN — Pediatric Gastro Europe</span><span style="font-size:0.72rem;color:var(--text-muted)">espghan.org ↗</span></a>
+          <a href="https://www.sbhepatologia.org.br" target="_blank" rel="noopener noreferrer" style="color:var(--text-dim);text-decoration:none;padding:10px 14px;background:var(--navy-light);border-radius:var(--radius);border:1px solid var(--border-dim);display:flex;justify-content:space-between;align-items:center"><span>SBH — Soc. Brasileira de Hepatologia</span><span style="font-size:0.72rem;color:var(--text-muted)">sbhepatologia.org.br ↗</span></a>
+          <a href="https://www.icpsupport.org" target="_blank" rel="noopener noreferrer" style="color:var(--text-dim);text-decoration:none;padding:10px 14px;background:var(--navy-light);border-radius:var(--radius);border:1px solid var(--border-dim);display:flex;justify-content:space-between;align-items:center"><span>ICP Support — Colestase Gestacional</span><span style="font-size:0.72rem;color:var(--text-muted)">icpsupport.org ↗</span></a>
+          <a href="https://pubmed.ncbi.nlm.nih.gov/31221575/" target="_blank" rel="noopener noreferrer" style="color:var(--text-dim);text-decoration:none;padding:10px 14px;background:var(--navy-light);border-radius:var(--radius);border:1px solid var(--border-dim);display:flex;justify-content:space-between;align-items:center"><span>PITCHES Trial · Lancet 2019</span><span style="font-size:0.72rem;color:var(--text-muted)">pubmed ↗</span></a>
         </div>
       </div>
 
       <div>
         <div style="font-size:0.62rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin-bottom:12px">🧬 AIMED · InovaMed</div>
         <div style="display:flex;flex-direction:column;gap:8px">
-          <a href="https://inovamed.pro" target="_blank" style="color:var(--text-dim);text-decoration:none;padding:10px 14px;background:var(--navy-light);border-radius:var(--radius);border:1px solid var(--border-dim);display:flex;justify-content:space-between;align-items:center"><span>InovaMed</span><span style="font-size:0.72rem;color:var(--text-muted)">inovamed.pro ↗</span></a>
+          <a href="https://inovamed.pro" target="_blank" rel="noopener noreferrer" style="color:var(--text-dim);text-decoration:none;padding:10px 14px;background:var(--navy-light);border-radius:var(--radius);border:1px solid var(--border-dim);display:flex;justify-content:space-between;align-items:center"><span>InovaMed</span><span style="font-size:0.72rem;color:var(--text-muted)">inovamed.pro ↗</span></a>
         </div>
       </div>
 
@@ -1692,7 +1684,7 @@ input[type="date"].calc-input { color-scheme: dark; }
         <div class="overlay-title">Calculadoras Obstétricas</div>
         <div class="overlay-sub">5 ferramentas embutidas · cálculo offline · zero clique externo</div>
       </div>
-      <button class="overlay-close" onclick="fecharCalc()">✕</button>
+      <button class="overlay-close" onclick="fecharCalc()" aria-label="Fechar">✕</button>
     </div>
     <div class="overlay-body">
 
@@ -1795,7 +1787,7 @@ input[type="date"].calc-input { color-scheme: dark; }
         <div class="overlay-title">Memória AIMED</div>
         <div class="overlay-sub">Sua jornada de 5 semanas, documentada em uma página personalizada</div>
       </div>
-      <button class="overlay-close" onclick="fecharMemoriaInfo()">✕</button>
+      <button class="overlay-close" onclick="fecharMemoriaInfo()" aria-label="Fechar">✕</button>
     </div>
     <div class="overlay-body">
 
@@ -2556,7 +2548,6 @@ const PROMPT_THEMES = {
   'mfc-saude-mental':'planejamento'
 };
 
-/* === Ported from May 2026 === */
 function escapeHTML(str) {
   return String(str)
     .replace(/&/g, '&amp;')
@@ -2605,6 +2596,7 @@ const GLOSSARIO = {
 
 // ── CURRENT STATE ──
 let currentModuleId = 'abertura-go';
+const COR_BLOCO={1:'var(--teal)',2:'var(--gold)',3:'var(--purple)',4:'var(--coral)',5:'var(--green)'};
 let currentLevel = 2;
 
 // ── PROGRAMA ──
@@ -4128,7 +4120,7 @@ let currentSpecFilter='todos';
 function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2500);}
 function copiarSincrono(text){try{const ta=document.createElement('textarea');ta.value=text;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);return true;}catch(e){return false;}}
 async function copyToClipboard(text,btn){try{if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(text);}else{copiarSincrono(text);}if(btn){const orig=btn.innerHTML;btn.innerHTML='✓ Copiado!';btn.style.background='var(--green)';btn.style.color='var(--navy)';setTimeout(()=>{btn.innerHTML=orig;btn.style.background='';btn.style.color='';},2000);}showToast('Prompt copiado!');}catch(e){copiarSincrono(text);showToast('Copiado!');}}
-function openAI(platform,text){const enc=encodeURIComponent(text);const urls={chatgpt:`https://chatgpt.com/?q=${enc}`,claude:`https://claude.ai/new?q=${enc}`,gemini:`https://gemini.google.com/app?q=${enc}`};window.open(urls[platform]||urls.claude,'_blank');}
+function openAI(platform,text){const enc=encodeURIComponent(text);const urls={chatgpt:`https://chatgpt.com/?q=${enc}`,claude:`https://claude.ai/new?q=${enc}`,gemini:`https://gemini.google.com/app?q=${enc}`};window.open(urls[platform]||urls.claude,'_blank','noopener');}
 function toggleSidebar(){const s=document.getElementById('sidebar');const o=document.getElementById('sidebarOverlay');s.classList.toggle('open');o.classList.toggle('show');}
 function showBiblioteca(){const ov=document.getElementById('biblioteca-overlay');ov.classList.add('open');const body=document.getElementById('biblioteca-body');body.innerHTML=renderBiblioteca();body.querySelectorAll('.lib-card').forEach(card=>{card.addEventListener('click',e=>{if(e.target.closest('.lib-actions'))return;card.classList.toggle('open');});});}
 function fecharBiblioteca(){document.getElementById('biblioteca-overlay').classList.remove('open');}
@@ -4139,6 +4131,7 @@ function fecharSobre(){document.getElementById('sobre-overlay').classList.remove
 function showLinks(){document.getElementById('links-overlay').classList.add('open');}
 function fecharLinks(){document.getElementById('links-overlay').classList.remove('open');}
 function setLevel(n){currentLevel=n;[1,2,3].forEach(i=>{document.getElementById('lvl'+i).classList.toggle('active',i===n);});const m=PROGRAMA.flatMap(b=>b.modulos).find(m=>m.id===currentModuleId);if(m&&m.prompts){const sec=document.querySelector('#module-content .practice-section');if(sec)sec.outerHTML=renderPromptBox(m);}}
+document.addEventListener('keydown',function(e){if(e.key==='Escape'){var abertos=document.querySelectorAll('[id$="-overlay"].open, #gemini-modal.open');if(abertos.length){abertos.forEach(function(o){o.classList.remove('open');});}else{var s=document.getElementById('sidebar');if(s&&s.classList.contains('open')){toggleSidebar();}}}});
 // ═══════════════════════════════════════════════════════════════════
 // AVALIAÇÃO · Pesquisa pré-pós (T0/T1/T2) + Diário semanal
 // Salvamento: localStorage. Envio: WhatsApp via wa.me/?text=
@@ -4600,7 +4593,7 @@ function getAdjacentModules(id){
 }
 function renderModuleNav(moduloId){
   const {prev,next}=getAdjacentModules(moduloId);
-  const corMap={1:'var(--teal)',2:'var(--gold)',3:'var(--purple)',4:'var(--coral)',5:'var(--green)'};
+  const corMap=COR_BLOCO;
   let html='<div class="module-nav">';
   if(prev){
     html+=`<button class="nav-btn" onclick="navigateTo('${prev.id}')">
@@ -4646,7 +4639,7 @@ function renderPromptBox(modulo){
 
 // ── RENDER MODULE ──
 function renderModule(modulo,bloco){
-  const corMap={1:'var(--teal)',2:'var(--gold)',3:'var(--purple)',4:'var(--coral)',5:'var(--green)'};
+  const corMap=COR_BLOCO;
   const cor=corMap[bloco.numero]||'var(--gold)';
   const avatarHtml=modulo.avatar!==undefined?`<div class="avatar-container" style="${isShort(modulo.avatar)?'max-width:280px':'max-width:560px;aspect-ratio:16/9'}">${renderAvatar(modulo.avatar)}</div>`:'';
   const hasPrompts=modulo.prompts&&modulo.prompts.nivel1;
@@ -4682,7 +4675,7 @@ function buildSidebar(){
   const nav=document.getElementById('sidebar-nav');
   let html='';
   PROGRAMA.forEach(bloco=>{
-    const corMap={1:'var(--teal)',2:'var(--gold)',3:'var(--purple)',4:'var(--coral)',5:'var(--green)'};
+    const corMap=COR_BLOCO;
     const cor=corMap[bloco.numero];
     const diaLabel=bloco.dia===1?'Sexta · 26/Jun':bloco.dia===2?'Sábado · 27/Jun':'Pós-Curso';
     html+=`<div class="block-header block-${bloco.numero}"><div class="block-dot"></div><div class="block-header-text">Bloco 0${bloco.numero} · ${bloco.role}</div></div>`;
@@ -4839,7 +4832,6 @@ document.addEventListener('DOMContentLoaded',()=>{
 });
 
 
-/* === Ported from May 2026 === */
 
 
 function copiarPromptParaIA(elementId){
@@ -4899,7 +4891,7 @@ function fecharGeminiModal(){
 
 function abrirNovaAba(url){
   // Mantido para uso fora dos botões de IA (ex.: WhatsApp).
-  // Para os botões de IA, anchors <a target="_blank"> diretos no HTML são mais robustos em mobile.
+  // Para os botões de IA, anchors <a target="_blank" rel="noopener noreferrer"> diretos no HTML são mais robustos em mobile.
   try{
     const a=document.createElement('a');
     a.href=url;
@@ -5206,7 +5198,7 @@ function calcMEOWS(){
   let lista;
   if(gat.length){
     lista = '<div class="calc-result-secondary"><strong>Gatilhos:</strong> ' +
-      gat.map(function(g){ return (g.nivel==='red'?'\U0001f534':'\U0001f7e1')+' '+g.nome+' ('+g.valor+')'; }).join(' \u00b7 ') + '</div>';
+      gat.map(function(g){ return (g.nivel==='red'?'🔴':'🟡')+' '+g.nome+' ('+g.valor+')'; }).join(' \u00b7 ') + '</div>';
   } else {
     lista = '<div class="calc-result-secondary"><strong>Gatilhos:</strong> nenhum</div>';
   }
