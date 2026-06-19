@@ -2275,14 +2275,15 @@ input[type="date"].calc-input { color-scheme: dark; }
   { id:'usg', icon:'🔍', nome:'IG · USG',     full:'Idade gestacional pelo USG',          sub:'Extrapolação a partir do USG anterior' },
   { id:'ccn', icon:'👶', nome:'IG · CCN',     full:'Datação pelo CCN',                    sub:'1º trimestre · Robinson-Fleming 1975' },
   { id:'efw', icon:'⚖️',  nome:'EFW Hadlock',  full:'Peso fetal estimado · Hadlock-4',    sub:'BPD + HC + AC + FL · 1985' },
-  { id:'psv', icon:'🩸', nome:'Doppler ACM',  full:'Doppler da artéria cerebral média', sub:'PSV → MoM · Mari 2000 (anemia fetal)' }
+  { id:'psv', icon:'🩸', nome:'Doppler ACM',  full:'Doppler da artéria cerebral média', sub:'PSV → MoM · Mari 2000 (anemia fetal)' },
+  { id:'meows', icon:'🚨', nome:'MEOWS',     full:'Alerta obstétrico precoce',          sub:'Track-and-trigger materno · CEMACH 2012' }
 ];
 
 const CALC_RENDER = {
   dum: function(){
     return ''+
       '<div class="calc-card">'+
-        '<div class="calc-card-eyebrow">Calculadora 1 de 5</div>'+
+        '<div class="calc-card-eyebrow">Calculadora 1 de 6</div>'+
         '<div class="calc-card-title">Idade gestacional pela DUM</div>'+
         '<div class="calc-card-sub">Cálculo direto a partir da data da última menstruação. Inclui DPP pela regra de Naegele (DUM + 280 dias).</div>'+
         '<div class="calc-form">'+
@@ -2299,7 +2300,7 @@ const CALC_RENDER = {
   usg: function(){
     return ''+
       '<div class="calc-card">'+
-        '<div class="calc-card-eyebrow">Calculadora 2 de 5</div>'+
+        '<div class="calc-card-eyebrow">Calculadora 2 de 6</div>'+
         '<div class="calc-card-title">Idade gestacional pelo USG</div>'+
         '<div class="calc-card-sub">Extrapola a IG atual a partir da IG aferida em USG anterior. Mais acurada que DUM quando há divergência significativa.</div>'+
         '<div class="calc-form">'+
@@ -2323,7 +2324,7 @@ const CALC_RENDER = {
   ccn: function(){
     return ''+
       '<div class="calc-card">'+
-        '<div class="calc-card-eyebrow">Calculadora 3 de 5</div>'+
+        '<div class="calc-card-eyebrow">Calculadora 3 de 6</div>'+
         '<div class="calc-card-title">Datação pelo CCN · Robinson-Fleming</div>'+
         '<div class="calc-card-sub">Método de eleição para datação no 1º trimestre (entre 5 e 14 semanas). Fórmula: IG(dias) = 8.052 × √CCN(mm) + 23.73</div>'+
         '<div class="calc-form">'+
@@ -2340,7 +2341,7 @@ const CALC_RENDER = {
   efw: function(){
     return ''+
       '<div class="calc-card">'+
-        '<div class="calc-card-eyebrow">Calculadora 4 de 5</div>'+
+        '<div class="calc-card-eyebrow">Calculadora 4 de 6</div>'+
         '<div class="calc-card-title">Peso fetal estimado · Hadlock-4</div>'+
         '<div class="calc-card-sub">Fórmula de 4 parâmetros (mais acurada): BPD + HC + AC + FL. Aceitar medidas em milímetros — conversão automática.</div>'+
         '<div class="calc-form">'+
@@ -2372,7 +2373,7 @@ const CALC_RENDER = {
   psv: function(){
     return ''+
       '<div class="calc-card">'+
-        '<div class="calc-card-eyebrow">Calculadora 5 de 5</div>'+
+        '<div class="calc-card-eyebrow">Calculadora 5 de 6</div>'+
         '<div class="calc-card-title">Doppler ACM · Mari 2000</div>'+
         '<div class="calc-card-sub">Avaliação de anemia fetal pela velocidade sistólica máxima (PSV) da artéria cerebral média. Calcula múltiplos da mediana (MoM) com interpretação automática.</div>'+
         '<div class="calc-form">'+
@@ -2388,7 +2389,59 @@ const CALC_RENDER = {
           '</div>'+
         '</div>'+
         '<div class="calc-result empty" id="calc-psv-result">Preencha a idade gestacional (semanas) e a PSV medida (cm/s).</div>'+
-        '<div class="calc-ref"><strong>Referência:</strong> Mari G, Deter RL, Carpenter RL, et al. Noninvasive diagnosis by Doppler ultrasonography of fetal anemia due to maternal red-cell alloimmunization. N Engl J Med. 2000;342(1):9-14. · Threshold ≥1.5 MoM: sensibilidade 100%, especificidade 88%.</div>'+
+        '<div class="calc-ref"><strong>Referência:</strong> Mari G, Deter RL, Carpenter RL, et al. Noninvasive diagnosis by Doppler ultrasonography of fetal anemia due to maternal red-cell alloimmunization. N Engl J Med. 2000;342(1):9-14. · Threshold \u22651.5 MoM: sensibilidade 100%, especificidade 88%.</div>'+
+      '</div>';
+  },
+  meows: function(){
+    return ''+
+      '<div class="calc-card">'+
+        '<div class="calc-card-eyebrow">Calculadora 6 de 6 \u00b7 materna</div>'+
+        '<div class="calc-card-title">MEOWS \u00b7 Alerta Obst\u00e9trico Precoce</div>'+
+        '<div class="calc-card-sub">Sistema track-and-trigger de deteriora\u00e7\u00e3o materna (CEMACH / Singh 2012). Preencha os sinais vitais: o app marca gatilhos amarelos/vermelhos e a conduta. Gatilho positivo = 1 vermelho OU 2 amarelos.</div>'+
+        '<div class="calc-form">'+
+          '<div class="calc-field">'+
+            '<label class="calc-field-label">Freq. respirat\u00f3ria (irpm)</label>'+
+            '<input type="number" class="calc-input" id="calc-meows-rr" placeholder="ex: 18" min="4" max="60" oninput="calcMEOWS()">'+
+            '<span class="calc-field-help">Amarelo 21\u201330 \u00b7 Vermelho &lt;10 ou &gt;30</span>'+
+          '</div>'+
+          '<div class="calc-field">'+
+            '<label class="calc-field-label">SpO\u2082 (%)</label>'+
+            '<input type="number" class="calc-input" id="calc-meows-spo2" placeholder="ex: 98" min="50" max="100" oninput="calcMEOWS()">'+
+            '<span class="calc-field-help">Vermelho &lt;95%</span>'+
+          '</div>'+
+          '<div class="calc-field">'+
+            '<label class="calc-field-label">Temperatura (\u00b0C)</label>'+
+            '<input type="number" class="calc-input" id="calc-meows-temp" placeholder="ex: 36.8" min="30" max="43" step="0.1" oninput="calcMEOWS()">'+
+            '<span class="calc-field-help">Amarelo 35\u201336 / 37,5\u201338 \u00b7 Vermelho &lt;35 ou &gt;38</span>'+
+          '</div>'+
+          '<div class="calc-field">'+
+            '<label class="calc-field-label">FC (bpm)</label>'+
+            '<input type="number" class="calc-input" id="calc-meows-hr" placeholder="ex: 88" min="20" max="220" oninput="calcMEOWS()">'+
+            '<span class="calc-field-help">Amarelo 40\u201350 / 100\u2013120 \u00b7 Vermelho &lt;40 ou &gt;120</span>'+
+          '</div>'+
+          '<div class="calc-field">'+
+            '<label class="calc-field-label">PA sist\u00f3lica (mmHg)</label>'+
+            '<input type="number" class="calc-input" id="calc-meows-sbp" placeholder="ex: 118" min="50" max="260" oninput="calcMEOWS()">'+
+            '<span class="calc-field-help">Amarelo 90\u2013100 / 150\u2013160 \u00b7 Vermelho &lt;90 ou &gt;160</span>'+
+          '</div>'+
+          '<div class="calc-field">'+
+            '<label class="calc-field-label">PA diast\u00f3lica (mmHg)</label>'+
+            '<input type="number" class="calc-input" id="calc-meows-dbp" placeholder="ex: 72" min="20" max="160" oninput="calcMEOWS()">'+
+            '<span class="calc-field-help">Amarelo 90\u2013100 \u00b7 Vermelho &gt;100</span>'+
+          '</div>'+
+          '<div class="calc-field">'+
+            '<label class="calc-field-label">Consci\u00eancia (AVPU)</label>'+
+            '<select class="calc-input" id="calc-meows-avpu" onchange="calcMEOWS()">'+
+              '<option value="A">A \u00b7 Alerta</option>'+
+              '<option value="V">V \u00b7 responde \u00e0 Voz</option>'+
+              '<option value="P">P \u00b7 responde \u00e0 dor</option>'+
+              '<option value="U">U \u00b7 n\u00e3o responde</option>'+
+            '</select>'+
+            '<span class="calc-field-help">Amarelo: V \u00b7 Vermelho: P ou U</span>'+
+          '</div>'+
+        '</div>'+
+        '<div class="calc-result empty" id="calc-meows-result">Preencha os sinais vitais para ver os gatilhos e a conduta.</div>'+
+        '<div class="calc-ref"><strong>Refer\u00eancia:</strong> Singh S, McGlennan A, England A, Simons R. A validation study of the CEMACH recommended modified early obstetric warning system (MEOWS). Anaesthesia. 2012;67(1):12-18. \u00b7 Sens. 89% / Espec. 79% para morbidade. Pontos de corte CEMACH \u2014 ajuste ao protocolo da MDV se necess\u00e1rio.</div>'+
       '</div>';
   }
 };
@@ -2565,8 +2618,8 @@ const PROGRAMA = [
       avatar:'JzVWWNMtCbo',
       conteudo:`<div class="quote-hero"><div class="quote-mark">"</div><div class="quote-text"><strong>Uma residente com IA bem treinada supera um especialista sem ela.</strong><br>Este é o dia que muda a sua prática clínica na MDV.</div></div>
 <h3>Por que esta turma é diferente</h3>
-<p>A maioria de vocês são residentes de Ginecologia e Obstetrícia da MDV. Mas nesta turma também estão duas Médicas de Família (Maria Simone e Mayja), uma Pneumologista Pediátrica (Rafaela), uma Gastroenterologista Pediátrica (Luciana) e uma Enfermeira de TI (Adriana) — especialidades que cruzam diretamente com o universo obstétrico: o DM gestacional que vai para o ambulatório de MFC, a crise asmática na gestante, a colestase que decide o momento do parto, o alerta de deterioração que a enfermeira vê antes do médico. Isso significa que tudo que construirmos aqui tem impacto direto na prática de todas — amanhã de manhã.</p>
-<p>Este não é um curso genérico de ChatGPT. É a segunda turma da metodologia <strong>AIMED</strong> aplicada em Ginecologia e Obstetrícia no Brasil — e a mais heterogênea até agora: GO, Medicina de Família, Pneumologia Pediátrica, Gastroenterologia Pediátrica e Enfermagem de TI na mesma sala. Cinco perspectivas clínicas distintas sobre os mesmos casos. Isso muda o que é possível construir aqui.</p>
+<p>A maioria de vocês são residentes de Ginecologia e Obstetrícia da MDV. Mas nesta turma também estão duas Médicas de Família (Maria Simone e Mayja), uma Pneumologista Pediátrica (Rafaela), uma Gastroenterologista Pediátrica (Luciana) e uma Enfermeira de Terapia Intensiva (Adriana) — especialidades que cruzam diretamente com o universo obstétrico: o DM gestacional que vai para o ambulatório de MFC, a crise asmática na gestante, a colestase que decide o momento do parto, o alerta de deterioração que a enfermeira vê antes do médico. Isso significa que tudo que construirmos aqui tem impacto direto na prática de todas — amanhã de manhã.</p>
+<p>Este não é um curso genérico de ChatGPT. É a segunda turma da metodologia <strong>AIMED</strong> aplicada em Ginecologia e Obstetrícia no Brasil — e a mais heterogênea até agora: GO, Medicina de Família, Pneumologia Pediátrica, Gastroenterologia Pediátrica e Enfermagem de Terapia Intensiva na mesma sala. Cinco perspectivas clínicas distintas sobre os mesmos casos. Isso muda o que é possível construir aqui.</p>
 <div class="callout"><div class="callout-label">Quebra-gelo fundacional</div><p>Antes de qualquer slide: <strong>qual protocolo GO você aplica toda semana mas nunca parou para questionar a fundo?</strong> Guarde essa resposta. Ela vai ser a sua Teoria do Contrário — o fio que conecta os dois dias.</p></div>
 <h3>O que você leva daqui</h3>
 <div class="promise-grid">
@@ -3066,7 +3119,7 @@ Quais são os principais estudos? Qual o NNT? Qual o posicionamento atual da FEB
 <div class="platform-card claude"><div class="platform-name">🟡 Claude · Analista</div><div class="platform-role">Etapa 2 — analisar PDFs</div><ul class="platform-steps"><li>Carrega PDFs dos artigos encontrados</li><li>Analisa metodologia: viés, tamanho de amostra, desfechos</li><li>Extrai NNT/NNH, IC 95%, p-values com interpretação</li><li>Entrega: análise crítica com avaliação GRADE</li></ul></div>
 <div class="platform-card gpt"><div class="platform-name">🟣 GPT · Sintetizador</div><div class="platform-role">Etapa 3 — sintetizar</div><ul class="platform-steps"><li>Recebe a análise do Claude</li><li>Produz síntese compreensível para equipe</li><li>Formata para apresentação em reunião clínica</li><li>Entrega: parágrafo de síntese pronto para discussão</li></ul></div>
 </div>
-<div class="callout"><div class="callout-label">O papel de Adriana — o olhar que nenhuma clínica tem</div><p>Adriana é enfermeira de TI e servidora da Vigilância em Saúde do Município de Joinville. Ela não vai comentar conduta obstétrica — mas vai fazer algo insubstituível: trazer os dados populacionais reais de Joinville e o olhar do cuidado crítico. <em>"Qual o perfil de gestantes que chegaram ao PS com esse quadro nos últimos 12 meses?"</em> <em>"O que a vigilância epidemiológica registra nos desfechos pós-alta nesse tipo de caso?"</em> Isso é o que uma profissional de TI com acesso a dados municipais traz que nenhuma IA substitui.</p></div>
+<div class="callout"><div class="callout-label">O papel de Adriana — o olhar que nenhuma clínica tem</div><p>Adriana é enfermeira de Terapia Intensiva e servidora da Vigilância em Saúde do Município de Joinville. Ela não vai comentar conduta obstétrica — mas vai fazer algo insubstituível: trazer os dados populacionais reais de Joinville e o olhar do cuidado crítico. <em>"Qual o perfil de gestantes que chegaram ao PS com esse quadro nos últimos 12 meses?"</em> <em>"O que a vigilância epidemiológica registra nos desfechos pós-alta nesse tipo de caso?"</em> Isso é o que uma profissional de terapia intensiva com acesso a dados municipais traz que nenhuma IA substitui.</p></div>
 <h3>O fluxo completo em 45 minutos</h3>
 <div class="steps-guide">
 <div class="step-item"><div class="step-num">15'</div><div class="step-body"><div class="step-title">Gemini busca (em duplas)</div><div class="step-desc">Cada dupla usa seu PICO como query. Gemini + Scholar. Salvar os 3 artigos mais relevantes.</div></div></div>
@@ -3147,7 +3200,7 @@ Contexto de aplicação: Maternidade Darcy Vargas, Joinville/SC — referência 
 <div class="step-item"><div class="step-num">02</div><div class="step-body"><div class="step-title">Para a TdC</div><div class="step-desc">"A FEBRASGO recomenda MgSO4 em pré-eclâmpsia sem critérios de gravidade? Qual a página e o nível de evidência?" → Resposta com citação precisa.</div></div></div>
 <div class="step-item"><div class="step-num">03</div><div class="step-body"><div class="step-title">Para o plantão</div><div class="step-desc">"Qual é o protocolo de clampeamento de cordão para prematuros abaixo de 32 semanas segundo a MDV?" → Resposta com o protocolo interno.</div></div></div>
 </div>
-<div class="alert-box success"><div class="alert-label">Adriana — o momento dela</div><p>Adriana carrega os dados de vigilância epidemiológica de Joinville no Notebook — perfil de gestantes internadas, óbitos maternos, desfechos pós-alta. A partir deste momento, o grupo tem acesso ao real. Ela transforma registros municipais de TI em memória institucional consultável por IA. Isso é inédito em serviços GO brasileiros.</p></div>`,
+<div class="alert-box success"><div class="alert-label">Adriana — o momento dela</div><p>Adriana carrega os dados de vigilância epidemiológica de Joinville no Notebook — perfil de gestantes internadas, óbitos maternos, desfechos pós-alta. A partir deste momento, o grupo tem acesso ao real. Ela transforma registros municipais em memória institucional consultável por IA. Isso é inédito em serviços GO brasileiros.</p></div>`,
       prompts:{
         titulo:'Consulta à Memória Clínica MDV — NotebookLM',
         subtitulo:'Use no NotebookLM após carregar os documentos MDV + FEBRASGO + dados Adriana',
@@ -3190,7 +3243,7 @@ Com base nos dados e protocolos, qual recomendação pode ser proposta para a MD
       summary:'Vocês constroem juntas uma ferramenta real para uso coletivo na MDV. Algo com o nome de vocês, testado em caso real, ativo no plantão de segunda-feira.',
       avatar:'z9-2SDI3N_4',
       conteudo:`<h3>O que é "Nossa Ferramenta MDV"</h3>
-<p>Não é um prompt genérico. É uma ferramenta construída por esta turma — GO, MFC, Pneumo Pedi, Gastro Pedi e Enfermagem TI — com os protocolos certos, as situações certas, e o vocabulário clínico de cada serviço. Uma MFC vê a gestante antes do parto e depois do parto. Uma enfermeira de TI vê o deterioramento que o médico ainda não nomeou. Cada especialidade contribui com um ângulo que o grupo GO sozinho não teria. O resultado é mais robusto — e mais real.</p>
+<p>Não é um prompt genérico. É uma ferramenta construída por esta turma — GO, MFC, Pneumo Pedi, Gastro Pedi e Enfermagem de Terapia Intensiva — com os protocolos certos, as situações certas, e o vocabulário clínico de cada serviço. Uma MFC vê a gestante antes do parto e depois do parto. Uma enfermeira de terapia intensiva vê o deterioramento que o médico ainda não nomeou. Cada especialidade contribui com um ângulo que o grupo GO sozinho não teria. O resultado é mais robusto — e mais real.</p>
 <p>No final desta hora, vocês terão algo que pode ser aberto no celular no corredor da maternidade antes de uma decisão difícil. Algo que funciona amanhã. Algo com o nome de vocês.</p>
 <div class="callout"><div class="callout-label">O princípio da co-construção</div><p>A ferramenta que cada uma constrói sozinha é individual. A ferramenta que constroem juntas, com casos reais do serviço, tem memória coletiva. E quando uma residente do próximo ano de residência na MDV abre este AIMED OS, encontra a ferramenta que vocês construíram. Isso é legado.</p></div>
 <h3>A ferramenta que vamos construir</h3>
@@ -4085,7 +4138,7 @@ function abrirSobre(){document.getElementById('sobre-overlay').classList.add('op
 function fecharSobre(){document.getElementById('sobre-overlay').classList.remove('open');}
 function showLinks(){document.getElementById('links-overlay').classList.add('open');}
 function fecharLinks(){document.getElementById('links-overlay').classList.remove('open');}
-function setLevel(n){currentLevel=n;[1,2,3].forEach(i=>{document.getElementById('lvl'+i).classList.toggle('active',i===n);});const m=PROGRAMA.flatMap(b=>b.modulos).find(m=>m.id===currentModuleId);if(m&&m.prompts)renderPromptBox(m);}
+function setLevel(n){currentLevel=n;[1,2,3].forEach(i=>{document.getElementById('lvl'+i).classList.toggle('active',i===n);});const m=PROGRAMA.flatMap(b=>b.modulos).find(m=>m.id===currentModuleId);if(m&&m.prompts){const sec=document.querySelector('#module-content .practice-section');if(sec)sec.outerHTML=renderPromptBox(m);}}
 // ═══════════════════════════════════════════════════════════════════
 // AVALIAÇÃO · Pesquisa pré-pós (T0/T1/T2) + Diário semanal
 // Salvamento: localStorage. Envio: WhatsApp via wa.me/?text=
@@ -4733,7 +4786,7 @@ function renderLogistica(){
 <div class="log-item"><span class="log-key">Datas</span><span class="log-val">26 e 27 de Junho de 2026 · 2ª Edição</span></div>
 <div class="log-item"><span class="log-key">Local</span><span class="log-val">Hotel Le Canard · Joinville · SC</span></div>
 <div class="log-item"><span class="log-key">Carga horária</span><span class="log-val">14 horas efetivas (70% hands-on)</span></div>
-<div class="log-item"><span class="log-key">Turma</span><span class="log-val">11 GO · 2 MFC (Maria Simone, Mayja) · 1 Gastropediatria (Luciana) · 1 Pneumo Pediátrica (Rafaela) · 1 Enf TI (Adriana) · Bruna (preceptora GO)</span></div>
+<div class="log-item"><span class="log-key">Turma</span><span class="log-val">11 GO · 2 MFC (Maria Simone, Mayja) · 1 Gastropediatria (Luciana) · 1 Pneumo Pediátrica (Rafaela) · 1 Enf. Terapia Intensiva (Adriana) · Bruna (preceptora GO)</span></div>
 <div class="log-item"><span class="log-key">Instrutor</span><span class="log-val">Dr. Mbula Luzingu Barros · InovaMed</span></div>
 </div>
 <div class="log-section">
@@ -5101,6 +5154,68 @@ function calcPSV(){
     '<div class="calc-result-label">Múltiplos da mediana · MoM</div>'+
     '<div class="calc-result-main">'+mom.toFixed(2)+' MoM</div>'+
     '<div class="calc-result-secondary"><strong>PSV mediana ('+ig+'sem):</strong> '+psvMediana.toFixed(1)+' cm/s</div>'+
+    '<div class="calc-result-interpret '+cls+'"><strong>'+label+'</strong>'+interp+'</div>';
+}
+
+function calcMEOWS(){
+  const rr   = lerNum('calc-meows-rr');
+  const spo2 = lerNum('calc-meows-spo2');
+  const temp = lerNum('calc-meows-temp');
+  const hr   = lerNum('calc-meows-hr');
+  const sbp  = lerNum('calc-meows-sbp');
+  const dbp  = lerNum('calc-meows-dbp');
+  const avpuEl = document.getElementById('calc-meows-avpu');
+  const avpu = avpuEl ? avpuEl.value : 'A';
+  const out  = document.getElementById('calc-meows-result');
+  if(!out) return;
+
+  const algum = [rr,spo2,temp,hr,sbp,dbp].some(function(v){ return v != null; });
+  if(!algum && avpu === 'A'){
+    out.className = 'calc-result empty';
+    out.innerHTML = 'Preencha os sinais vitais para ver os gatilhos e a conduta.';
+    return;
+  }
+
+  const gat = [];
+  function avalia(nome, v, fn){ if(v == null) return; const nivel = fn(v); if(nivel) gat.push({nome:nome, valor:v, nivel:nivel}); }
+
+  avalia('FR', rr,   function(v){ return (v<10||v>30) ? 'red' : (v>=21&&v<=30) ? 'yellow' : null; });
+  avalia('SpO\u2082', spo2, function(v){ return (v<95) ? 'red' : null; });
+  avalia('Temp', temp, function(v){ return (v<35||v>38) ? 'red' : ((v>=35&&v<36)||(v>=37.5&&v<=38)) ? 'yellow' : null; });
+  avalia('FC', hr,   function(v){ return (v<40||v>120) ? 'red' : ((v>=40&&v<=50)||(v>=100&&v<=120)) ? 'yellow' : null; });
+  avalia('PAS', sbp, function(v){ return (v<90||v>160) ? 'red' : ((v>=90&&v<=100)||(v>150&&v<=160)) ? 'yellow' : null; });
+  avalia('PAD', dbp, function(v){ return (v>100) ? 'red' : (v>=90&&v<=100) ? 'yellow' : null; });
+  if(avpu === 'V') gat.push({nome:'AVPU', valor:'V', nivel:'yellow'});
+  else if(avpu === 'P' || avpu === 'U') gat.push({nome:'AVPU', valor:avpu, nivel:'red'});
+
+  const reds = gat.filter(function(g){ return g.nivel==='red'; }).length;
+  const yellows = gat.filter(function(g){ return g.nivel==='yellow'; }).length;
+
+  let cls, label, interp;
+  if(reds >= 1 || yellows >= 2){
+    cls='danger'; label='Gatilho MEOWS positivo';
+    interp='Revis\u00e3o m\u00e9dica URGENTE. Crit\u00e9rio: \u22651 par\u00e2metro vermelho OU \u22652 amarelos. Reavaliar continuamente e escalar conforme protocolo MDV.';
+  } else if(yellows === 1){
+    cls='alert'; label='Aten\u00e7\u00e3o \u00b7 1 gatilho amarelo';
+    interp='Aumentar a frequ\u00eancia da monitoriza\u00e7\u00e3o e reavaliar em curto intervalo. Comunicar a equipe.';
+  } else {
+    cls='normal'; label='Sem gatilhos';
+    interp='Par\u00e2metros dentro da faixa. Manter monitoriza\u00e7\u00e3o de rotina.';
+  }
+
+  let lista;
+  if(gat.length){
+    lista = '<div class="calc-result-secondary"><strong>Gatilhos:</strong> ' +
+      gat.map(function(g){ return (g.nivel==='red'?'\U0001f534':'\U0001f7e1')+' '+g.nome+' ('+g.valor+')'; }).join(' \u00b7 ') + '</div>';
+  } else {
+    lista = '<div class="calc-result-secondary"><strong>Gatilhos:</strong> nenhum</div>';
+  }
+
+  out.className = 'calc-result';
+  out.innerHTML =
+    '<div class="calc-result-label">Gatilhos MEOWS</div>'+
+    '<div class="calc-result-main">'+yellows+' amarelo'+(yellows!==1?'s':'')+' \u00b7 '+reds+' vermelho'+(reds!==1?'s':'')+'</div>'+
+    lista+
     '<div class="calc-result-interpret '+cls+'"><strong>'+label+'</strong>'+interp+'</div>';
 }
 
