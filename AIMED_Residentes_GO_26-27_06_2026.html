@@ -569,8 +569,8 @@ body {
 .prompt-box .aimed-a { color: var(--teal); }
 .prompt-box .aimed-i { color: var(--gold); }
 .prompt-box .aimed-m { color: var(--purple); }
-.prompt-box .aimed-e { color: var(--green); }
-.prompt-box .aimed-d { color: var(--coral); }
+.prompt-box .aimed-e { color: var(--coral); }
+.prompt-box .aimed-d { color: var(--green); }
 .prompt-box .field { color: var(--gold-light); font-style: italic; }
 .prompt-actions { display: flex; gap: 10px; margin-top: 12px; flex-wrap: wrap; }
 .btn-copy {
@@ -1466,19 +1466,6 @@ input[type="date"].calc-input { color-scheme: dark; }
   .gemini-modal-title { font-size: 1.3rem; }
 }
 </style>
-<!-- PWA · Tela inicial -->
-<link rel="manifest" href="manifest.json">
-<link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
-<link rel="apple-touch-icon" sizes="167x167" href="icons/apple-touch-icon-167.png">
-<link rel="apple-touch-icon" sizes="152x152" href="icons/apple-touch-icon-152.png">
-<link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
-<link rel="icon" type="image/png" sizes="512x512" href="icons/icon-512.png">
-<link rel="shortcut icon" href="icons/favicon.ico">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="AIMED GO·II">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="application-name" content="AIMED GO·II">
 </head>
 <body>
 
@@ -2892,7 +2879,7 @@ USG (data [DD/MM]):
 </div>
 <div class="alert-box warning"><div class="alert-label">⚠️ Critério de interrupção — CIH (EASL 2022 + FEBRASGO)</div><p>Ácidos biliares <strong>≥40 µmol/L</strong>: considerar interrupção a partir de 36 semanas (ou antes se ≥100 µmol/L). Ácidos biliares &lt;40 µmol/L com bom controle: manejar conservadoramente até 37–38 semanas. <strong>A CTG não é monitoração suficiente sozinha na CIH grave</strong> — morte fetal pode ocorrer sem padrão premonitório.</p></div>`,
       prompts:{
-        titulo:'Farmacológica Blindada GO — MDV',
+        titulo:'Farmacologia Blindada GO — MDV',
         subtitulo:'Cálculo de dose + monitorização + alertas de toxicidade',
         nivel1:{label:'Nível 1 · Consulta direta', desc:'Pergunta simples de dose', texto:`Qual a dose de MgSO4 no esquema de Zuspan?
 E como monitorizo a toxicidade?`},
@@ -3630,7 +3617,7 @@ Síntese das três vozes: em que condições o protocolo se sustenta? Onde tem f
 - Mencionar implicações para o contexto SUS/MDV quando relevante`
   },
   {
-    id:'medicamentos-go', icon:'💊', titulo:'Farmacológica Blindada GO',
+    id:'medicamentos-go', icon:'💊', titulo:'Farmacologia Blindada GO',
     desc:'Cálculo seguro de dose + monitorização + toxicidade para MgSO4, ocitocina, misoprostol e todos os medicamentos-chave em obstetrícia. Sempre com verificação manual obrigatória.',
     tags:['go','universal'], specs:['go'], prompt:`[A] Você é farmacologista clínico especializado em obstetrícia e medicina perinatal. Prioriza segurança fetal e materna com verificação dupla em toda dose calculada. Conhece esquemas Zuspan e Pritchard para MgSO4, protocolos FEBRASGO para ocitocina e misoprostol.
 
@@ -4315,7 +4302,7 @@ function renderT1(){
 // ── PAINEL T2 (pós-4 semanas) ──
 function renderT2(){
   const s=evalLoad('t2');
-  const prompts=['🔬 Pesquisa Orquestrada GO','⚔️ Consilium Adversarium Ultra','💊 Farmacológica Blindada GO','🚨 Emergência Obstétrica GO','📊 Análise CTG + USG','🕯️ Revisão de Óbito Materno','🛡️ Anti-Alucinação GO','⏱️ Consulta Pré-Plantão GO','🤰 Pré-natal Alto Risco AIMED'];
+  const prompts=['🔬 Pesquisa Orquestrada GO','⚔️ Consilium Adversarium · Ultra','💊 Farmacologia Blindada GO','🚨 Emergência Obstétrica GO','📊 Análise CTG + USG','🕯️ Revisão de Óbito Materno','🛡️ Anti-Alucinação GO','⏱️ Consulta Pré-Plantão GO','🤰 Pré-natal Alto Risco AIMED'];
   return `
 <div class="eval-pane active" data-pane="t2" id="pane-t2">
   <h3>T2 · Após 4 Semanas</h3>
@@ -4795,6 +4782,16 @@ function renderLogistica(){
 <div class="log-item"><span class="log-key">Turma</span><span class="log-val">11 GO · 2 MFC (Maria Simone, Mayja) · 1 Gastropediatria (Luciana) · 1 Pneumo Pediátrica (Rafaela) · 1 Enf. Terapia Intensiva (Adriana) · Bruna (preceptora GO)</span></div>
 <div class="log-item"><span class="log-key">Instrutor</span><span class="log-val">Dr. Mbula Luzingu Barros · InovaMed</span></div>
 </div>
+
+<div class="log-section">
+<div class="log-section-title">Local do Curso & Como Chegar</div>
+<div class="log-item"><span class="log-key">Endereço</span><span class="log-val">Hotel Le Canard · Rua XV de Novembro, 2075 · Bairro Glória · Joinville · SC · CEP 89216-201</span></div>
+<div class="log-item"><span class="log-key">Localização</span><span class="log-val">Bairro Glória — de fácil acesso, a poucos minutos do centro de Joinville</span></div>
+<div class="log-item"><span class="log-key">Estacionamento</span><span class="log-val"><strong>Gratuito no próprio hotel</strong> · também há vagas rotativas nas proximidades</span></div>
+<div class="log-item"><span class="log-key">Mobilidade</span><span class="log-val">Aplicativos 99 e Uber funcionam bem na região</span></div>
+<div class="log-item"><span class="log-key">Google Maps</span><span class="log-val"><a href="https://maps.google.com/?q=Rua+XV+de+Novembro,+2075,+Bairro+Glória,+Joinville,+SC" target="_blank" rel="noopener" style="color:var(--gold);text-decoration:underline">🗺 Abrir rota no Google Maps</a></span></div>
+</div>
+
 <div class="log-section">
 <div class="log-section-title">Agenda Detalhada</div>
 <div class="log-schedule">
@@ -4835,6 +4832,64 @@ function renderLogistica(){
 <div class="log-item"><span class="log-key">Claude Pro</span><span class="log-val">Recomendado (plano pago) para upload de PDFs e Projetos ilimitados</span></div>
 <div class="log-item"><span class="log-key">PDFs úteis</span><span class="log-val">FEBRASGO 2024 (se tiver acesso) · qualquer protocolo MDV impresso</span></div>
 <div class="log-item"><span class="log-key">Acesso ao AIMED OS</span><span class="log-val">Este site — acesso permanente e sem data de expiração</span></div>
+
+<div class="log-section">
+<div class="log-section-title">Apps de IA — Instalação e Configuração</div>
+<div class="log-item"><span class="log-key">Antes do curso</span><span class="log-val">Tenha as <strong>contas criadas e o login feito</strong> nas três IAs e no NotebookLM. Os planos pagos das três são <strong>altamente recomendáveis</strong> — não obrigatórios, mas a diferença de experiência é grande.</span></div>
+
+<div style="margin-top:24px;padding:18px;background:var(--navy-light);border-radius:var(--radius);border:1px solid var(--border-dim)">
+<div style="font-family:'Playfair Display',serif;font-style:italic;color:var(--gold);font-size:1.05rem;margin-bottom:12px">🔷 Gemini (Google)</div>
+<div class="log-item"><span class="log-key">Conta</span><span class="log-val">Sua conta Google — provavelmente já tem</span></div>
+<div class="log-item"><span class="log-key">Web</span><span class="log-val"><a href="https://gemini.google.com" target="_blank" rel="noopener" style="color:var(--gold);text-decoration:underline">gemini.google.com</a> · login com conta Google</span></div>
+<div class="log-item"><span class="log-key">App iOS</span><span class="log-val"><a href="https://apps.apple.com/app/google-gemini/id6477489729" target="_blank" rel="noopener" style="color:var(--gold);text-decoration:underline">Google Gemini · App Store</a></span></div>
+<div class="log-item"><span class="log-key">App Android</span><span class="log-val"><a href="https://play.google.com/store/apps/details?id=com.google.android.apps.bard" target="_blank" rel="noopener" style="color:var(--gold);text-decoration:underline">Google Gemini · Play Store</a> (muitos Androids já vêm pré-instalados)</span></div>
+<div class="log-item"><span class="log-key">Plano pago</span><span class="log-val"><strong>Google One AI Premium / Gemini Advanced</strong> — necessário para criar <em>Gems</em> personalizados e uso intensivo do Gemini 2.5 Pro</span></div>
+<div class="log-item"><span class="log-key">Passo a passo</span><span class="log-val">1. Acesse gemini.google.com no notebook · 2. Faça login com a conta Google · 3. No celular, instale o app pelos links acima · 4. No Bloco 1 vamos criar seu primeiro <em>Gem GO/MDV</em></span></div>
+</div>
+
+<div style="margin-top:16px;padding:18px;background:var(--navy-light);border-radius:var(--radius);border:1px solid var(--border-dim)">
+<div style="font-family:'Playfair Display',serif;font-style:italic;color:var(--gold);font-size:1.05rem;margin-bottom:12px">🟧 Claude (Anthropic)</div>
+<div class="log-item"><span class="log-key">Conta</span><span class="log-val">Criar em <a href="https://claude.ai" target="_blank" rel="noopener" style="color:var(--gold);text-decoration:underline">claude.ai</a> (login com Google ou e-mail)</span></div>
+<div class="log-item"><span class="log-key">Web</span><span class="log-val"><a href="https://claude.ai" target="_blank" rel="noopener" style="color:var(--gold);text-decoration:underline">claude.ai</a></span></div>
+<div class="log-item"><span class="log-key">App iOS</span><span class="log-val"><a href="https://apps.apple.com/app/claude-by-anthropic/id6473753684" target="_blank" rel="noopener" style="color:var(--gold);text-decoration:underline">Claude by Anthropic · App Store</a></span></div>
+<div class="log-item"><span class="log-key">App Android</span><span class="log-val"><a href="https://play.google.com/store/apps/details?id=com.anthropic.claude" target="_blank" rel="noopener" style="color:var(--gold);text-decoration:underline">Claude · Play Store</a></span></div>
+<div class="log-item"><span class="log-key">Plano pago</span><span class="log-val"><strong>Claude Pro</strong> — destrava <em>Projetos</em> (memória persistente do contexto GO/MDV), upload de PDFs maiores e modelo mais capaz. O ganho aqui é o maior entre as três para uso clínico.</span></div>
+<div class="log-item"><span class="log-key">Passo a passo</span><span class="log-val">1. Acesse claude.ai · 2. Crie conta com Google ou e-mail · 3. Instale o app no celular pelos links · 4. No Bloco 1 vamos criar seu primeiro <em>Projeto GO/MDV</em></span></div>
+</div>
+
+<div style="margin-top:16px;padding:18px;background:var(--navy-light);border-radius:var(--radius);border:1px solid var(--border-dim)">
+<div style="font-family:'Playfair Display',serif;font-style:italic;color:var(--gold);font-size:1.05rem;margin-bottom:12px">⚫ ChatGPT (OpenAI)</div>
+<div class="log-item"><span class="log-key">Conta</span><span class="log-val">Criar em <a href="https://chatgpt.com" target="_blank" rel="noopener" style="color:var(--gold);text-decoration:underline">chatgpt.com</a> (login com Google, Apple, Microsoft ou e-mail)</span></div>
+<div class="log-item"><span class="log-key">Web</span><span class="log-val"><a href="https://chatgpt.com" target="_blank" rel="noopener" style="color:var(--gold);text-decoration:underline">chatgpt.com</a></span></div>
+<div class="log-item"><span class="log-key">App iOS</span><span class="log-val"><a href="https://apps.apple.com/app/chatgpt/id6448311069" target="_blank" rel="noopener" style="color:var(--gold);text-decoration:underline">ChatGPT · App Store</a></span></div>
+<div class="log-item"><span class="log-key">App Android</span><span class="log-val"><a href="https://play.google.com/store/apps/details?id=com.openai.chatgpt" target="_blank" rel="noopener" style="color:var(--gold);text-decoration:underline">ChatGPT · Play Store</a></span></div>
+<div class="log-item"><span class="log-key">Plano pago</span><span class="log-val"><strong>ChatGPT Plus</strong> — destrava o modelo mais capaz sem limites diários, voice mode avançado, e <em>Instruções Personalizadas</em> mais robustas</span></div>
+<div class="log-item"><span class="log-key">Passo a passo</span><span class="log-val">1. Acesse chatgpt.com · 2. Crie conta · 3. Instale o app no celular pelos links · 4. No Bloco 1 vamos configurar suas <em>Instruções Personalizadas GO/MDV</em></span></div>
+</div>
+
+<div style="margin-top:16px;padding:18px;background:var(--navy-light);border-radius:var(--radius);border:1px solid var(--border-dim)">
+<div style="font-family:'Playfair Display',serif;font-style:italic;color:var(--gold);font-size:1.05rem;margin-bottom:12px">📓 NotebookLM (Google)</div>
+<div class="log-item"><span class="log-key">Conta</span><span class="log-val">Sua mesma conta Google — gratuito</span></div>
+<div class="log-item"><span class="log-key">Web</span><span class="log-val"><a href="https://notebooklm.google.com" target="_blank" rel="noopener" style="color:var(--gold);text-decoration:underline">notebooklm.google.com</a> · login com conta Google</span></div>
+<div class="log-item"><span class="log-key">Para que serve</span><span class="log-val">Memória clínica persistente: você sobe PDFs (FEBRASGO, protocolos MDV, dados Dariza) e o NotebookLM responde <em>citando a fonte exata</em>. Componente <em>Anti-alucinação</em> do seu sistema.</span></div>
+<div class="log-item"><span class="log-key">Passo a passo</span><span class="log-val">1. Acesse notebooklm.google.com · 2. Faça login com conta Google · 3. Clique em "+ Novo notebook" · 4. No Bloco 3 vamos carregar seus PDFs juntas e criar o <em>Notebook GO/MDV</em></span></div>
+</div>
+</div>
+
+<div class="log-section">
+<div class="log-section-title">Conectividade & Alimentação</div>
+<div class="log-item"><span class="log-key">Wi-Fi</span><span class="log-val">Fornecido pelo Hotel Le Canard · credenciais informadas na abertura</span></div>
+<div class="log-item"><span class="log-key">Dica</span><span class="log-val">Tenha plano de dados como backup — as sessões práticas exigem acesso estável às IAs</span></div>
+<div class="log-item"><span class="log-key">Cafés</span><span class="log-val">Por conta da organização · sexta 18:00 · sábado 10:00 e 15:40</span></div>
+<div class="log-item"><span class="log-key">Almoço sábado</span><span class="log-val">12:00 às 13:30 · por conta da participante</span></div>
+</div>
+
+<div class="log-section">
+<div class="log-section-title">Certificação</div>
+<div class="log-item"><span class="log-key">Certificado</span><span class="log-val">14 horas emitido pela InovaMed, mediante participação integral nos dois dias</span></div>
+<div class="log-item"><span class="log-key">Envio</span><span class="log-val">Por e-mail em até 7 dias úteis após o encerramento</span></div>
+<div class="log-item"><span class="log-key">Plataforma</span><span class="log-val">Este site (AIMED OS) permanece ativo sem data de expiração, com Biblioteca de prompts e Sistema de Avaliação T0/T1/T2</span></div>
+</div>
 </div>`;
 }
 
@@ -5822,5 +5877,39 @@ function gerarPDFIndice(){
   },80);
 }
 </script>
+
+<!-- GEMINI MODAL -->
+<div id="gemini-modal" role="dialog" aria-modal="true" aria-labelledby="gemini-modal-title">
+  <div class="gemini-modal-box">
+    <button class="gemini-modal-close" onclick="fecharGeminiModal()" aria-label="Fechar">×</button>
+    <div class="gemini-modal-eyebrow">🔷 Gemini · 2 passos</div>
+    <div class="gemini-modal-title" id="gemini-modal-title">Abrir no Gemini</div>
+    <div class="gemini-modal-sub">O Gemini não aceita prompt pela URL. Copie o texto e cole no chat.</div>
+
+    <div class="gemini-step">
+      <div class="gemini-step-num">1</div>
+      <div class="gemini-step-body">
+        <div class="gemini-step-title">Copiar o prompt</div>
+        <button class="gemini-copy-btn" id="gemini-copy-btn" onclick="copiarGeminiPrompt()">📋 Copiar prompt</button>
+        <div class="gemini-prompt-preview" id="gemini-prompt-preview"></div>
+      </div>
+    </div>
+
+    <div class="gemini-step">
+      <div class="gemini-step-num">2</div>
+      <div class="gemini-step-body">
+        <div class="gemini-step-title">Abrir o Gemini e colar</div>
+        <a class="gemini-open-link gemini-open-app" id="gemini-open-app" href="intent://gemini.google.com#Intent;scheme=https;package=com.google.android.apps.bard;S.browser_fallback_url=https%3A%2F%2Fgemini.google.com;end" style="display:none;margin-bottom:8px">📱 Abrir no app Gemini</a>
+        <a class="gemini-open-link" href="https://gemini.google.com" target="_blank" rel="noopener noreferrer">🔗 Abrir no navegador</a>
+        <div class="gemini-fallback">
+          Se nenhum link abrir, digite <strong>gemini.google.com</strong> na barra de endereços. Já no Gemini, toque longo na caixa de chat → <strong>Colar</strong> (celular) ou <strong>Ctrl+V</strong> (PC).
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="print-area"></div>
+
 </body>
 </html>
