@@ -1198,7 +1198,7 @@ body {
 
 /* ═══════════════════════════════════════════════════════════════
    .tdc-table · responsivo mobile
-   Tabela dos 12 protocolos (TdC) tem 4 colunas — estoura no celular.
+   Tabela dos 17 protocolos (TdC) tem 4 colunas — estoura no celular.
    Solução: scroll horizontal com indicador visual + padding reduzido.
    ═══════════════════════════════════════════════════════════════ */
 @media (max-width: 700px) {
@@ -2948,8 +2948,8 @@ input[type="date"].calc-input { color-scheme: dark; }
       </div>
       <div style="margin-top:24px;padding:20px;background:var(--navy-light);border-radius:var(--radius);border:1px solid var(--border-dim)">
         <div style="font-size:0.62rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px">Contato · InovaMed</div>
-        <div style="font-size:0.82rem;color:var(--text-dim)">📧 inovamed.pro@gmail.com</div>
-        <div style="font-size:0.82rem;color:var(--text-dim);margin-top:6px">🌐 inovamed.pro</div>
+        <div style="font-size:0.82rem;color:var(--text-dim)">📧 <a href="mailto:inovamed.pro@gmail.com" style="color:var(--gold);text-decoration:none">inovamed.pro@gmail.com</a></div>
+        <div style="font-size:0.82rem;color:var(--text-dim);margin-top:6px">🌐 <a href="https://inovamed.pro" target="_blank" rel="noopener noreferrer" style="color:var(--gold);text-decoration:none">inovamed.pro</a></div>
       </div>
     </div>
   </div>
@@ -3281,7 +3281,7 @@ input[type="date"].calc-input { color-scheme: dark; }
           "Vocês não estão saindo daqui com um certificado de papel. Vão sair daqui com cinco semanas de coleta de dados — e na semana 5, cada um/a de vocês recebe uma <strong>Memória AIMED personalizada</strong> com sua jornada inteira. É a primeira vez no Brasil que um curso de IA aplicada à medicina faz isso. E não vai ser a última."
         </div>
         <div class="mem-cta-attr">— Encerramento do curso · 27 de Junho de 2026</div>
-        <a class="mem-preview-btn" href="memoria.html?id=DEMO" onclick="try{window.history.replaceState(null,'','#memoria')}catch(e){}">👁 Ver pré-visualização (exemplo)</a>
+        <a class="mem-preview-btn" href="#" onclick="event.preventDefault();showToast('A Memória AIMED é gerada na Semana 5 — pré-visualização em breve');return false;" style="opacity:0.7">👁 Pré-visualização (em breve)</a>
       </div>
 
     </div>
@@ -4281,7 +4281,7 @@ E como monitorizo a toxicidade?`},
 <div class="step-item"><div class="step-num">02</div><div class="step-body"><div class="step-title">Cultivar (amanhã manhã)</div><div class="step-desc">No Bloco 3, pesquisamos a evidência real com Gemini + Claude + NotebookLM. O argumento contrário encontra os dados — e pode fortalecer ou desabar.</div></div></div>
 <div class="step-item"><div class="step-num">03</div><div class="step-body"><div class="step-title">Colher (amanhã tarde)</div><div class="step-desc">No Bloco 4, cada residente apresenta seu veredicto em 90 segundos: o protocolo sobrevive ao contrário? Com qual modificação? Sem qual evidência?</div></div></div>
 </div>
-<h3>Os 12 protocolos — escolha o seu</h3>
+<h3>Os 17 protocolos — escolha o seu</h3>
 <table class="tdc-table"><thead><tr><th>#</th><th>Protocolo</th><th>Participante</th><th>Grau</th></tr></thead><tbody>
 <tr><td>1</td><td class="tdc-protocol">MgSO4 em pré-eclâmpsia <em>sem</em> critérios de gravidade</td><td class="tdc-name">Bianca</td><td><span class="tdc-badge alto">Alto</span></td></tr>
 <tr><td>2</td><td class="tdc-protocol">Cesárea eletiva em apresentação pélvica a termo</td><td class="tdc-name">Carolina</td><td><span class="tdc-badge alto">Alto</span></td></tr>
@@ -4299,6 +4299,7 @@ E como monitorizo a toxicidade?`},
 <tr><td>14</td><td class="tdc-protocol">Colestase intra-hepática da gravidez: quando interromper?</td><td class="tdc-name">Luciana</td><td><span class="tdc-badge alto">Alto</span></td></tr>
 <tr><td>15</td><td class="tdc-protocol">Corticoterapia em asma aguda moderada-grave na gestante</td><td class="tdc-name">Rafaela</td><td><span class="tdc-badge medio">Médio</span></td></tr>
 <tr><td>16</td><td class="tdc-protocol">Escala MEOWS vs avaliação clínica intuitiva na triagem obstétrica</td><td class="tdc-name">Adriana</td><td><span class="tdc-badge medio">Médio</span></td></tr>
+<tr><td>17</td><td class="tdc-protocol">Amniotomia precoce de rotina para acelerar o trabalho de parto</td><td class="tdc-name">Luana</td><td><span class="tdc-badge medio">Médio</span></td></tr>
 </tbody></table>`,
       prompts:{
         titulo:'Teoria do Contrário GO — Construtor de Argumento',
@@ -4381,6 +4382,7 @@ Síntese das três vozes: em que condições o protocolo se sustenta? Onde tem f
 <div class="participant-card"><div class="participant-avatar">Gu</div><div><div class="participant-name">Guilherme</div><div class="participant-role">Antibiótico profilático na RPMO pré-termo</div></div></div>
 <div class="participant-card"><div class="participant-avatar">La</div><div><div class="participant-name">Laura</div><div class="participant-role">Progesterona vaginal na ameaça de TP prematuro</div></div></div>
 <div class="participant-card"><div class="participant-avatar">Lu</div><div><div class="participant-name">Luiza</div><div class="participant-role">Restrição hídrica no trabalho de parto ativo</div></div></div>
+<div class="participant-card"><div class="participant-avatar">Ln</div><div><div class="participant-name">Luana</div><div class="participant-role">Amniotomia precoce de rotina para acelerar o trabalho de parto</div></div></div>
 <div class="participant-card"><div class="participant-avatar">MS</div><div><div class="participant-name">Maria Simone</div><div class="participant-specialty">Médica de Família e Comunidade</div><div class="participant-role">Rastreamento de DM gestacional: OMS vs IADPSG</div></div></div>
 <div class="participant-card"><div class="participant-avatar">My</div><div><div class="participant-name">Mayja</div><div class="participant-specialty">Médica de Família · URG/EMER</div><div class="participant-role">Ácido fólico pré-natal: dose padrão vs dose alta</div></div></div>
 <div class="participant-card"><div class="participant-avatar">Lc</div><div><div class="participant-name">Luciana</div><div class="participant-specialty">Gastroenterologista Pediátrica</div><div class="participant-role">Colestase intra-hepática da gravidez — quando interromper?</div></div></div>
@@ -4662,7 +4664,7 @@ RECURSOS DISPONÍVEIS: [CC disponível? UTI neonatal? Staff presente?]
 </div>
 <div style="border-top:1px solid var(--border-dim);margin-top:20px;padding-top:20px">
 <div class="case-section-title">Vitais e Exame Físico</div>
-<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:10px">
+<div class="case-dossier-row cols-3">
 <div class="case-item" style="flex-direction:column;gap:2px;border:none;padding:10px;background:rgba(248,113,113,0.08);border-radius:8px"><span class="case-key">PA (x2, 15min)</span><span class="case-val case-critical" style="font-size:1rem">162 × 105 mmHg</span></div>
 <div class="case-item" style="flex-direction:column;gap:2px;border:none;padding:10px;background:var(--navy);border-radius:8px"><span class="case-key">FC</span><span class="case-val">102 bpm</span></div>
 <div class="case-item" style="flex-direction:column;gap:2px;border:none;padding:10px;background:var(--navy);border-radius:8px"><span class="case-key">SpO2</span><span class="case-val">97% RA</span></div>
@@ -4672,7 +4674,7 @@ RECURSOS DISPONÍVEIS: [CC disponível? UTI neonatal? Staff presente?]
 </div></div>
 <div style="border-top:1px solid var(--border-dim);margin-top:16px;padding-top:16px">
 <div class="case-section-title">Laboratório (urgência — 2h atrás)</div>
-<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:10px">
+<div class="case-dossier-row cols-4">
 <div class="case-item" style="flex-direction:column;gap:2px;border:none;padding:10px;background:rgba(248,113,113,0.1);border-radius:8px"><span class="case-key">Plaquetas</span><span class="case-val case-critical">98.000</span></div>
 <div class="case-item" style="flex-direction:column;gap:2px;border:none;padding:10px;background:rgba(248,113,113,0.1);border-radius:8px"><span class="case-key">TGO</span><span class="case-val case-critical">118 U/L</span></div>
 <div class="case-item" style="flex-direction:column;gap:2px;border:none;padding:10px;background:rgba(248,113,113,0.1);border-radius:8px"><span class="case-key">LDH</span><span class="case-val case-critical">687 U/L</span></div>
@@ -4684,7 +4686,7 @@ RECURSOS DISPONÍVEIS: [CC disponível? UTI neonatal? Staff presente?]
 </div></div>
 <div style="border-top:1px solid var(--border-dim);margin-top:16px;padding-top:16px">
 <div class="case-section-title">Avaliação Fetal</div>
-<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:10px">
+<div class="case-dossier-row cols-3">
 <div class="case-item" style="flex-direction:column;gap:2px;border:none;padding:10px;background:rgba(248,113,113,0.08);border-radius:8px"><span class="case-key">EFW</span><span class="case-val case-critical">1.580g (p18)</span></div>
 <div class="case-item" style="flex-direction:column;gap:2px;border:none;padding:10px;background:rgba(248,113,113,0.08);border-radius:8px"><span class="case-key">ILA</span><span class="case-val case-critical">5.8 cm</span></div>
 <div class="case-item" style="flex-direction:column;gap:2px;border:none;padding:10px;background:var(--navy);border-radius:8px"><span class="case-key">CPR</span><span class="case-val">&gt; 1 (normal)</span></div>
@@ -4704,7 +4706,7 @@ RECURSOS DISPONÍVEIS: [CC disponível? UTI neonatal? Staff presente?]
 <div class="step-item"><div class="step-num">20'</div><div class="step-body"><div class="step-title">Análise em grupos (4 grupos de 3)</div><div class="step-desc">Cada grupo analisa uma dimensão do caso: (1) diagnóstico e critérios de gravidade, (2) MgSO4 — sim/não/qual esquema, (3) timing e via de parto, (4) comunicação com a paciente e o marido.</div></div></div>
 <div class="step-item"><div class="step-num">15'</div><div class="step-body"><div class="step-title">Adriana apresenta — o olhar da vigilância</div><div class="step-desc">Adriana traz a perspectiva de saúde pública sobre o caso: que perfil costuma chegar ao serviço, que riscos a vigilância prioriza, o que costuma acontecer com gestantes que recebem alta a 45 min da MDV. Perspectiva, não dados identificáveis.</div></div></div>
 <div class="step-item"><div class="step-num">30'</div><div class="step-body"><div class="step-title">Discussão coletiva — com IA como escriba</div><div class="step-desc">A IA documenta em tempo real: argumentos levantados, referências citadas, decisões tomadas. Ao final, gera a síntese clínica do caso para todos.</div></div></div>
-<div class="step-item"><div class="step-num">25'</div><div class="step-body"><div class="step-title">Conexão com a TdC de cada um/a</div><div class="step-desc">O caso cruza com os 16 protocolos questionados: MgSO4 sem critérios (Bianca), CTG Categoria II (Manoela), corticóide tardio (Maria Fernanda). A TdC encontra o caso real.</div></div></div>
+<div class="step-item"><div class="step-num">25'</div><div class="step-body"><div class="step-title">Conexão com a TdC de cada um/a</div><div class="step-desc">O caso cruza com os 17 protocolos questionados: MgSO4 sem critérios (Bianca), CTG Categoria II (Manoela), corticóide tardio (Maria Fernanda). A TdC encontra o caso real.</div></div></div>
 </div>
 <h3>A dimensão que o caso força</h3>
 <div class="participant-grid">
@@ -4716,6 +4718,7 @@ RECURSOS DISPONÍVEIS: [CC disponível? UTI neonatal? Staff presente?]
 <div class="participant-card"><div class="participant-avatar">Ra</div><div><div class="participant-name">Rafaela</div><div class="participant-specialty">Pneumologista Pediátrica</div><div class="participant-role">O corticóide para maturação pulmonar fetal a 32+3 semanas: qual a janela real de ação — e ela muda a urgência da decisão de interrupção nas próximas 12h?</div></div></div>
 <div class="participant-card"><div class="participant-avatar">Gu</div><div><div class="participant-name">Guilherme</div><div class="participant-role">Quando acionar o neonatologista? Antes ou depois da decisão de via de parto?</div></div></div>
 <div class="participant-card special"><div class="participant-avatar">Ad</div><div><div class="participant-name">Adriana</div><div class="participant-role">Vigilância em Saúde Joinville: qual o desfecho típico com esse perfil? O MEOWS classificaria esta paciente como alerta?</div></div></div>
+<div class="participant-card"><div class="participant-avatar">MS</div><div><div class="participant-name">Maria Simone</div><div class="participant-specialty">Médica de Família e Comunidade</div><div class="participant-role">Pré-natal com 3 consultas e 8 semanas sem seguimento: onde a APS perdeu esta gestante — e como vínculo e busca ativa mudariam o desfecho?</div></div></div>
 <div class="participant-card special"><div class="participant-avatar">Br</div><div><div class="participant-name">Bruna</div><div class="participant-role">Síntese final: o que decidiram e por quê. O que a MDV faria diferente com este caso amanhã?</div></div></div>
 </div>`,
       prompts:{
@@ -4777,7 +4780,7 @@ Para o arquivo do grupo (não vai ao prontuário):
 <div class="step-item"><div class="step-num">2</div><div class="step-body"><div class="step-title">O argumento contrário mais forte</div><div class="step-desc">"O argumento mais forte contra ele é [Y] — baseado em [estudo/dado]."</div></div></div>
 <div class="step-item"><div class="step-num">3</div><div class="step-body"><div class="step-title">O veredicto</div><div class="step-desc">"Meu veredicto: o protocolo [sobrevive / tem fronteiras em / deve ser modificado para] [Z]."</div></div></div>
 </div>
-<div class="callout"><div class="callout-label">Após cada veredicto — 30 segundos de grupo</div><p>Uma residente pode concordar, divergir ou adicionar. Sem debate prolongado — há 12 protocolos para colher. A profundidade vem na discussão pós-curso no grupo de WhatsApp.</p></div>
+<div class="callout"><div class="callout-label">Após cada veredicto — 30 segundos de grupo</div><p>Uma residente pode concordar, divergir ou adicionar. Sem debate prolongado — há 17 protocolos para colher. A profundidade vem na discussão pós-curso no grupo de WhatsApp.</p></div>
 <h3>Sequência de apresentação</h3>
 <table class="tdc-table"><thead><tr><th>Ordem</th><th>Participante</th><th>Protocolo</th></tr></thead><tbody>
 <tr><td>1</td><td class="tdc-name">Bianca</td><td class="tdc-protocol">MgSO4 em pré-eclâmpsia sem critérios de gravidade</td></tr>
@@ -4796,6 +4799,7 @@ Para o arquivo do grupo (não vai ao prontuário):
 <tr><td>14</td><td class="tdc-name">Luciana</td><td class="tdc-protocol">Colestase intra-hepática da gravidez — quando interromper?</td></tr>
 <tr><td>15</td><td class="tdc-name">Rafaela</td><td class="tdc-protocol">Corticoterapia em asma aguda na gestante</td></tr>
 <tr><td>16</td><td class="tdc-name">Adriana</td><td class="tdc-protocol">Escala MEOWS vs avaliação clínica intuitiva</td></tr>
+<tr><td>17</td><td class="tdc-name">Luana</td><td class="tdc-protocol">Amniotomia precoce de rotina no trabalho de parto</td></tr>
 </tbody></table>`,
       prompts:null
     },
