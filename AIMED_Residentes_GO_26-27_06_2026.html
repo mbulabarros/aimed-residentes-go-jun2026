@@ -1744,6 +1744,9 @@ body {
 .sidebar-btn.btn-memoria { background: linear-gradient(135deg, rgba(201,168,76,0.12) 0%, rgba(79,195,195,0.08) 100%); border: 1px solid rgba(201,168,76,0.3); }
 .sidebar-btn.btn-memoria:hover { border-color: var(--gold); background: linear-gradient(135deg, rgba(201,168,76,0.18) 0%, rgba(79,195,195,0.12) 100%); }
 .sidebar-btn.btn-memoria .sidebar-btn-icon { color: var(--gold); }
+.sidebar-btn.btn-whatsapp { background: linear-gradient(135deg, rgba(37,211,102,0.12) 0%, rgba(37,211,102,0.04) 100%); border: 1px solid rgba(37,211,102,0.35); }
+.sidebar-btn.btn-whatsapp:hover { border-color: #25d366; background: linear-gradient(135deg, rgba(37,211,102,0.20) 0%, rgba(37,211,102,0.08) 100%); }
+.sidebar-btn.btn-whatsapp .sidebar-btn-icon { color: #25d366; }
 
 .sidebar-btn.btn-calc { background: linear-gradient(135deg, rgba(79,195,195,0.10) 0%, rgba(106,184,122,0.08) 100%); border: 1px solid rgba(79,195,195,0.3); }
 .sidebar-btn.btn-calc:hover { border-color: var(--teal); background: linear-gradient(135deg, rgba(79,195,195,0.18) 0%, rgba(106,184,122,0.12) 100%); }
@@ -2834,6 +2837,9 @@ input[type="date"].calc-input { color-scheme: dark; }
     <button class="sidebar-btn" onclick="showAvaliacao()">
       <span class="sidebar-btn-icon">📊</span> Avaliação · Pesquisa
     </button>
+    <button class="sidebar-btn btn-whatsapp" onclick="entrarGrupoWhatsApp()">
+      <span class="sidebar-btn-icon">💬</span> Grupo do WhatsApp
+    </button>
     <button class="sidebar-btn" onclick="abrirSobre()">
       <span class="sidebar-btn-icon">👤</span> Sobre Dr. Mbula
     </button>
@@ -3007,6 +3013,7 @@ input[type="date"].calc-input { color-scheme: dark; }
         <div style="font-size:0.62rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin-bottom:12px">🧬 AIMED · InovaMed</div>
         <div style="display:flex;flex-direction:column;gap:8px">
           <a href="https://inovamed.pro" target="_blank" rel="noopener noreferrer" style="color:var(--text-dim);text-decoration:none;padding:10px 14px;background:var(--navy-light);border-radius:var(--radius);border:1px solid var(--border-dim);display:flex;justify-content:space-between;align-items:center"><span>InovaMed</span><span style="font-size:0.72rem;color:var(--text-muted)">inovamed.pro ↗</span></a>
+          <a href="https://chat.whatsapp.com/E9pbRub4Oc712v6ZJVsZes" target="_blank" rel="noopener noreferrer" style="color:var(--text-dim);text-decoration:none;padding:10px 14px;background:var(--navy-light);border-radius:var(--radius);border:1px solid var(--border-dim);display:flex;justify-content:space-between;align-items:center"><span>💬 Grupo do WhatsApp do curso</span><span style="font-size:0.72rem;color:var(--text-muted)">entrar ↗</span></a>
         </div>
       </div>
 
@@ -3582,7 +3589,7 @@ input[type="date"].calc-input { color-scheme: dark; }
               <ol>
                 <li>Acesse <strong>notebooklm.google.com</strong>.</li>
                 <li>Crie um <strong>Caderno "Memória Clínica MDV"</strong>.</li>
-                <li>Carregue protocolos MDV + diretrizes FEBRASGO + dados Dariza.</li>
+                <li>Carregue protocolos MDV + diretrizes FEBRASGO.</li>
                 <li>Use para consultas internas ao próprio acervo.</li>
               </ol>
             </div>
@@ -3964,7 +3971,7 @@ const PROGRAMA = [
 <div class="platform-card gemini"><div class="platform-name">Bloco 1 · Sex tarde</div><div class="platform-role">Arquiteto</div><ul class="platform-steps"><li>A anatomia do prompt médico</li><li>Por que a maioria falha</li><li>Gemini + Claude + GPT configurados para GO</li></ul></div>
 <div class="platform-card claude"><div class="platform-name">Bloco 2 · Sex noite</div><div class="platform-role">Clínico GO</div><ul class="platform-steps"><li>CTG · USG · Doppler com IA</li><li>Cálculos MDV — MgSO4, ocitocina</li><li>Teoria do Contrário — plantando a semente</li></ul></div>
 <div class="platform-card gpt"><div class="platform-name">Bloco 3 · Sáb manhã</div><div class="platform-role">Pesquisador</div><ul class="platform-steps"><li>Da dúvida GO à pergunta PICO</li><li>Memória Clínica MDV (NotebookLM)</li><li>Nossa Ferramenta MDV — construção</li></ul></div>
-<div class="platform-card notebook"><div class="platform-name">Bloco 4 · Sáb tarde</div><div class="platform-role">Integrador</div><ul class="platform-steps"><li>Caso composto MDV — decisão real</li><li>Dados de Joinville com Adriana</li><li>Teoria do Contrário — colheita</li></ul></div>
+<div class="platform-card notebook"><div class="platform-name">Bloco 4 · Sáb tarde</div><div class="platform-role">Integrador</div><ul class="platform-steps"><li>Caso composto MDV — decisão real</li><li>Olhar da vigilância em saúde · Adriana</li><li>Teoria do Contrário — colheita</li></ul></div>
 </div>`,
       prompts:null
     },
@@ -4342,8 +4349,8 @@ Síntese das três vozes: em que condições o protocolo se sustenta? Onde tem f
 <h3>O que amanhã traz</h3>
 <div class="steps-guide">
 <div class="step-item"><div class="step-num">08h</div><div class="step-body"><div class="step-title">Retomada — o argumento da noite</div><div class="step-desc">Cada residente compartilha seu argumento contrário em uma linha. Trinta segundos. Sem julgamento.</div></div></div>
-<div class="step-item"><div class="step-num">10h</div><div class="step-body"><div class="step-title">Memória Clínica MDV</div><div class="step-desc">NotebookLM carregado com FEBRASGO + dados de Joinville. A ferramenta que nenhum serviço no Brasil tem ainda.</div></div></div>
-<div class="step-item"><div class="step-num">13h30</div><div class="step-body"><div class="step-title">O caso MDV</div><div class="step-desc">Um caso que nenhuma resolve sozinha. Vocês e a IA juntas — com os dados de Joinville que Adriana vai trazer.</div></div></div>
+<div class="step-item"><div class="step-num">10h</div><div class="step-body"><div class="step-title">Memória Clínica MDV</div><div class="step-desc">NotebookLM carregado com FEBRASGO + protocolos MDV. A ferramenta que nenhum serviço no Brasil tem ainda.</div></div></div>
+<div class="step-item"><div class="step-num">13h30</div><div class="step-body"><div class="step-title">O caso MDV</div><div class="step-desc">Um caso que nenhuma resolve sozinha. Vocês e a IA juntas — com o olhar da vigilância em saúde que Adriana traz.</div></div></div>
 </div>
 <div class="callout" style="margin-top:24px"><div class="callout-label">Rafaela e Luciana — A pergunta da noite para especialistas</div><p><strong>Rafaela:</strong> a evidência que sustenta corticoterapia sistêmica na asma aguda moderada-grave da gestante é suficientemente robusta para não ter exceção? Existe algum perfil de gestante asmática em crise grave em que você <em>não</em> daria prednisolona? <br><br><strong>Luciana:</strong> se ácidos biliares chegam a 38 µmol/L com 35 semanas e feto com Doppler normal, você interrompe ou espera mais uma semana? O <span class="gloss" data-def="Planned delivery Interval for Trial CHolEStasis in pregnancy — RCT britânico (Lancet 2019) que comparou interrupção eletiva a 36+0 semanas vs manejo expectante em colestase intra-hepática leve (ácidos biliares &lt;100 µmol/L). Resultado: interrupção precoce não reduziu desfechos adversos perinatais de forma significativa vs expectante. Questiona a interrupção rotineira a 36 semanas na CIH leve.">PITCHES trial</span> (Planned delivery Interval for Trial CHolEStasis in pregnancy, Lancet 2019) mudou sua decisão — ou só confirmou o que já fazia?</p></div>`,
       prompts:null, isBreak:false
@@ -4442,7 +4449,7 @@ Quais são os principais estudos? Qual o NNT? Qual o posicionamento atual da FEB
     },
     {
       id:'tres-ias-go', horario:'09:15–10:00', titulo:'As Três IAs na Análise Científica GO',
-      summary:'Gemini encontra os artigos. Claude lê os PDFs e analisa metodologia. GPT sintetiza para a equipe. Adriana valida o desenho do estudo com olhar de epidemiologista.',
+      summary:'Gemini encontra os artigos. Claude lê os PDFs e analisa metodologia. GPT sintetiza para a equipe. Adriana valida o desenho do estudo com o olhar da vigilância em saúde.',
       avatar:'Ud6P1jbHgcI',
       conteudo:`<h3>A orquestra das três IAs — papéis distintos</h3>
 <p>Nenhuma IA faz tudo igualmente bem. A diferença entre uma residente que usa IA para pesquisa e uma que usa IA de forma orquestrada é a compreensão dos papéis distintos de cada plataforma.</p>
@@ -4451,7 +4458,7 @@ Quais são os principais estudos? Qual o NNT? Qual o posicionamento atual da FEB
 <div class="platform-card claude"><div class="platform-name">🟡 Claude · Analista</div><div class="platform-role">Etapa 2 — analisar PDFs</div><ul class="platform-steps"><li>Carrega PDFs dos artigos encontrados</li><li>Analisa metodologia: viés, tamanho de amostra, desfechos</li><li>Extrai NNT/NNH, IC 95%, p-values com interpretação</li><li>Entrega: análise crítica com avaliação GRADE</li></ul></div>
 <div class="platform-card gpt"><div class="platform-name">🟣 GPT · Sintetizador</div><div class="platform-role">Etapa 3 — sintetizar</div><ul class="platform-steps"><li>Recebe a análise do Claude</li><li>Produz síntese compreensível para equipe</li><li>Formata para apresentação em reunião clínica</li><li>Entrega: parágrafo de síntese pronto para discussão</li></ul></div>
 </div>
-<div class="callout"><div class="callout-label">O papel de Adriana — o olhar que nenhuma clínica tem</div><p>Adriana é enfermeira de Terapia Intensiva e servidora da Vigilância em Saúde do Município de Joinville. Ela não vai comentar conduta obstétrica — mas vai fazer algo insubstituível: trazer os dados populacionais reais de Joinville e o olhar do cuidado crítico. <em>"Qual o perfil de gestantes que chegaram ao PS com esse quadro nos últimos 12 meses?"</em> <em>"O que a vigilância epidemiológica registra nos desfechos pós-alta nesse tipo de caso?"</em> Isso é o que uma profissional de terapia intensiva com acesso a dados municipais traz que nenhuma IA substitui.</p></div>
+<div class="callout"><div class="callout-label">O papel de Adriana — o olhar que nenhuma clínica tem</div><p>Adriana participa como enfermeira de Terapia Intensiva, com grande conhecimento de Vigilância em Saúde. Ela não vai comentar conduta obstétrica nem subir dados identificáveis — mas faz algo insubstituível: traz o <strong>olhar da vigilância em saúde</strong> e as perguntas certas. <em>"Que perfil de gestante costuma chegar ao PS com esse quadro?"</em> <em>"Que desfechos pós-alta a vigilância costuma observar nesse tipo de caso?"</em> Isso é o que uma profissional de terapia intensiva com essa bagagem em saúde pública traz e nenhuma IA substitui.</p></div>
 <h3>O fluxo completo em 45 minutos</h3>
 <div class="steps-guide">
 <div class="step-item"><div class="step-num">15'</div><div class="step-body"><div class="step-title">Gemini busca (em duplas)</div><div class="step-desc">Cada dupla usa seu PICO como query. Gemini + Scholar. Salvar os 3 artigos mais relevantes.</div></div></div>
@@ -4515,27 +4522,27 @@ Contexto de aplicação: Maternidade Darcy Vargas, Joinville/SC — referência 
     {id:'cafe-2', horario:'10:00–10:15', titulo:'Café · Intervalo', summary:'Pausa.', avatar:null, conteudo:`<div class="callout"><div class="callout-label">Intervalo · 15 min</div><p>Consulte os artigos que encontrou. Salve os PDFs para carregar no Claude Projects. Se não conseguiu artigos com o Gemini, tente com o ChatGPT + Scholar — ou peça ajuda.</p></div>`, prompts:null, isBreak:true},
     {
       id:'notebooklm-go', horario:'10:15–11:00', titulo:'NotebookLM — Memória Clínica MDV',
-      summary:'O NotebookLM transforma documentos estáticos em consultor clínico interativo. Com dados de Vigilância em Saúde de Joinville (Adriana) + FEBRASGO + protocolos MDV, vira a memória institucional que nenhum serviço no Brasil tem ainda.',
+      summary:'O NotebookLM transforma documentos estáticos em consultor clínico interativo. Com diretrizes FEBRASGO + protocolos MDV + literatura selecionada, vira a memória institucional que nenhum serviço no Brasil tem ainda.',
       avatar:'1Ohy5i19nZ0',
       conteudo:`<h3>O que é o NotebookLM e por que muda tudo</h3>
 <p>O <span class="gloss" data-def="Ferramenta gratuita do Google para criação de base de conhecimento consultável por IA; usada no curso para Memória Clínica MDV">NotebookLM</span> não é mais uma IA de chat. É uma ferramenta que você alimenta com documentos — e depois consulta com citação precisa da fonte. Quando você pergunta algo, ele responde citando exatamente de onde tirou. Sem alucinação. Sem fabricação.</p>
-<div class="callout"><div class="callout-label">O diferencial clínico real</div><p>Nas revisões de óbito materno da MDV, as discussões costumam ser baseadas em memória e experiência pessoal. Com o NotebookLM carregado com dados de Joinville, alguém pode perguntar ao vivo: <em>"Quantos óbitos por complicação hipertensiva em Joinville nos últimos 2 anos?"</em> — e receber a resposta com a fonte exata. Isso não existe em nenhum serviço do Brasil ainda.</p></div>
+<div class="callout"><div class="callout-label">O diferencial clínico real</div><p>Nas revisões de óbito materno da MDV, as discussões costumam ser baseadas em memória e experiência pessoal. Com o NotebookLM carregado com FEBRASGO + protocolos MDV, alguém pode perguntar ao vivo: <em>"Quais os fatores evitáveis no óbito materno por complicação hipertensiva, segundo a FEBRASGO?"</em> — e receber a resposta com a fonte exata e a página. Isso não existe em nenhum serviço do Brasil ainda.</p></div>
 <h3>O que vai no Notebook GO/MDV</h3>
 <div class="platform-grid">
 <div class="platform-card gemini"><div class="platform-name">📋 Protocolos</div><ul class="platform-steps"><li>FEBRASGO 2024 (PDF)</li><li>Protocolos internos MDV (quando disponíveis)</li><li>Diretrizes ACOG em GO (versão PT quando houver)</li><li>Protocolo MgSO4 do serviço</li></ul></div>
-<div class="platform-card coral" style="border-top-color:var(--coral)"><div class="platform-name">📊 Dados Joinville</div><ul class="platform-steps"><li>Dados de mortalidade materna · Adriana</li><li>Perfil epidemiológico das gestantes MDV</li><li>Taxa de complicações por diagnóstico</li><li>Dados SINASC Joinville 2023-2024</li></ul></div>
+<div class="platform-card coral" style="border-top-color:var(--coral)"><div class="platform-name">📊 Olhar da vigilância</div><ul class="platform-steps"><li>Perspectiva epidemiológica · Adriana</li><li>Perguntas de saúde pública sobre os casos</li><li>Padrões de complicação discutidos em aula</li><li>Sem dados identificáveis — só o olhar</li></ul></div>
 <div class="platform-card claude"><div class="platform-name">📚 Literatura</div><ul class="platform-steps"><li>Artigos encontrados na sessão anterior</li><li>Revisões sistemáticas por tema TdC</li><li>Cochrane Reviews GO selecionadas</li><li>Artigos dos protocolos questionados</li></ul></div>
 </div>
 <h3>Consultas que transformam a prática</h3>
 <div class="steps-guide">
-<div class="step-item"><div class="step-num">01</div><div class="step-body"><div class="step-title">Para a revisão de óbito materno</div><div class="step-desc">"Quais foram os fatores evitáveis identificados nos óbitos maternos por complicação hipertensiva em Joinville?" → Resposta com citação do relatório de Adriana.</div></div></div>
+<div class="step-item"><div class="step-num">01</div><div class="step-body"><div class="step-title">Para a revisão de óbito materno</div><div class="step-desc">"Quais são os fatores evitáveis mais associados ao óbito materno por complicação hipertensiva, segundo a FEBRASGO?" → Resposta com citação da página da diretriz.</div></div></div>
 <div class="step-item"><div class="step-num">02</div><div class="step-body"><div class="step-title">Para a TdC</div><div class="step-desc">"A FEBRASGO recomenda MgSO4 em pré-eclâmpsia sem critérios de gravidade? Qual a página e o nível de evidência?" → Resposta com citação precisa.</div></div></div>
 <div class="step-item"><div class="step-num">03</div><div class="step-body"><div class="step-title">Para o plantão</div><div class="step-desc">"Qual é o protocolo de clampeamento de cordão para prematuros abaixo de 32 semanas segundo a MDV?" → Resposta com o protocolo interno.</div></div></div>
 </div>
-<div class="alert-box success"><div class="alert-label">Adriana — o momento dela</div><p>Adriana carrega os dados de vigilância epidemiológica de Joinville no Notebook — perfil de gestantes internadas, óbitos maternos, desfechos pós-alta. A partir deste momento, o grupo tem acesso ao real. Ela transforma registros municipais em memória institucional consultável por IA. Isso é inédito em serviços GO brasileiros.</p></div>`,
+<div class="alert-box success"><div class="alert-label">Adriana — o momento dela</div><p>Adriana traz o <strong>olhar da vigilância em saúde</strong> para a discussão — as perguntas de saúde pública que um clínico raramente formula, os padrões de risco que ela reconhece, a leitura populacional do caso. Sem subir nenhum dado identificável: o que ela acrescenta é <em>perspectiva</em>, não planilha. Esse cruzamento entre o olhar da vigilância e a IA é inédito em serviços GO brasileiros.</p></div>`,
       prompts:{
         titulo:'Consulta à Memória Clínica MDV — NotebookLM',
-        subtitulo:'Use no NotebookLM após carregar os documentos MDV + FEBRASGO + dados Adriana',
+        subtitulo:'Use no NotebookLM após carregar os documentos MDV + FEBRASGO + literatura selecionada',
         nivel1:{label:'Nível 1 · Consulta direta', desc:'Pergunta simples ao notebook', texto:`Qual é o protocolo para manejo de pré-eclâmpsia grave no terceiro trimestre?`},
         nivel2:{label:'Nível 2 · Consulta com contexto', desc:'Com referência específica pedida', texto:`Baseando-se nos documentos carregados:
 
@@ -4544,14 +4551,14 @@ Contexto de aplicação: Maternidade Darcy Vargas, Joinville/SC — referência 
 2. Cite a página e o nível de evidência.
 
 3. Existe alguma divergência com o que está nos protocolos MDV carregados?`},
-        nivel3:{label:'Nível 3 · Síntese MDV — Revisão de Óbito', desc:'Query para discussão de caso de mortalidade materna', texto:`Baseando-se em todos os documentos carregados neste Notebook (FEBRASGO + dados epidemiológicos de Joinville + protocolos MDV + literatura selecionada):
+        nivel3:{label:'Nível 3 · Síntese MDV — Revisão de Óbito', desc:'Query para discussão de caso de mortalidade materna', texto:`Baseando-se em todos os documentos carregados neste Notebook (FEBRASGO + protocolos MDV + literatura selecionada):
 
 CASO EM DISCUSSÃO: [descreva o caso brevemente — anonimizado]
 
 PERGUNTAS PARA A REVISÃO:
 
 1. PERFIL EPIDEMIOLÓGICO
-Qual o perfil de casos similares em Joinville nos últimos 2 anos? (dados Adriana)
+Que fatores de risco populacionais a literatura associa a este desfecho? (perspectiva de vigilância — sem dados identificáveis)
 Fatores de risco populacionais identificados para este desfecho?
 
 2. CONFORMIDADE PROTOCOLAR
@@ -4643,7 +4650,7 @@ RECURSOS DISPONÍVEIS: [CC disponível? UTI neonatal? Staff presente?]
   modulos:[
     {
       id:'caso-mdv', horario:'13:30–13:40', titulo:'O Caso MDV — Nenhuma Resolve Sozinha',
-      summary:'Um caso composto baseado nos padrões reais da MDV. Adriana traz os dados de Joinville. A decisão mais difícil do plantão — tomada coletivamente, com IA como aliada.',
+      summary:'Um caso composto baseado nos padrões reais da MDV. Adriana traz o olhar da vigilância em saúde. A decisão mais difícil do plantão — tomada coletivamente, com IA como aliada.',
       avatar:'hQysHMLOJ9c',
       conteudo:`<div class="tdc-manifesto"><div class="tdc-manifesto-label">Bloco 4 · O Clímax do Curso</div><div class="tdc-manifesto-text">Este caso não tem resposta única. Tem dados incompletos, pressões contraditórias, e uma paciente que quer ir para casa.<br><em>Exatamente como o plantão real.</em></div></div>
 <div class="case-dossier"><div class="case-header"><div class="case-badge case-critical">Caso MDV · Composto</div><div class="case-id">Baseado em padrões reais da MDV · Anonimizado · Joinville 2026</div></div>
@@ -4690,12 +4697,12 @@ RECURSOS DISPONÍVEIS: [CC disponível? UTI neonatal? Staff presente?]
     },
     {
       id:'discussao-go', horario:'13:40–15:10', titulo:'Discussão Clínica GO com IA — 90 Minutos',
-      summary:'Noventa minutos. O caso. Vocês todas. A IA como escriba e consultora. Adriana com os dados de Joinville. A decisão não é fácil — e esse é o ponto.',
+      summary:'Noventa minutos. O caso. Vocês todas. A IA como escriba e consultora. Adriana com o olhar da vigilância em saúde. A decisão não é fácil — e esse é o ponto.',
       avatar:'HFMX3lVcnxk',
       conteudo:`<h3>A estrutura dos 90 minutos</h3>
 <div class="steps-guide">
 <div class="step-item"><div class="step-num">20'</div><div class="step-body"><div class="step-title">Análise em grupos (4 grupos de 3)</div><div class="step-desc">Cada grupo analisa uma dimensão do caso: (1) diagnóstico e critérios de gravidade, (2) MgSO4 — sim/não/qual esquema, (3) timing e via de parto, (4) comunicação com a paciente e o marido.</div></div></div>
-<div class="step-item"><div class="step-num">15'</div><div class="step-body"><div class="step-title">Adriana apresenta — os dados de Joinville</div><div class="step-desc">Adriana consulta o NotebookLM ao vivo: perfil epidemiológico das pacientes com quadro similar em Joinville 2024. O que acontece com gestantes que recebem alta nesse contexto? A 45 min da MDV?</div></div></div>
+<div class="step-item"><div class="step-num">15'</div><div class="step-body"><div class="step-title">Adriana apresenta — o olhar da vigilância</div><div class="step-desc">Adriana traz a perspectiva de saúde pública sobre o caso: que perfil costuma chegar ao serviço, que riscos a vigilância prioriza, o que costuma acontecer com gestantes que recebem alta a 45 min da MDV. Perspectiva, não dados identificáveis.</div></div></div>
 <div class="step-item"><div class="step-num">30'</div><div class="step-body"><div class="step-title">Discussão coletiva — com IA como escriba</div><div class="step-desc">A IA documenta em tempo real: argumentos levantados, referências citadas, decisões tomadas. Ao final, gera a síntese clínica do caso para todos.</div></div></div>
 <div class="step-item"><div class="step-num">25'</div><div class="step-body"><div class="step-title">Conexão com a TdC de cada um/a</div><div class="step-desc">O caso cruza com os 16 protocolos questionados: MgSO4 sem critérios (Bianca), CTG Categoria II (Manoela), corticóide tardio (Maria Fernanda). A TdC encontra o caso real.</div></div></div>
 </div>
@@ -4732,8 +4739,8 @@ Diagnóstico em discussão: pré-eclâmpsia com critérios de gravidade (Plt 98k
 Dados da discussão (resumo do que o grupo debateu):
 [cole aqui os principais pontos levantados durante a discussão]
 
-Dado epidemiológico de Adriana:
-[cole aqui o que Adriana apresentou sobre dados de Joinville]
+Perspectiva de vigilância em saúde (Adriana):
+[cole aqui as observações de contexto/saúde pública que Adriana trouxe — sem dados identificáveis]
 
 [M] Gere dois documentos:
 
@@ -4838,7 +4845,7 @@ Para o arquivo do grupo (não vai ao prontuário):
 </div>
 <h3>Os 4 desafios pós-curso</h3>
 <p>Depois que o curso termina, o AIMED OS continua. No Bloco 5 — Crescimento — você encontra um desafio por semana. Cada um leva 20-30 minutos. São o que transformam este evento de 14 horas num programa de 5 semanas.</p>
-<div class="alert-box success"><div class="alert-label">✅ O que você tem agora</div><p>• Acesso permanente ao AIMED OS · Residentes GO<br>• Biblioteca AIMED GO com 9 prompts clínicos de alta performance<br>• Projeto Claude GO/MDV configurado com FEBRASGO<br>• Notebook Memória Clínica MDV com dados de Joinville<br>• Nossa Ferramenta MDV v1.0<br>• 4 desafios pós-curso no Bloco 5<br>• Comunidade GO/MDV no WhatsApp</p></div>`,
+<div class="alert-box success"><div class="alert-label">✅ O que você tem agora</div><p>• Acesso permanente ao AIMED OS · Residentes GO<br>• Biblioteca AIMED GO com 9 prompts clínicos de alta performance<br>• Projeto Claude GO/MDV configurado com FEBRASGO<br>• Notebook Memória Clínica MDV (FEBRASGO + protocolos MDV)<br>• Nossa Ferramenta MDV v1.0<br>• 4 desafios pós-curso no Bloco 5<br>• Comunidade GO/MDV no WhatsApp</p></div>`,
       prompts:null
     }
   ]
@@ -4859,7 +4866,7 @@ Para o arquivo do grupo (não vai ao prontuário):
       id:'desafio-s2', horario:'Semana 2', titulo:'Desafio · Primeira Revisão de Óbito com IA',
       summary:'Use o prompt de Revisão de Óbito Materno da Biblioteca AIMED GO com um caso da MDV — real ou do NotebookLM. O primeiro serviço GO do Brasil com revisão de óbito assistida por IA.',
       avatar:null,
-      conteudo:`<div class="challenge-card"><div class="challenge-week">⚡ Desafio · Semana 2 · 30-45 minutos</div><div class="challenge-title">Primeira Revisão de Óbito com IA — MDV</div><ul class="challenge-steps"><li>Abra o prompt "Revisão de Óbito Materno AIMED" na Biblioteca AIMED GO</li><li>Use com um caso do NotebookLM (dados de Joinville que Adriana carregou) — ou com um caso anonimizado que você viveu</li><li>Gere a síntese estruturada: fatores evitáveis + recomendação institucional</li><li>Compartilhe a síntese com a Bruna — primeira revisão de óbito assistida por IA na MDV</li></ul><div class="challenge-whatsapp"><strong>📱 Compartilhe no grupo:</strong> "Desafio 2 concluído · Usei o prompt de revisão de óbito · O que ele identificou que eu não havia pensado: [insight]"</div></div>
+      conteudo:`<div class="challenge-card"><div class="challenge-week">⚡ Desafio · Semana 2 · 30-45 minutos</div><div class="challenge-title">Primeira Revisão de Óbito com IA — MDV</div><ul class="challenge-steps"><li>Abra o prompt "Revisão de Óbito Materno AIMED" na Biblioteca AIMED GO</li><li>Use com um caso anonimizado que você viveu (ou um caso composto, sem dados identificáveis)</li><li>Gere a síntese estruturada: fatores evitáveis + recomendação institucional</li><li>Compartilhe a síntese com a Bruna — primeira revisão de óbito assistida por IA na MDV</li></ul><div class="challenge-whatsapp"><strong>📱 Compartilhe no grupo:</strong> "Desafio 2 concluído · Usei o prompt de revisão de óbito · O que ele identificou que eu não havia pensado: [insight]"</div></div>
 <div class="alert-box info"><div class="alert-label">O impacto que poucos/as residentes percebem</div><p>A revisão de óbito materno é obrigatória em toda maternidade brasileira. É feita de forma despadronizada, frequentemente culpabilizante, raramente gerando aprendizado institucional. Uma residente GO que sai daqui sabendo estruturar essa revisão com IA — e ensinar as colegas — transforma o serviço inteiro.</p></div>`,
       prompts:null
     },
@@ -5076,7 +5083,7 @@ ULTRASSONOGRAFIA (data [DD/MM/AAAA]):
 - Diagnóstico final: [causa do óbito / CID]
 - Resumo do caso: [narrativa cronológica em 10-15 linhas — DO INÍCIO AO DESFECHO]
 - Contexto socioeconômico: [quando relevante e disponível]
-- Dados populacionais disponíveis (Adriana): [cole aqui os dados epidemiológicos de Joinville quando disponíveis]
+- Perspectiva de vigilância em saúde (Adriana), se houver: [observações de contexto/saúde pública — sem dados identificáveis]
 
 [M] Execute a revisão de óbito em 5 dimensões:
 
@@ -5470,6 +5477,9 @@ function abrirSobre(){document.getElementById('sobre-overlay').classList.add('op
 function fecharSobre(){document.getElementById('sobre-overlay').classList.remove('open');}
 function showLinks(){document.getElementById('links-overlay').classList.add('open');}
 function fecharLinks(){document.getElementById('links-overlay').classList.remove('open');}
+// Grupo de WhatsApp do curso — fonte única do link (atualizar aqui se o convite mudar)
+const WHATSAPP_GRUPO='https://chat.whatsapp.com/E9pbRub4Oc712v6ZJVsZes';
+function entrarGrupoWhatsApp(){window.open(WHATSAPP_GRUPO,'_blank','noopener');}
 function setLevel(n){currentLevel=n;[1,2,3].forEach(i=>{document.getElementById('lvl'+i).classList.toggle('active',i===n);});const m=PROGRAMA.flatMap(b=>b.modulos).find(m=>m.id===currentModuleId);if(m&&m.prompts){const sec=document.querySelector('#module-content .practice-section');if(sec)sec.outerHTML=renderPromptBox(m);}}
 document.addEventListener('keydown',function(e){if(e.key==='Escape'){var abertos=document.querySelectorAll('[id$="-overlay"].open, #gemini-modal.open');if(abertos.length){abertos.forEach(function(o){o.classList.remove('open');});}else{var s=document.getElementById('sidebar');if(s&&s.classList.contains('open')){toggleSidebar();}}}});
 // ═══════════════════════════════════════════════════════════════════
@@ -5849,7 +5859,7 @@ function enviarWhatsApp(tab){
   const msg=formatarMensagem(tab);
   const url='https://wa.me/?text='+encodeURIComponent(msg);
   window.open(url,'_blank','noopener');
-  showToast('Abrindo WhatsApp — escolha o grupo');
+  showToast('Abrindo WhatsApp — escolha o grupo AIMED Residentes GO');
 }
 
 function copiarTexto(tab){
@@ -6211,7 +6221,7 @@ function renderLogistica(){
 <div style="font-family:'Playfair Display',serif;font-style:italic;color:var(--gold);font-size:1.05rem;margin-bottom:12px">📓 NotebookLM (Google)</div>
 <div class="log-item"><span class="log-key">Conta</span><span class="log-val">Sua mesma conta Google — gratuito</span></div>
 <div class="log-item"><span class="log-key">Web</span><span class="log-val"><a href="https://notebooklm.google.com" target="_blank" rel="noopener" style="color:var(--gold);text-decoration:underline">notebooklm.google.com</a> · login com conta Google</span></div>
-<div class="log-item"><span class="log-key">Para que serve</span><span class="log-val">Memória clínica persistente: você sobe PDFs (FEBRASGO, protocolos MDV, dados Dariza) e o NotebookLM responde <em>citando a fonte exata</em>. Componente <em>Anti-alucinação</em> do seu sistema.</span></div>
+<div class="log-item"><span class="log-key">Para que serve</span><span class="log-val">Memória clínica persistente: você sobe PDFs (FEBRASGO, protocolos MDV) e o NotebookLM responde <em>citando a fonte exata</em>. Componente <em>Anti-alucinação</em> do seu sistema.</span></div>
 <div class="log-item"><span class="log-key">Passo a passo</span><span class="log-val">1. Acesse notebooklm.google.com · 2. Faça login com conta Google · 3. Clique em "+ Novo notebook" · 4. No Bloco 3 vamos carregar seus PDFs juntas e criar o <em>Notebook GO/MDV</em></span></div>
 </div>
 </div>
