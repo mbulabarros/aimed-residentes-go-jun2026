@@ -1198,7 +1198,7 @@ body {
 
 /* ═══════════════════════════════════════════════════════════════
    .tdc-table · responsivo mobile
-   Tabela dos 17 protocolos (TdC) tem 4 colunas — estoura no celular.
+   Tabela dos 18 protocolos (TdC) tem 4 colunas — estoura no celular.
    Solução: scroll horizontal com indicador visual + padding reduzido.
    ═══════════════════════════════════════════════════════════════ */
 @media (max-width: 700px) {
@@ -4281,7 +4281,7 @@ E como monitorizo a toxicidade?`},
 <div class="step-item"><div class="step-num">02</div><div class="step-body"><div class="step-title">Cultivar (amanhã manhã)</div><div class="step-desc">No Bloco 3, pesquisamos a evidência real com Gemini + Claude + NotebookLM. O argumento contrário encontra os dados — e pode fortalecer ou desabar.</div></div></div>
 <div class="step-item"><div class="step-num">03</div><div class="step-body"><div class="step-title">Colher (amanhã tarde)</div><div class="step-desc">No Bloco 4, cada residente apresenta seu veredicto em 90 segundos: o protocolo sobrevive ao contrário? Com qual modificação? Sem qual evidência?</div></div></div>
 </div>
-<h3>Os 17 protocolos — escolha o seu</h3>
+<h3>Os 18 protocolos — escolha o seu</h3>
 <table class="tdc-table"><thead><tr><th>#</th><th>Protocolo</th><th>Participante</th><th>Grau</th></tr></thead><tbody>
 <tr><td>1</td><td class="tdc-protocol">MgSO4 em pré-eclâmpsia <em>sem</em> critérios de gravidade</td><td class="tdc-name">Bianca</td><td><span class="tdc-badge alto">Alto</span></td></tr>
 <tr><td>2</td><td class="tdc-protocol">Cesárea eletiva em apresentação pélvica a termo</td><td class="tdc-name">Carolina</td><td><span class="tdc-badge alto">Alto</span></td></tr>
@@ -4300,6 +4300,7 @@ E como monitorizo a toxicidade?`},
 <tr><td>15</td><td class="tdc-protocol">Corticoterapia em asma aguda moderada-grave na gestante</td><td class="tdc-name">Rafaela</td><td><span class="tdc-badge medio">Médio</span></td></tr>
 <tr><td>16</td><td class="tdc-protocol">Escala MEOWS vs avaliação clínica intuitiva na triagem obstétrica</td><td class="tdc-name">Adriana</td><td><span class="tdc-badge medio">Médio</span></td></tr>
 <tr><td>17</td><td class="tdc-protocol">Amniotomia precoce de rotina para acelerar o trabalho de parto</td><td class="tdc-name">Luana</td><td><span class="tdc-badge medio">Médio</span></td></tr>
+<tr><td>18</td><td class="tdc-protocol">Anti-hipertensivo de escolha na crise hipertensiva da gestação (hidralazina vs labetalol vs nifedipina)</td><td class="tdc-name">Isabel</td><td><span class="tdc-badge alto">Alto</span></td></tr>
 </tbody></table>`,
       prompts:{
         titulo:'Teoria do Contrário GO — Construtor de Argumento',
@@ -4383,6 +4384,7 @@ Síntese das três vozes: em que condições o protocolo se sustenta? Onde tem f
 <div class="participant-card"><div class="participant-avatar">La</div><div><div class="participant-name">Laura</div><div class="participant-role">Progesterona vaginal na ameaça de TP prematuro</div></div></div>
 <div class="participant-card"><div class="participant-avatar">Lu</div><div><div class="participant-name">Luiza</div><div class="participant-role">Restrição hídrica no trabalho de parto ativo</div></div></div>
 <div class="participant-card"><div class="participant-avatar">Ln</div><div><div class="participant-name">Luana</div><div class="participant-role">Amniotomia precoce de rotina para acelerar o trabalho de parto</div></div></div>
+<div class="participant-card"><div class="participant-avatar">Is</div><div><div class="participant-name">Isabel</div><div class="participant-role">Anti-hipertensivo de escolha na crise hipertensiva da gestação (hidralazina vs labetalol vs nifedipina)</div></div></div>
 <div class="participant-card"><div class="participant-avatar">MS</div><div><div class="participant-name">Maria Simone</div><div class="participant-specialty">Médica de Família e Comunidade</div><div class="participant-role">Rastreamento de DM gestacional: OMS vs IADPSG</div></div></div>
 <div class="participant-card"><div class="participant-avatar">My</div><div><div class="participant-name">Mayja</div><div class="participant-specialty">Médica de Família · URG/EMER</div><div class="participant-role">Ácido fólico pré-natal: dose padrão vs dose alta</div></div></div>
 <div class="participant-card"><div class="participant-avatar">Lc</div><div><div class="participant-name">Luciana</div><div class="participant-specialty">Gastroenterologista Pediátrica</div><div class="participant-role">Colestase intra-hepática da gravidez — quando interromper?</div></div></div>
@@ -4706,11 +4708,12 @@ RECURSOS DISPONÍVEIS: [CC disponível? UTI neonatal? Staff presente?]
 <div class="step-item"><div class="step-num">20'</div><div class="step-body"><div class="step-title">As quatro dimensões — turma inteira, em sequência</div><div class="step-desc">Sem divisão em grupos. A turma percorre o caso dimensão por dimensão: (1) diagnóstico e critérios de gravidade, (2) MgSO4 — sim/não/qual esquema, (3) timing e via de parto, (4) comunicação com a paciente e o marido. A Bruna conduz a transição entre as dimensões.</div></div></div>
 <div class="step-item"><div class="step-num">15'</div><div class="step-body"><div class="step-title">Adriana apresenta — o olhar da vigilância</div><div class="step-desc">Adriana traz a perspectiva de saúde pública sobre o caso: que perfil costuma chegar ao serviço, que riscos a vigilância prioriza, o que costuma acontecer com gestantes que recebem alta a 45 min da MDV. Perspectiva, não dados identificáveis.</div></div></div>
 <div class="step-item"><div class="step-num">30'</div><div class="step-body"><div class="step-title">Discussão coletiva — com IA como escriba</div><div class="step-desc">A IA documenta em tempo real: argumentos levantados, referências citadas, decisões tomadas. Ao final, gera a síntese clínica do caso para todos.</div></div></div>
-<div class="step-item"><div class="step-num">25'</div><div class="step-body"><div class="step-title">Conexão com a TdC de cada um/a</div><div class="step-desc">O caso cruza com os 17 protocolos questionados: MgSO4 sem critérios (Bianca), CTG Categoria II (Manoela), corticóide tardio (Maria Fernanda). A TdC encontra o caso real.</div></div></div>
+<div class="step-item"><div class="step-num">25'</div><div class="step-body"><div class="step-title">Conexão com a TdC de cada um/a</div><div class="step-desc">O caso cruza com os 18 protocolos questionados: MgSO4 sem critérios (Bianca), CTG Categoria II (Manoela), corticóide tardio (Maria Fernanda). A TdC encontra o caso real.</div></div></div>
 </div>
 <h3>A dimensão que o caso força</h3>
 <div class="participant-grid">
 <div class="participant-card"><div class="participant-avatar">Bi</div><div><div class="participant-name">Bianca</div><div class="participant-role">Este caso tem critérios de gravidade? TGO 118 é ≥2x ULN? MgSO4 obrigatório aqui? (Sua TdC, ao vivo)</div></div></div>
+<div class="participant-card"><div class="participant-avatar">Is</div><div><div class="participant-name">Isabel</div><div class="participant-role">Crise hipertensiva mantida (170 × 112): qual anti-hipertensivo de ataque e a meta pressórica segura sem comprometer a perfusão placentária?</div></div></div>
 <div class="participant-card"><div class="participant-avatar">Mn</div><div><div class="participant-name">Manoela</div><div class="participant-role">CTG Categoria II + Doppler p90: quando este feto deixa de poder esperar? (Sua TdC, ao vivo)</div></div></div>
 <div class="participant-card"><div class="participant-avatar">MF</div><div><div class="participant-name">Maria Fernanda</div><div class="participant-role">IG 32+3: corticóide sim — mas qual a urgência? O tempo de ação muda a decisão de interrupção?</div></div></div>
 <div class="participant-card"><div class="participant-avatar">Vi</div><div><div class="participant-name">Vitória</div><div class="participant-role">Como comunicar para uma paciente que quer ir para casa que ela não pode ir? Com autonomia e segurança.</div></div></div>
@@ -4787,7 +4790,7 @@ Para o arquivo do grupo (não vai ao prontuário):
 <div class="step-item"><div class="step-num">2</div><div class="step-body"><div class="step-title">O argumento contrário mais forte</div><div class="step-desc">"O argumento mais forte contra ele é [Y] — baseado em [estudo/dado]."</div></div></div>
 <div class="step-item"><div class="step-num">3</div><div class="step-body"><div class="step-title">O veredicto</div><div class="step-desc">"Meu veredicto: o protocolo [sobrevive / tem fronteiras em / deve ser modificado para] [Z]."</div></div></div>
 </div>
-<div class="callout"><div class="callout-label">Após cada veredicto — 30 segundos de grupo</div><p>Uma residente pode concordar, divergir ou adicionar. Sem debate prolongado — há 17 protocolos para colher. A profundidade vem na discussão pós-curso no grupo de WhatsApp.</p></div>
+<div class="callout"><div class="callout-label">Após cada veredicto — 30 segundos de grupo</div><p>Uma residente pode concordar, divergir ou adicionar. Sem debate prolongado — há 18 protocolos para colher. A profundidade vem na discussão pós-curso no grupo de WhatsApp.</p></div>
 <h3>Sequência de apresentação</h3>
 <table class="tdc-table"><thead><tr><th>Ordem</th><th>Participante</th><th>Protocolo</th></tr></thead><tbody>
 <tr><td>1</td><td class="tdc-name">Bianca</td><td class="tdc-protocol">MgSO4 em pré-eclâmpsia sem critérios de gravidade</td></tr>
@@ -4807,6 +4810,7 @@ Para o arquivo do grupo (não vai ao prontuário):
 <tr><td>15</td><td class="tdc-name">Rafaela</td><td class="tdc-protocol">Corticoterapia em asma aguda na gestante</td></tr>
 <tr><td>16</td><td class="tdc-name">Adriana</td><td class="tdc-protocol">Escala MEOWS vs avaliação clínica intuitiva</td></tr>
 <tr><td>17</td><td class="tdc-name">Luana</td><td class="tdc-protocol">Amniotomia precoce de rotina no trabalho de parto</td></tr>
+<tr><td>18</td><td class="tdc-name">Isabel</td><td class="tdc-protocol">Anti-hipertensivo na crise hipertensiva (hidralazina vs labetalol vs nifedipina)</td></tr>
 </tbody></table>`,
       prompts:null
     },
@@ -6141,7 +6145,7 @@ function renderLogistica(){
 <div class="log-item"><span class="log-key">Datas</span><span class="log-val">26 e 27 de Junho de 2026 · 2ª Edição</span></div>
 <div class="log-item"><span class="log-key">Local</span><span class="log-val">Hotel Le Canard · Joinville · SC</span></div>
 <div class="log-item"><span class="log-key">Carga horária</span><span class="log-val">14 horas efetivas (70% hands-on)</span></div>
-<div class="log-item"><span class="log-key">Turma</span><span class="log-val">11 GO · 2 MFC (Maria Simone, Mayja) · 1 Gastropediatria (Luciana) · 1 Pneumo Pediátrica (Rafaela) · 1 Enf. Terapia Intensiva (Adriana) · Bruna (preceptora GO)</span></div>
+<div class="log-item"><span class="log-key">Turma</span><span class="log-val">12 GO · 2 MFC (Maria Simone, Mayja) · 1 Gastropediatria (Luciana) · 1 Pneumo Pediátrica (Rafaela) · 1 Enf. Terapia Intensiva (Adriana) · Bruna (preceptora GO)</span></div>
 <div class="log-item"><span class="log-key">Instrutor</span><span class="log-val">Dr. Mbula Luzingu Barros · InovaMed</span></div>
 </div>
 
