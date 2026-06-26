@@ -6194,11 +6194,11 @@ function renderTdcFlow(moduloId){
 // ── NEXT STEP (próximo passo na orquestra) ──
 function renderNextStep(moduloId){
   var NS={
-    'pico-go':{est:'Estação 1 → 2',txt:'Seu PICO ficou pronto. Agora faça assim, na ordem:<br><b>1)</b> Copie os <b>3 termos de busca</b> que a IA gerou.<br><b>2)</b> Abra o <b>🔵 Gemini</b> (o botão abaixo leva ao módulo dele).<br><b>3)</b> Cole os termos e mande buscar — ele traz os artigos.',ai:'gemini',aiLabel:'🔵 Abrir o Gemini',go:'tres-ias-go',btn:'Ir para a orquestra das 3 IAs'},
-    'tres-ias-go':{est:'Estação 3 → 4',txt:'Você já tem a <b>análise do Claude</b>. Agora faça assim:<br><b>1)</b> Copie a análise inteira.<br><b>2)</b> Abra o <b>🟣 GPT</b> e cole.<br><b>3)</b> Peça a síntese no formato fixo — ela é o seu slide pronto.<br>Depois, leve o veredicto para a <b>Colheita</b>.',ai:'chatgpt',aiLabel:'🟣 Abrir o GPT',go:'tc-colheita-go',btn:'Ir para a Colheita da TdC'}
+    'pico-go':{est:'Seu PICO está pronto — e agora?',txt:'Você transformou a dúvida em um <b>PICO</b> (a pergunta de pesquisa). O próximo passo é buscar os artigos que respondem a ela: vá para a orquestra das 3 IAs e cole o PICO no campo do <b>Gemini</b> — ele faz a busca. Esse é o 1º bastão do revezamento.',go:'tres-ias-go',btn:'Ir para a orquestra das 3 IAs'},
+    'tres-ias-go':{est:'Revezamento concluído — e agora?',txt:'O revezamento terminou: o <b>Gemini</b> buscou, o <b>Claude</b> analisou e o <b>GPT</b> sintetizou. A síntese do GPT é o seu <b>slide pronto</b>. Agora leve esse veredicto para a <b>Colheita da TdC</b>, onde a equipe discute e decide em grupo.',go:'tc-colheita-go',btn:'Ir para a Colheita da TdC'}
   };
   var n=NS[moduloId];if(!n)return'';
-  return'<div class="next-step"><div class="next-step-icon">➡️</div><div class="next-step-body"><div class="next-step-label">Próximo passo na orquestra · '+n.est+'</div><div class="next-step-text">'+n.txt+'</div><div class="next-step-actions"><button class="open-ai-btn '+(n.ai==='chatgpt'?'gpt':n.ai)+'" onclick="openAI(\''+n.ai+'\',\'\')">'+n.aiLabel+'</button><button class="next-step-btn" onclick="navigateTo(\''+n.go+'\')">'+n.btn+' →</button></div></div></div>';
+  return'<div class="next-step"><div class="next-step-icon">➡️</div><div class="next-step-body"><div class="next-step-label">Próximo passo na orquestra · '+n.est+'</div><div class="next-step-text">'+n.txt+'</div><div class="next-step-actions">'+(n.ai?'<button class="open-ai-btn '+(n.ai==='chatgpt'?'gpt':n.ai)+'" onclick="openAI(\''+n.ai+'\',\'\')">'+n.aiLabel+'</button>':'')+'<button class="next-step-btn" onclick="navigateTo(\''+n.go+'\')">'+n.btn+' →</button></div></div></div>';
 }
 
 // ── RENDER MODULE ──
