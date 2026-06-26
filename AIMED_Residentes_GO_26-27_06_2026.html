@@ -4608,7 +4608,16 @@ Entregue os 5 artigos mais relevantes, cada um com: título · DOI · 1 frase de
 Ao final escreva: "Próximo passo: baixe os PDFs e leve ao Claude."</div>
 <div class="prompt-actions"><button class="btn-copy" data-cp="copy" data-pid="kit-gemini">📋 Copiar prompt</button><button class="btn-open gemini" data-cp="gemini" data-pid="kit-gemini">Abrir no Gemini</button></div>
 <div class="prompt-title" style="margin-top:18px">2️⃣ Claude · análise (Estação 2)</div>
-<p style="margin:6px 0 0">⬇️ O prompt do Claude é o bloco completo logo abaixo — com Copiar, Abrir no Claude e os níveis N1/N2/N3.</p>
+<div class="prompt-box" id="kit-claude">[A] Você é especialista em leitura crítica de literatura científica em GO.
+[I] Artigo carregado no Claude (PDF · Projeto GO/MDV).
+[M] Analise:
+1. Tipo de estudo e nível de evidência
+2. Tamanho da amostra e poder estatístico
+3. Desfecho primário e como foi medido
+4. Principais resultados com IC 95%
+5. NNT ou NNH (calcule se não estiver explícito)
+6. Limitações e aplicabilidade ao SUS brasileiro
+Ao final, entregue a análise em um bloco copiável.</div><div class="prompt-actions"><button class="btn-copy" data-cp="copy" data-pid="kit-claude">📋 Copiar prompt</button><button class="btn-open claude" data-cp="claude" data-pid="kit-claude">Abrir no Claude</button></div>
 <div class="prompt-title" style="margin-top:18px">3️⃣ GPT · síntese (Estação 3) — esta saída é o seu slide</div>
 <div class="prompt-box" id="kit-gpt">Você é o sintetizador final do revezamento. Recebeu a análise crítica do Claude sobre [TEMA].
 Sua tarefa: produzir o ENTREGÁVEL DE APRESENTAÇÃO no formato EXATO abaixo. Não invente nada fora da análise recebida.
@@ -4622,63 +4631,7 @@ FORMATO OBRIGATÓRIO (preencha cada campo, mantenha os rótulos):
 ✅ VEREDICTO (1 frase acionável): [ ]</div>
 <div class="prompt-actions"><button class="btn-copy" data-cp="copy" data-pid="kit-gpt">📋 Copiar prompt</button><button class="btn-open gpt" data-cp="chatgpt" data-pid="kit-gpt">Abrir no GPT</button></div>
 `,
-      prompts:{
-        titulo:'Análise Crítica de Artigo GO — Claude',
-        subtitulo:'Cole o PDF no Claude (Projeto GO/MDV) e use este prompt',
-        nivel1:{label:'Nível 1 · Resumo básico', desc:'O que o artigo diz', texto:`Resuma este artigo sobre [tema GO]. Qual a conclusão principal?`},
-        nivel2:{label:'Nível 2 · Análise crítica', desc:'Com avaliação de metodologia', texto:`[A] Você é especialista em leitura crítica de literatura científica em GO.
-
-[I] Artigo carregado acima (PDF).
-
-[M] Analise:
-1. Tipo de estudo e nível de evidência
-2. Tamanho da amostra e poder estatístico
-3. Desfecho primário e como foi medido
-4. Principais resultados com IC 95%
-5. Limitações declaradas pelos autores
-6. Aplicabilidade para maternidade de referência no Brasil`},
-        nivel3:{label:'Nível 3 · AIMED Análise Científica GO', desc:'Análise completa com GRADE e aplicabilidade MDV', texto:`[A] Você é revisor de periódico especializado em GO e medicina baseada em evidências. Combina rigor metodológico com aplicabilidade clínica para o contexto brasileiro.
-
-[BASTÃO] Você é a Estação 3 (Analista) do revezamento. Recebe: os artigos/PDFs que o Gemini encontrou (Estação 2). Entrega: sua análise crítica para o GPT (Estação 4).
-
-[I] Artigo carregado: [título do artigo — o PDF está no contexto]
-Minha pergunta PICO: [cole seu PICO aqui]
-Contexto de aplicação: Maternidade Darcy Vargas, Joinville/SC — referência GO norte catarinense, SUS
-
-[M] Execute análise em 5 dimensões:
-
-1. VALIDADE INTERNA
-   - Tipo de estudo (RCT / coorte / caso-controle / revisão)
-   - Randomização adequada? Cegamento? Análise por intenção de tratar?
-   - Principais fontes de viés identificadas
-
-2. RESULTADOS PRINCIPAIS
-   - Desfecho primário: resultado + IC 95% + p-value
-   - NNT ou NNH: calcule e interprete em linguagem clínica
-   - Tamanho do efeito: clinicamente significativo além de estatisticamente?
-
-3. QUALIDADE GRADE
-   - Classificação: alta / moderada / baixa / muito baixa
-   - Principal fator que limita a qualidade
-
-4. APLICABILIDADE MDV
-   - A população do estudo representa nossas pacientes?
-   - Os recursos exigidos existem na MDV?
-   - Há aspectos do contexto brasileiro (SUS, FEBRASGO, acesso) que modificam a aplicabilidade?
-
-5. VEREDICTO PARA A TDC
-   - Este estudo fortalece ou enfraquece o argumento contrário que você construiu?
-   - Qual modificação ao protocolo atual ele sugere?
-
-[E] Estruturado por dimensão. Linguagem técnica mas compreensível para residente R2/R3. Alertas quando o estudo contradiz a prática atual da MDV.
-
-[D]
-- Se o artigo for de baixa qualidade: declarar explicitamente, não usá-lo como argumento forte
-- Não extrapolar conclusões além do que os dados permitem
-- Se o estudo vier de contexto de alta renda (EUA, Europa): alertar sobre limitações de generalização
-
-[PRÓXIMO PASSO] Ao final, entregue a análise em um bloco copiável e escreva em uma linha: "➡️ Próximo passo: leve esta análise ao GPT (Sintetizador · Estação 4) para virar a síntese de apresentação."`}
-      }
+      prompts:null
     },
     {id:'cafe-2', horario:'10:00–10:15', titulo:'Café · Intervalo', summary:'Pausa.', avatar:null, conteudo:`<div class="callout"><div class="callout-label">Intervalo · 15 min</div><p>Consulte os artigos que encontrou. Salve os PDFs para carregar no Claude Projects. Se não conseguiu artigos com o Gemini, tente com o ChatGPT + Scholar — ou peça ajuda.</p></div>`, prompts:null, isBreak:true},
     {
