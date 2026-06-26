@@ -6182,13 +6182,13 @@ function renderTdcFlow(moduloId){
     {k:'colher',n:3,ic:'🌾',nome:'Colher',quando:'Sábado · tarde',go:'tc-colheita-go',faz:'Veredicto em 90 segundos: o protocolo sobrevive ao contrário? Com qual modificação? Sem qual evidência?'}
   ];
   var sub=active?'Você está na trilha — as 3 fases acontecem nesta ordem. Toque numa fase para ir até ela.':'A jornada do curso em 3 fases — este é o fio que conecta os dois dias. Toque numa fase para começar.';
-  var h='<div class="tdc-flow"><div class="tdc-flow-head"><span class="tdc-flow-kicker">⚑ Trilha da Teoria do Contrário</span><span class="tdc-flow-sub">'+sub+'</span></div><div class="tdc-flow-track">';
+  var nomeAtivo={plantar:'Plantar',cultivar:'Cultivar',colher:'Colher'}[active]||'';var pos={plantar:'1',cultivar:'2',colher:'3'}[active]||'';var aqui=active?'<span style="color:var(--text-dim);font-size:0.72rem">· você está em <b style="color:var(--gold)">'+nomeAtivo+'</b> ('+pos+' de 3)</span>':'';var h='<div class="tdc-flow"><div class="tdc-flow-head"><span class="tdc-flow-kicker">⚑ Trilha da Teoria do Contrário</span>'+aqui+'<button type="button" class="tdc-toggle" style="margin-left:auto;background:transparent;border:1px solid var(--border-dim);border-radius:8px;color:var(--gold);font-size:0.72rem;font-weight:600;padding:4px 10px;cursor:pointer">Ver as 3 fases ▾</button></div><div class="tdc-flow-body" style="display:none"><div class="tdc-flow-sub" style="margin-bottom:14px">'+sub+'</div><div class="tdc-flow-track">';
   steps.forEach(function(s,i){
     var on=s.k===active;
     h+='<button class="tdc-step '+s.k+(on?' active':'')+'" onclick="navigateTo(\''+s.go+'\')"><div class="tdc-step-top"><span class="tdc-step-num">'+s.n+'</span><span class="tdc-step-icon">'+s.ic+'</span></div><div class="tdc-step-name">'+s.nome+'</div><div class="tdc-step-when">'+s.quando+'</div><div class="tdc-step-do">'+s.faz+'</div>'+(on?'<div class="tdc-step-here">● você está aqui</div>':'')+'</button>';
     if(i<steps.length-1)h+='<div class="tdc-arrow">→</div>';
   });
-  return h+'</div></div>';
+  return h+'</div></div></div>';
 }
 
 // ── NEXT STEP (próximo passo na orquestra) ──
@@ -7491,5 +7491,6 @@ window.addEventListener("load",function(){setTimeout(render,200);});
 })();
 </script>
 <script>(function(){if(window.__picoBridge)return;window.__picoBridge=true;var MAP=[{inp:"pico-input",span:"gemini-pico",ls:"aimed_pico",def:"PICO: P=[população] I=[intervenção] C=[comparação] O=[desfecho]",pre:"PICO: ",re:/pico/i},{inp:"gemres-input",span:"claude-ctx",ls:"aimed_gemres",def:"[cole os artigos que o Gemini encontrou]",pre:"",re:null},{inp:"claudres-input",span:"gpt-ctx",ls:"aimed_claudres",def:"[cole a análise do Claude]",pre:"",re:null}];function apply(m){var sp=document.getElementById(m.span);if(!sp)return;var ta=document.getElementById(m.inp);var v=ta?ta.value.trim():"";sp.textContent=v?((m.re&&!m.re.test(v))?m.pre+v:v):m.def;}function hook(){MAP.forEach(function(m){var ta=document.getElementById(m.inp);if(!ta||ta.__b)return;ta.__b=true;var sv=null;try{sv=localStorage.getItem(m.ls);}catch(e){}if(sv)ta.value=sv;apply(m);ta.addEventListener("input",function(){try{localStorage.setItem(m.ls,ta.value);}catch(e){}apply(m);});});}document.addEventListener("click",function(e){var oc=e.target.closest("[onclick]");if(e.target.closest(".level-btn")||(oc&&/navigateTo/.test(oc.getAttribute("onclick")||""))){setTimeout(hook,90);}});window.addEventListener("load",function(){setTimeout(hook,220);});})();</script>
+<script>(function(){if(window.__tdcToggle)return;window.__tdcToggle=true;document.addEventListener("click",function(e){var t=e.target.closest(".tdc-toggle");if(!t)return;var f=t.closest(".tdc-flow");var b=f.querySelector(".tdc-flow-body");if(!b)return;var on=(b.style.display==="none"||!b.style.display);b.style.display=on?"block":"none";t.textContent=on?"Recolher ▴":"Ver as 3 fases ▾";});})();</script>
 </body>
 </html>
