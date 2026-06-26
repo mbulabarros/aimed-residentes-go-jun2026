@@ -4607,9 +4607,10 @@ Filtros: ensaios clínicos e revisões sistemáticas · últimos 10 anos · huma
 Entregue os 5 artigos mais relevantes, cada um com: título · DOI · 1 frase de relevância.
 Ao final escreva: "Próximo passo: baixe os PDFs e leve ao Claude."</div>
 <div class="prompt-actions"><button class="btn-copy" data-cp="copy" data-pid="kit-gemini">📋 Copiar prompt</button><button class="btn-open gemini" data-cp="gemini" data-pid="kit-gemini">Abrir no Gemini</button></div>
-<div class="prompt-title" style="margin-top:18px">2️⃣ Claude · análise (Estação 2)</div>
+<div style="background:var(--navy);border:1px solid var(--border-dim);border-radius:var(--radius);padding:14px 16px;margin:14px 0"><div style="font-size:0.78rem;font-weight:600;color:var(--gold);margin-bottom:8px">📋 Cole os artigos que o Gemini encontrou — entram no prompt do Claude:</div><textarea id="gemres-input" rows="3" placeholder="títulos · DOIs · resumos que o Gemini trouxe" style="width:100%;box-sizing:border-box;background:var(--navy-light);color:var(--text);border:1px solid var(--border-dim);border-radius:8px;padding:10px;font-family:'DM Mono',monospace;font-size:0.78rem;line-height:1.6;resize:vertical"></textarea></div><div class="prompt-title" style="margin-top:18px">2️⃣ Claude · análise (Estação 2)</div>
 <div class="prompt-box" id="kit-claude">[A] Você é especialista em leitura crítica de literatura científica em GO.
-[I] Artigo carregado no Claude (PDF · Projeto GO/MDV).
+[I] Artigos carregados no Claude (PDFs · Projeto GO/MDV).
+Referências da busca (Gemini): <span id="claude-ctx">[cole os artigos que o Gemini encontrou]</span>
 [M] Analise:
 1. Tipo de estudo e nível de evidência
 2. Tamanho da amostra e poder estatístico
@@ -4618,8 +4619,9 @@ Ao final escreva: "Próximo passo: baixe os PDFs e leve ao Claude."</div>
 5. NNT ou NNH (calcule se não estiver explícito)
 6. Limitações e aplicabilidade ao SUS brasileiro
 Ao final, entregue a análise em um bloco copiável.</div><div class="prompt-actions"><button class="btn-copy" data-cp="copy" data-pid="kit-claude">📋 Copiar prompt</button><button class="btn-open claude" data-cp="claude" data-pid="kit-claude">Abrir no Claude</button></div>
-<div class="prompt-title" style="margin-top:18px">3️⃣ GPT · síntese (Estação 3) — esta saída é o seu slide</div>
+<div style="background:var(--navy);border:1px solid var(--border-dim);border-radius:var(--radius);padding:14px 16px;margin:14px 0"><div style="font-size:0.78rem;font-weight:600;color:var(--gold);margin-bottom:8px">📋 Cole a análise que o Claude gerou — entra no prompt do GPT:</div><textarea id="claudres-input" rows="3" placeholder="a análise crítica que o Claude produziu" style="width:100%;box-sizing:border-box;background:var(--navy-light);color:var(--text);border:1px solid var(--border-dim);border-radius:8px;padding:10px;font-family:'DM Mono',monospace;font-size:0.78rem;line-height:1.6;resize:vertical"></textarea></div><div class="prompt-title" style="margin-top:18px">3️⃣ GPT · síntese (Estação 3) — esta saída é o seu slide</div>
 <div class="prompt-box" id="kit-gpt">Você é o sintetizador final do revezamento. Recebeu a análise crítica do Claude sobre [TEMA].
+Análise do Claude para sintetizar: <span id="gpt-ctx">[cole a análise do Claude]</span>
 Sua tarefa: produzir o ENTREGÁVEL DE APRESENTAÇÃO no formato EXATO abaixo. Não invente nada fora da análise recebida.
 
 FORMATO OBRIGATÓRIO (preencha cada campo, mantenha os rótulos):
@@ -7488,6 +7490,6 @@ document.addEventListener("click",function(e){var b=e.target.closest("[data-tdc]
 window.addEventListener("load",function(){setTimeout(render,200);});
 })();
 </script>
-<script>(function(){if(window.__picoBridge)return;window.__picoBridge=true;function apply(v){var sp=document.getElementById("gemini-pico");if(!sp)return;v=(v||"").trim();sp.textContent=v?(/pico/i.test(v)?v:"PICO: "+v):"PICO: P=[população] I=[intervenção] C=[comparação] O=[desfecho]";}function hook(){var ta=document.getElementById("pico-input");if(!ta||ta.__b)return;ta.__b=true;var saved=null;try{saved=localStorage.getItem("aimed_pico");}catch(e){}if(saved){ta.value=saved;}apply(ta.value);ta.addEventListener("input",function(){try{localStorage.setItem("aimed_pico",ta.value);}catch(e){}apply(ta.value);});}document.addEventListener("click",function(e){var oc=e.target.closest("[onclick]");if(e.target.closest(".level-btn")||(oc&&/navigateTo/.test(oc.getAttribute("onclick")||""))){setTimeout(hook,90);}});window.addEventListener("load",function(){setTimeout(hook,220);});})();</script>
+<script>(function(){if(window.__picoBridge)return;window.__picoBridge=true;var MAP=[{inp:"pico-input",span:"gemini-pico",ls:"aimed_pico",def:"PICO: P=[população] I=[intervenção] C=[comparação] O=[desfecho]",pre:"PICO: ",re:/pico/i},{inp:"gemres-input",span:"claude-ctx",ls:"aimed_gemres",def:"[cole os artigos que o Gemini encontrou]",pre:"",re:null},{inp:"claudres-input",span:"gpt-ctx",ls:"aimed_claudres",def:"[cole a análise do Claude]",pre:"",re:null}];function apply(m){var sp=document.getElementById(m.span);if(!sp)return;var ta=document.getElementById(m.inp);var v=ta?ta.value.trim():"";sp.textContent=v?((m.re&&!m.re.test(v))?m.pre+v:v):m.def;}function hook(){MAP.forEach(function(m){var ta=document.getElementById(m.inp);if(!ta||ta.__b)return;ta.__b=true;var sv=null;try{sv=localStorage.getItem(m.ls);}catch(e){}if(sv)ta.value=sv;apply(m);ta.addEventListener("input",function(){try{localStorage.setItem(m.ls,ta.value);}catch(e){}apply(m);});});}document.addEventListener("click",function(e){var oc=e.target.closest("[onclick]");if(e.target.closest(".level-btn")||(oc&&/navigateTo/.test(oc.getAttribute("onclick")||""))){setTimeout(hook,90);}});window.addEventListener("load",function(){setTimeout(hook,220);});})();</script>
 </body>
 </html>
