@@ -548,6 +548,119 @@ body {
 .tdc-manifesto-label { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--coral); margin-bottom: 20px; }
 .tdc-manifesto-text { font-family: 'Playfair Display', serif; font-size: 1.25rem; color: var(--text); line-height: 1.55; font-style: italic; }
 
+/* ── TRILHA TDC (flow stepper) ── */
+.tdc-flow {
+  background: linear-gradient(135deg, rgba(10,26,53,0.92), rgba(17,34,68,0.7));
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 20px 22px 22px;
+  margin: 0 0 28px;
+  box-shadow: var(--shadow);
+}
+.tdc-flow-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 14px; margin-bottom: 18px; }
+.tdc-flow-kicker { font-size: 0.72rem; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); }
+.tdc-flow-sub { font-size: 0.8rem; color: var(--text-dim); }
+.tdc-flow-track { display: flex; align-items: stretch; gap: 10px; }
+.tdc-step {
+  flex: 1; text-align: left; cursor: pointer;
+  background: var(--navy); border: 1px solid var(--border-dim);
+  border-top: 3px solid var(--text-muted);
+  border-radius: var(--radius); padding: 14px 15px 15px;
+  display: flex; flex-direction: column; gap: 6px;
+  transition: transform 0.15s, border-color 0.15s, box-shadow 0.15s, background 0.15s;
+  font-family: inherit; color: inherit;
+}
+.tdc-step:hover { transform: translateY(-3px); border-color: var(--border); }
+.tdc-step-top { display: flex; align-items: center; gap: 9px; }
+.tdc-step-num {
+  width: 24px; height: 24px; flex-shrink: 0; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.78rem; font-weight: 800; color: var(--navy);
+  background: var(--text-muted);
+}
+.tdc-step-icon { font-size: 1.1rem; }
+.tdc-step-name { font-size: 1rem; font-weight: 700; color: var(--text); }
+.tdc-step-when { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-dim); }
+.tdc-step-do { font-size: 0.8rem; line-height: 1.5; color: var(--text-dim); margin-top: 2px; }
+.tdc-step-here { margin-top: 6px; font-size: 0.68rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; }
+.tdc-step.plantar { border-top-color: var(--green); }
+.tdc-step.plantar .tdc-step-num { background: var(--green); }
+.tdc-step.cultivar { border-top-color: var(--teal); }
+.tdc-step.cultivar .tdc-step-num { background: var(--teal); }
+.tdc-step.colher { border-top-color: var(--gold); }
+.tdc-step.colher .tdc-step-num { background: var(--gold); }
+.tdc-step.active { background: var(--navy-light); }
+.tdc-step.plantar.active { border-color: var(--green); box-shadow: 0 0 22px rgba(74,222,128,0.18); }
+.tdc-step.cultivar.active { border-color: var(--teal); box-shadow: 0 0 22px rgba(79,195,195,0.18); }
+.tdc-step.colher.active { border-color: var(--gold); box-shadow: 0 0 22px rgba(201,168,76,0.2); }
+.tdc-step.active .tdc-step-do { color: var(--text); }
+.tdc-step.plantar.active .tdc-step-here { color: var(--green); }
+.tdc-step.cultivar.active .tdc-step-here { color: var(--teal); }
+.tdc-step.colher.active .tdc-step-here { color: var(--gold); }
+.tdc-arrow { display: flex; align-items: center; color: var(--text-muted); font-size: 1.3rem; flex-shrink: 0; }
+@media (max-width: 720px) {
+  .tdc-flow-track { flex-direction: column; }
+  .tdc-arrow { transform: rotate(90deg); justify-content: center; padding: 2px 0; }
+}
+
+/* ── RELAY (passagem de bastão) ── */
+.relay { display: flex; flex-direction: column; gap: 0; margin: 22px 0; }
+.relay-node {
+  display: flex; gap: 14px; padding: 15px 16px; border-radius: var(--radius);
+  background: var(--navy-light); border: 1px solid var(--border-dim);
+  border-left: 4px solid var(--text-muted);
+}
+.relay-node.n-voce { border-left-color: var(--gold); }
+.relay-node.n-gemini { border-left-color: #4a9eff; }
+.relay-node.n-claude { border-left-color: var(--gold-light); }
+.relay-node.n-gpt { border-left-color: var(--purple); background: rgba(167,139,250,0.07); }
+.relay-node.n-equipe { border-left-color: var(--green); }
+.relay-badge {
+  width: 34px; height: 34px; flex-shrink: 0; border-radius: 9px;
+  display: flex; align-items: center; justify-content: center; font-size: 1.15rem;
+  background: var(--navy); border: 1px solid var(--border-dim);
+}
+.relay-body { flex: 1; }
+.relay-step { font-size: 0.63rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 3px; }
+.relay-name { font-size: 0.95rem; font-weight: 700; color: var(--text); }
+.relay-io { font-size: 0.8rem; color: var(--text-dim); line-height: 1.55; margin-top: 5px; }
+.relay-io b { color: var(--text); font-weight: 600; }
+.relay-baton { display: flex; align-items: center; gap: 8px; padding: 5px 0 5px 26px; font-size: 0.72rem; color: var(--gold); font-weight: 600; }
+.relay-baton::before { content: "↓ "; font-size: 0.95rem; }
+
+/* ── NEXT STEP (próximo passo na orquestra) ── */
+.next-step {
+  display: flex; align-items: flex-start; gap: 14px;
+  margin: 28px 0 4px; padding: 16px 18px;
+  background: linear-gradient(135deg, rgba(201,168,76,0.1), rgba(201,168,76,0.03));
+  border: 1px solid var(--border); border-left: 4px solid var(--gold);
+  border-radius: var(--radius);
+}
+.next-step-icon { font-size: 1.3rem; flex-shrink: 0; line-height: 1.3; }
+.next-step-body { flex: 1; }
+.next-step-label { font-size: 0.63rem; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 5px; }
+.next-step-text { font-size: 0.88rem; color: var(--text); line-height: 1.55; }
+.next-step-text b { color: var(--gold-light); font-weight: 600; }
+.next-step-btn {
+  display: inline-flex; align-items: center; gap: 7px; margin-top: 12px;
+  padding: 9px 15px; border-radius: 9px; cursor: pointer;
+  background: var(--gold); color: var(--navy); font-weight: 700; font-size: 0.82rem;
+  border: none; font-family: inherit;
+}
+.next-step-btn:hover { background: var(--gold-light); }
+.next-step-actions { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+/* ── BOTÃO ABRIR IA ── */
+.open-ai-btn {
+  display: inline-flex; align-items: center; gap: 7px; margin-top: 11px;
+  padding: 8px 14px; border-radius: 9px; cursor: pointer;
+  background: var(--navy); border: 1px solid var(--border); color: var(--text);
+  font-weight: 700; font-size: 0.8rem; font-family: inherit;
+}
+.open-ai-btn:hover { border-color: var(--gold); color: var(--gold-light); }
+.open-ai-btn.gemini { border-left: 3px solid #4a9eff; }
+.open-ai-btn.claude { border-left: 3px solid var(--gold-light); }
+.open-ai-btn.gpt { border-left: 3px solid var(--purple); }
+
 /* ── PARTICIPANT ROLE MATRIX ── */
 .participant-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin: 24px 0; }
 .participant-card {
@@ -4429,7 +4542,7 @@ Quais são os principais estudos? Qual o NNT? Qual o posicionamento atual da FEB
 [M] Execute em 4 etapas:
 
 1. CONSTRUÇÃO PICO: formule P, I, C e O com precisão clínica
-2. TERMOS DE BUSCA: 3 strings de busca para PubMed / Cochrane / Embase
+2. TERMOS DE BUSCA: 3 frases de busca prontas para PubMed / Cochrane / Embase
 3. SÍNTESE DE EVIDÊNCIA:
    - Estudo(s) de maior peso (RCT ou revisão sistemática)
    - NNT (benefício) e NNH (dano) quando disponíveis
@@ -4446,26 +4559,44 @@ Quais são os principais estudos? Qual o NNT? Qual o posicionamento atual da FEB
 - Nunca fabricar referência — se não houver estudo de qualidade, declarar lacuna de evidência
 - Se a evidência contradiz a prática atual da MDV, declarar explicitamente — não suavizar
 - Contextualizar para o SUS e maternidade de referência brasileira quando relevante
-- Distinguir evidência de países de alta renda vs Brasil/países de renda média`}
+- Distinguir evidência de países de alta renda vs Brasil/países de renda média
+
+[BASTÃO — orquestra de pesquisa] Você é a Estação 1. Os 3 termos de busca que você gerar são o bastão da próxima estação.
+[PRÓXIMO PASSO] Ao final, repita os 3 termos de busca em um bloco isolado, prontos para copiar, e escreva em uma linha: "➡️ Próximo passo: leve estes termos de busca ao Gemini (Buscador · Estação 2) com o Google Scholar ativado."`}
       }
     },
     {
       id:'tres-ias-go', horario:'09:15–10:00', titulo:'As Três IAs na Análise Científica GO',
-      summary:'Gemini encontra os artigos. Claude lê os PDFs e analisa metodologia. GPT sintetiza para a equipe. Adriana valida o desenho do estudo com o olhar da vigilância em saúde.',
+      summary:'Gemini encontra os artigos. Claude lê os PDFs e analisa metodologia. GPT sintetiza para a equipe. Adriana acrescenta o olhar da vigilância em saúde sobre o desenho do estudo.',
       avatar:'Ud6P1jbHgcI',
       conteudo:`<h3>A orquestra das três IAs — papéis distintos</h3>
 <p>Nenhuma IA faz tudo igualmente bem. A diferença entre quem usa IA para pesquisa e quem usa IA de forma orquestrada é a compreensão dos papéis distintos de cada plataforma.</p>
+<h3>A passagem de bastão — quem entrega para quem</h3>
+<p>Cada IA é uma estação de revezamento: a saída de uma é a entrada da próxima. Saiba sempre <strong>o que você recebe, o que entrega e qual o próximo passo.</strong></p>
+<div class="relay">
+<div class="relay-node n-voce"><div class="relay-badge">👤</div><div class="relay-body"><div class="relay-step">Estação 1 · você</div><div class="relay-name">Você + PICO</div><div class="relay-io"><b>Recebe:</b> sua dúvida da Teoria do Contrário · <b>Entrega:</b> o PICO + 3 termos de busca</div></div></div>
+<div class="relay-baton">passa o bastão para o Gemini</div>
+<div class="relay-node n-gemini"><div class="relay-badge">🔵</div><div class="relay-body"><div class="relay-step">Estação 2 · buscador</div><div class="relay-name">Gemini</div><div class="relay-io"><b>Recebe:</b> o PICO / termos de busca · <b>Entrega:</b> lista de artigos + DOI + relevância</div><button class="open-ai-btn gemini" onclick="openAI('gemini','')">🔵 Abrir o Gemini</button></div></div>
+<div class="relay-baton">passa o bastão para o Claude</div>
+<div class="relay-node n-claude"><div class="relay-badge">🟡</div><div class="relay-body"><div class="relay-step">Estação 3 · analista</div><div class="relay-name">Claude</div><div class="relay-io"><b>Recebe:</b> os PDFs dos artigos · <b>Entrega:</b> análise crítica (GRADE · NNT/NNH · viés)</div><button class="open-ai-btn claude" onclick="openAI('claude','')">🟡 Abrir o Claude</button></div></div>
+<div class="relay-baton">passa o bastão para o GPT</div>
+<div class="relay-node n-gpt"><div class="relay-badge">🟣</div><div class="relay-body"><div class="relay-step">Estação 4 · sintetizador</div><div class="relay-name">GPT</div><div class="relay-io"><b>Recebe:</b> a análise do Claude · <b>Entrega:</b> a SÍNTESE pronta para o seu slide</div><button class="open-ai-btn gpt" onclick="openAI('chatgpt','')">🟣 Abrir o GPT</button></div></div>
+<div class="relay-baton">passa o bastão para a equipe</div>
+<div class="relay-node n-equipe"><div class="relay-badge">👥</div><div class="relay-body"><div class="relay-step">Estação 5 · validação</div><div class="relay-name">A equipe (todos juntos)</div><div class="relay-io"><b>Recebe:</b> a síntese · <b>Entrega:</b> o veredicto da TdC, decidido em grupo (na Colheita)</div></div></div>
+</div>
+<div class="alert-box info"><div class="alert-label">A saída do GPT é o seu material de apresentação</div><p>É a Estação 4 que vira o slide que você mostra à equipe. Por isso o prompt do GPT exige um <strong>formato fixo de entrega</strong> — não improvise, copie e cole a estrutura.</p></div>
 <div class="platform-grid">
-<div class="platform-card gemini"><div class="platform-name">🔵 Gemini · Buscador</div><div class="platform-role">Etapa 1 — encontrar</div><ul class="platform-steps"><li>Acesso ao Google Scholar integrado</li><li>Busca com PICO como query estruturada</li><li>Filtra por recência e nível de evidência</li><li>Entrega: lista de artigos com DOI e resumo de relevância</li></ul></div>
+<div class="platform-card gemini"><div class="platform-name">🔵 Gemini · Buscador</div><div class="platform-role">Etapa 1 — encontrar</div><ul class="platform-steps"><li>Acesso ao Google Scholar integrado</li><li>Busca usando o PICO como base da pesquisa</li><li>Filtra por recência e nível de evidência</li><li>Entrega: lista de artigos com DOI e resumo de relevância</li></ul></div>
 <div class="platform-card claude"><div class="platform-name">🟡 Claude · Analista</div><div class="platform-role">Etapa 2 — analisar PDFs</div><ul class="platform-steps"><li>Carrega PDFs dos artigos encontrados</li><li>Analisa metodologia: viés, tamanho de amostra, desfechos</li><li>Extrai NNT/NNH, IC 95%, p-values com interpretação</li><li>Entrega: análise crítica com avaliação GRADE</li></ul></div>
 <div class="platform-card gpt"><div class="platform-name">🟣 GPT · Sintetizador</div><div class="platform-role">Etapa 3 — sintetizar</div><ul class="platform-steps"><li>Recebe a análise do Claude</li><li>Produz síntese compreensível para equipe</li><li>Formata para apresentação em reunião clínica</li><li>Entrega: parágrafo de síntese pronto para discussão</li></ul></div>
 </div>
 <div class="callout"><div class="callout-label">O papel de Adriana — o olhar que nenhuma clínica tem</div><p>Adriana participa como enfermeira de Terapia Intensiva, com grande conhecimento de Vigilância em Saúde. Ela não vai comentar conduta obstétrica nem subir dados identificáveis — mas faz algo insubstituível: traz o <strong>olhar da vigilância em saúde</strong> e as perguntas certas. <em>"Que perfil de gestante costuma chegar ao PS com esse quadro?"</em> <em>"Que desfechos pós-alta a vigilância costuma observar nesse tipo de caso?"</em> Isso é o que uma profissional de terapia intensiva com essa bagagem em saúde pública traz e nenhuma IA substitui.</p></div>
 <h3>O fluxo completo em 45 minutos</h3>
 <div class="steps-guide">
-<div class="step-item"><div class="step-num">15'</div><div class="step-body"><div class="step-title">Gemini busca (em duplas)</div><div class="step-desc">Cada dupla usa seu PICO como query. Gemini + Scholar. Salvar os 3 artigos mais relevantes.</div></div></div>
-<div class="step-item"><div class="step-num">20'</div><div class="step-body"><div class="step-title">Claude analisa (individual)</div><div class="step-desc">Carregar PDF no Claude (Projeto GO/MDV). Usar o prompt de análise crítica. Anotar NNT, qualidade GRADE, conclusão.</div></div></div>
-<div class="step-item"><div class="step-num">10'</div><div class="step-body"><div class="step-title">Adriana valida (coletivo)</div><div class="step-desc">3-4 residentes compartilham seus achados. Adriana comenta o desenho do estudo e contextualiza para Joinville.</div></div></div>
+<div class="step-item"><div class="step-num">15'</div><div class="step-body"><div class="step-title">Gemini busca (cada um por si)</div><div class="step-desc">Cada residente usa o seu próprio PICO como pergunta de busca. Gemini + Scholar. Salve os 3 artigos mais relevantes.</div><button class="open-ai-btn gemini" onclick="openAI('gemini','')">🔵 Abrir o Gemini</button></div></div>
+<div class="step-item"><div class="step-num">15'</div><div class="step-body"><div class="step-title">Claude analisa (individual)</div><div class="step-desc">Carregar PDF no Claude (Projeto GO/MDV). Usar o prompt de análise crítica. Anotar NNT, qualidade GRADE, conclusão.</div><button class="open-ai-btn claude" onclick="openAI('claude','')">🟡 Abrir o Claude</button></div></div>
+<div class="step-item"><div class="step-num">5'</div><div class="step-body"><div class="step-title">GPT sintetiza (individual)</div><div class="step-desc">Cole a análise do Claude no GPT e peça a síntese no formato fixo — é o seu slide pronto para apresentar.</div><button class="open-ai-btn gpt" onclick="openAI('chatgpt','')">🟣 Abrir o GPT</button></div></div>
+<div class="step-item"><div class="step-num">10'</div><div class="step-body"><div class="step-title">Validação coletiva</div><div class="step-desc">Em grupo, 3-4 residentes compartilham seus achados e constroem o veredicto. Adriana acrescenta o olhar da vigilância em saúde e contextualiza para Joinville.</div></div></div>
 </div>`,
       prompts:{
         titulo:'Análise Crítica de Artigo GO — Claude',
@@ -4483,6 +4614,8 @@ Quais são os principais estudos? Qual o NNT? Qual o posicionamento atual da FEB
 5. Limitações declaradas pelos autores
 6. Aplicabilidade para maternidade de referência no Brasil`},
         nivel3:{label:'Nível 3 · AIMED Análise Científica GO', desc:'Análise completa com GRADE e aplicabilidade MDV', texto:`[A] Você é revisor de periódico especializado em GO e medicina baseada em evidências. Combina rigor metodológico com aplicabilidade clínica para o contexto brasileiro.
+
+[BASTÃO] Você é a Estação 3 (Analista) do revezamento. Recebe: os artigos/PDFs que o Gemini encontrou (Estação 2). Entrega: sua análise crítica para o GPT (Estação 4).
 
 [I] Artigo carregado: [título do artigo — o PDF está no contexto]
 Minha pergunta PICO: [cole seu PICO aqui]
@@ -4518,7 +4651,9 @@ Contexto de aplicação: Maternidade Darcy Vargas, Joinville/SC — referência 
 [D]
 - Se o artigo for de baixa qualidade: declarar explicitamente, não usá-lo como argumento forte
 - Não extrapolar conclusões além do que os dados permitem
-- Se o estudo vier de contexto de alta renda (EUA, Europa): alertar sobre limitações de generalização`}
+- Se o estudo vier de contexto de alta renda (EUA, Europa): alertar sobre limitações de generalização
+
+[PRÓXIMO PASSO] Ao final, entregue a análise em um bloco copiável e escreva em uma linha: "➡️ Próximo passo: leve esta análise ao GPT (Sintetizador · Estação 4) para virar a síntese de apresentação."`}
       }
     },
     {id:'cafe-2', horario:'10:00–10:15', titulo:'Café · Intervalo', summary:'Pausa.', avatar:null, conteudo:`<div class="callout"><div class="callout-label">Intervalo · 15 min</div><p>Consulte os artigos que encontrou. Salve os PDFs para carregar no Claude Projects. Se não conseguiu artigos com o Gemini, tente com o ChatGPT + Scholar — ou peça ajuda.</p></div>`, prompts:null, isBreak:true},
@@ -4553,7 +4688,7 @@ Contexto de aplicação: Maternidade Darcy Vargas, Joinville/SC — referência 
 2. Cite a página e o nível de evidência.
 
 3. Existe alguma divergência com o que está nos protocolos MDV carregados?`},
-        nivel3:{label:'Nível 3 · Síntese MDV — Revisão de Óbito', desc:'Query para discussão de caso de mortalidade materna', texto:`Baseando-se em todos os documentos carregados neste Notebook (FEBRASGO + protocolos MDV + literatura selecionada):
+        nivel3:{label:'Nível 3 · Síntese MDV — Revisão de Óbito', desc:'Pergunta para discussão de caso de mortalidade materna', texto:`Baseando-se em todos os documentos carregados neste Notebook (FEBRASGO + protocolos MDV + literatura selecionada):
 
 CASO EM DISCUSSÃO: [descreva o caso brevemente — anonimizado]
 
@@ -4832,12 +4967,12 @@ Para o arquivo do grupo (não vai ao prontuário):
     },
     {
       id:'apresentacoes-mdv', horario:'16:30–17:30', titulo:'Nossa Ferramenta MDV — Apresentações',
-      summary:'Cada residente (ou dupla) apresenta a ferramenta que construiu. A melhor versão se torna Nossa Ferramenta MDV v1.0 — carregada no Projeto Claude GO/MDV de todas.',
+      summary:'Cada residente apresenta a ferramenta que construiu. A melhor versão se torna Nossa Ferramenta MDV v1.0 — carregada no Projeto Claude GO/MDV de todas.',
       avatar:'ZHlodCCHYLY',
       conteudo:`<h3>O momento de mostrar o que foi construído</h3>
 <p>Não é apresentação de slide. É demonstração ao vivo: cada residente abre a IA no celular, cola o prompt, e mostra o resultado na tela. O grupo observa, sugere ajuste, e a ferramenta melhora em tempo real.</p>
 <div class="steps-guide">
-<div class="step-item"><div class="step-num">05'</div><div class="step-body"><div class="step-title">Apresentação individual (ou dupla)</div><div class="step-desc">Prompt + resultado ao vivo. "Esta ferramenta resolve [qual problema no plantão da MDV]. Vou demonstrar com [este caso]."</div></div></div>
+<div class="step-item"><div class="step-num">05'</div><div class="step-body"><div class="step-title">Apresentação individual</div><div class="step-desc">Prompt + resultado ao vivo. "Esta ferramenta resolve [qual problema no plantão da MDV]. Vou demonstrar com [este caso]."</div></div></div>
 <div class="step-item"><div class="step-num">02'</div><div class="step-body"><div class="step-title">Feedback do grupo</div><div class="step-desc">Uma sugestão de cada. Sem crítica genérica — sugestão concreta: "Adicionaria [X] no campo D para cobrir [situação Y]."</div></div></div>
 <div class="step-item"><div class="step-num">03'</div><div class="step-body"><div class="step-title">Votação — Nossa Ferramenta v1.0</div><div class="step-desc">Ao final das apresentações: qual ferramenta (ou combinação de ferramentas) o grupo escolhe como a versão coletiva?</div></div></div>
 </div>
@@ -4908,40 +5043,60 @@ Para o arquivo do grupo (não vai ao prontuário):
 // ── BIBLIOTECA GO ──
 const BIBLIOTECA = [
   {
-    id:'pesquisa', icon:'🔬', titulo:'Kit de Pesquisa Orquestrada GO',
-    desc:'Gemini busca · Claude analisa PDFs · GPT sintetiza. Fluxo completo de 3 IAs para qualquer dúvida clínica GO com evidência de qualidade.',
-    tags:['universal'], specs:['universal'], prompt:`[FLUXO COMPLETO — 3 ETAPAS, 3 IAs]
+    id:'pesquisa', icon:'🔬', titulo:'Kit de Pesquisa Orquestrada — Revezamento de 3 IAs',
+    desc:'Gemini busca · Claude analisa PDFs · GPT sintetiza. Revezamento completo de 3 IAs para qualquer dúvida clínica, de qualquer especialidade. Cada estação sabe o que recebe e o que entrega — e a saída do GPT já vem pronta para o slide.',
+    tags:['universal'], specs:['universal'], prompt:`[REVEZAMENTO DE 3 IAs · cada estação sabe o que recebe e o que entrega]
 
-━━━ ETAPA 1 · GEMINI (busca) ━━━
-Use no Gemini com Google Scholar ativado:
+━━━ ESTAÇÃO 1 · GEMINI (Buscador) ━━━
+Recebe: o seu PICO.  Entrega: a lista de artigos para o Claude.
+Use no Gemini com o Google Scholar ativado:
 
-"Faça uma busca acadêmica sobre [TEMA GO].
-PICO: P=[sua população] I=[intervenção] C=[comparação] O=[desfecho]
+"Faça uma busca acadêmica sobre [TEMA].
+PICO: P=[população] I=[intervenção] C=[comparação] O=[desfecho]
 Filtros: RCTs e revisões sistemáticas · últimos 10 anos · humanos.
-Entregue: lista com 5 artigos mais relevantes + DOI + 1 frase de relevância para cada."
+Entregue uma lista com os 5 artigos mais relevantes, cada um com: título · DOI · 1 frase de relevância.
+Ao final escreva: 'Próximo passo: baixe os PDFs e leve ao Claude (Estação 2).'"
 
-━━━ ETAPA 2 · CLAUDE (análise de PDF) ━━━
-[Carregue os PDFs no Claude Projeto GO/MDV]
+━━━ ESTAÇÃO 2 · CLAUDE (Analista) ━━━
+Recebe: os PDFs que o Gemini encontrou.  Entrega: a análise crítica para o GPT.
+[Carregue os PDFs no Claude · Projeto GO/MDV]
 
-"Analise criticamente estes artigos sobre [TEMA].
-Para cada um:
+"Analise criticamente estes artigos sobre [TEMA]. Para cada um:
 1. Tipo de estudo e nível de evidência (Oxford / GRADE)
 2. N amostral e poder estatístico
 3. Resultado principal com IC 95%
 4. NNT ou NNH (calcule se não estiver explícito)
 5. Principal viés e limitação
-6. Aplicabilidade para maternidade SUS brasileira"
+6. Aplicabilidade ao SUS brasileiro
+Ao final, entregue a análise em bloco copiável e escreva: 'Próximo passo: leve esta análise ao GPT (Estação 3).'"
 
-━━━ ETAPA 3 · GPT (síntese) ━━━
-[Cole o resultado do Claude no GPT]
+━━━ ESTAÇÃO 3 · GPT (Sintetizador) — ⚠️ esta saída É o seu material de apresentação ━━━
+Recebe: a análise crítica do Claude.  Entrega: a síntese final, pronta para o slide.
+[Cole a análise do Claude no GPT]
 
-"Com base nesta análise crítica de [N] artigos sobre [TEMA]:
-1. Qual é o consenso atual da evidência?
-2. Onde há divergência entre os estudos?
-3. O que a FEBRASGO e o ACOG recomendam — convergem ou divergem?
-4. Escreva um parágrafo de síntese pronto para apresentação em reunião clínica."
+"Você é o sintetizador final do revezamento. Recebeu a análise crítica de [N] artigos sobre [TEMA], feita pelo Claude.
+Sua única tarefa: produzir o ENTREGÁVEL DE APRESENTAÇÃO no formato EXATO abaixo. Não invente nada que não esteja na análise recebida. Não acrescente seções fora do formato.
 
-⚠️ Regra de ouro: nunca fabricar referência. Se não houver estudo de qualidade, declarar lacuna.`
+FORMATO OBRIGATÓRIO DA SAÍDA (preencha cada campo, mantenha os rótulos):
+
+📌 TEMA: [protocolo / pergunta em uma linha]
+🎯 PICO: P=[ ] · I=[ ] · C=[ ] · O=[ ]
+📚 EVIDÊNCIA (no máximo 3 pontos):
+   1) [achado + estudo + nível de evidência]
+   2) [achado + estudo + nível de evidência]
+   3) [achado + estudo + nível de evidência]
+📊 NÚMEROS-CHAVE: NNT=[ ] · NNH=[ ] · qualidade GRADE=[ ]
+⚖️ DIRETRIZES: [diretriz de referência da área — FEBRASGO / GINA / RCOG / EASL / OMS / MS] — convergem ou divergem? Por quê?
+✅ VEREDICTO PARA A PRÁTICA (1 frase acionável): [ ]
+⚠️ LIMITES / CONFERIR ANTES DE APRESENTAR: [lacunas e o que checar na fonte primária]
+
+REGRAS DE FORMATO (obrigatórias):
+- Tudo cabe em 1 slide. Linguagem para colegas médicos, não para leigos.
+- Todo número vem com a fonte ao lado. Nenhuma afirmação sem referência.
+- Campo sem dado na análise recebida = escreva 'não disponível'. NUNCA invente.
+- Entregue apenas o bloco acima, nada além dele."
+
+⚠️ Regra de ouro do revezamento — vale em todas as estações: nunca fabricar referência. Se faltar evidência de qualidade, declarar a lacuna.`
   },
   {
     id:'tc-ultra', icon:'⚔️', titulo:'Consilium Adversarium · Ultra GO',
@@ -6037,6 +6192,36 @@ function renderPromptBox(modulo){
 </div></div>`;
 }
 
+// ── TRILHA TDC (flow stepper) ──
+function renderTdcFlow(moduloId){
+  var PH={'abertura-go':null,'tc-semente-go':'plantar','ponte-dia2':'plantar','retomada-go':'cultivar','pico-go':'cultivar','tres-ias-go':'cultivar','notebooklm-go':'cultivar','tc-colheita-go':'colher'};
+  if(!(moduloId in PH))return'';
+  var active=PH[moduloId];
+  var steps=[
+    {k:'plantar',n:1,ic:'🌱',nome:'Plantar',quando:'Sexta · noite',go:'tc-semente-go',faz:'Escolha um protocolo que você segue toda semana. A IA forja o argumento contrário mais forte. Durma com a questão — não precisa resolver hoje.'},
+    {k:'cultivar',n:2,ic:'🔬',nome:'Cultivar',quando:'Sábado · manhã',go:'pico-go',faz:'Transforme a dúvida em pergunta PICO e pesquise a evidência real: Gemini busca, Claude analisa os PDFs, GPT sintetiza, NotebookLM lembra os protocolos.'},
+    {k:'colher',n:3,ic:'🌾',nome:'Colher',quando:'Sábado · tarde',go:'tc-colheita-go',faz:'Veredicto em 90 segundos: o protocolo sobrevive ao contrário? Com qual modificação? Sem qual evidência?'}
+  ];
+  var sub=active?'Você está na trilha — as 3 fases acontecem nesta ordem. Toque numa fase para ir até ela.':'A jornada do curso em 3 fases — este é o fio que conecta os dois dias. Toque numa fase para começar.';
+  var h='<div class="tdc-flow"><div class="tdc-flow-head"><span class="tdc-flow-kicker">⚑ Trilha da Teoria do Contrário</span><span class="tdc-flow-sub">'+sub+'</span></div><div class="tdc-flow-track">';
+  steps.forEach(function(s,i){
+    var on=s.k===active;
+    h+='<button class="tdc-step '+s.k+(on?' active':'')+'" onclick="navigateTo(\''+s.go+'\')"><div class="tdc-step-top"><span class="tdc-step-num">'+s.n+'</span><span class="tdc-step-icon">'+s.ic+'</span></div><div class="tdc-step-name">'+s.nome+'</div><div class="tdc-step-when">'+s.quando+'</div><div class="tdc-step-do">'+s.faz+'</div>'+(on?'<div class="tdc-step-here">● você está aqui</div>':'')+'</button>';
+    if(i<steps.length-1)h+='<div class="tdc-arrow">→</div>';
+  });
+  return h+'</div></div>';
+}
+
+// ── NEXT STEP (próximo passo na orquestra) ──
+function renderNextStep(moduloId){
+  var NS={
+    'pico-go':{est:'Estação 1 → 2',txt:'Seu PICO ficou pronto. Agora faça assim, na ordem:<br><b>1)</b> Copie os <b>3 termos de busca</b> que a IA gerou.<br><b>2)</b> Abra o <b>🔵 Gemini</b> (o botão abaixo leva ao módulo dele).<br><b>3)</b> Cole os termos e mande buscar — ele traz os artigos.',ai:'gemini',aiLabel:'🔵 Abrir o Gemini',go:'tres-ias-go',btn:'Ir para a orquestra das 3 IAs'},
+    'tres-ias-go':{est:'Estação 3 → 4',txt:'Você já tem a <b>análise do Claude</b>. Agora faça assim:<br><b>1)</b> Copie a análise inteira.<br><b>2)</b> Abra o <b>🟣 GPT</b> e cole.<br><b>3)</b> Peça a síntese no formato fixo — ela é o seu slide pronto.<br>Depois, leve o veredicto para a <b>Colheita</b>.',ai:'chatgpt',aiLabel:'🟣 Abrir o GPT',go:'tc-colheita-go',btn:'Ir para a Colheita da TdC'}
+  };
+  var n=NS[moduloId];if(!n)return'';
+  return'<div class="next-step"><div class="next-step-icon">➡️</div><div class="next-step-body"><div class="next-step-label">Próximo passo na orquestra · '+n.est+'</div><div class="next-step-text">'+n.txt+'</div><div class="next-step-actions"><button class="open-ai-btn '+(n.ai==='chatgpt'?'gpt':n.ai)+'" onclick="openAI(\''+n.ai+'\',\'\')">'+n.aiLabel+'</button><button class="next-step-btn" onclick="navigateTo(\''+n.go+'\')">'+n.btn+' →</button></div></div></div>';
+}
+
 // ── RENDER MODULE ──
 function renderModule(modulo,bloco){
   const corMap=COR_BLOCO;
@@ -6045,7 +6230,7 @@ function renderModule(modulo,bloco){
   const hasPrompts=modulo.prompts&&modulo.prompts.nivel1;
   const levelSwitcher=document.getElementById('levelSwitcher');
   if(levelSwitcher)levelSwitcher.style.display=hasPrompts?'flex':'none';
-  return`<div class="module-header">
+  return`${renderTdcFlow(modulo.id)}<div class="module-header">
 <div class="module-block-tag"><div class="tag-dot" style="background:${cor}"></div><span style="color:${cor}">Bloco 0${bloco.numero} · ${bloco.role}</span></div>
 <div class="module-header-time">${modulo.horario}</div>
 <h1>${modulo.titulo}</h1>
@@ -6053,7 +6238,7 @@ function renderModule(modulo,bloco){
 </div>
 ${avatarHtml}
 <div class="module-body">${aplicarGlossario(modulo.conteudo)}</div>
-${renderPromptBox(modulo)}${renderModuleNav(modulo.id)}`;
+${renderPromptBox(modulo)}${renderNextStep(modulo.id)}${renderModuleNav(modulo.id)}`;
 }
 
 // ── NAVIGATE ──
