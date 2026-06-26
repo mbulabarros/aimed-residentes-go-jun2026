@@ -4576,11 +4576,11 @@ Quais são os principais estudos? Qual o NNT? Qual o posicionamento atual da FEB
 <div class="relay">
 <div class="relay-node n-voce"><div class="relay-badge">👤</div><div class="relay-body"><div class="relay-step">Estação 1 · você</div><div class="relay-name">Você + PICO</div><div class="relay-io"><b>Recebe:</b> sua dúvida da Teoria do Contrário · <b>Entrega:</b> o PICO + 3 termos de busca</div></div></div>
 <div class="relay-baton">passa o bastão para o Gemini</div>
-<div class="relay-node n-gemini"><div class="relay-badge">🔵</div><div class="relay-body"><div class="relay-step">Estação 2 · buscador</div><div class="relay-name">Gemini</div><div class="relay-io"><b>Recebe:</b> o PICO / termos de busca · <b>Entrega:</b> lista de artigos + DOI + relevância</div><button class="open-ai-btn gemini" onclick="openAI('gemini','')">🔵 Abrir o Gemini</button></div></div>
+<div class="relay-node n-gemini"><div class="relay-badge">🔵</div><div class="relay-body"><div class="relay-step">Estação 2 · buscador</div><div class="relay-name">Gemini</div><div class="relay-io"><b>Recebe:</b> o PICO / termos de busca · <b>Entrega:</b> lista de artigos + DOI + relevância</div></div></div>
 <div class="relay-baton">passa o bastão para o Claude</div>
-<div class="relay-node n-claude"><div class="relay-badge">🟡</div><div class="relay-body"><div class="relay-step">Estação 3 · analista</div><div class="relay-name">Claude</div><div class="relay-io"><b>Recebe:</b> os PDFs dos artigos · <b>Entrega:</b> análise crítica (GRADE · NNT/NNH · viés)</div><button class="open-ai-btn claude" onclick="openAI('claude','')">🟡 Abrir o Claude</button></div></div>
+<div class="relay-node n-claude"><div class="relay-badge">🟡</div><div class="relay-body"><div class="relay-step">Estação 3 · analista</div><div class="relay-name">Claude</div><div class="relay-io"><b>Recebe:</b> os PDFs dos artigos · <b>Entrega:</b> análise crítica (GRADE · NNT/NNH · viés)</div></div></div>
 <div class="relay-baton">passa o bastão para o GPT</div>
-<div class="relay-node n-gpt"><div class="relay-badge">🟣</div><div class="relay-body"><div class="relay-step">Estação 4 · sintetizador</div><div class="relay-name">GPT</div><div class="relay-io"><b>Recebe:</b> a análise do Claude · <b>Entrega:</b> a SÍNTESE pronta para o seu slide</div><button class="open-ai-btn gpt" onclick="openAI('chatgpt','')">🟣 Abrir o GPT</button></div></div>
+<div class="relay-node n-gpt"><div class="relay-badge">🟣</div><div class="relay-body"><div class="relay-step">Estação 4 · sintetizador</div><div class="relay-name">GPT</div><div class="relay-io"><b>Recebe:</b> a análise do Claude · <b>Entrega:</b> a SÍNTESE pronta para o seu slide</div></div></div>
 <div class="relay-baton">passa o bastão para a equipe</div>
 <div class="relay-node n-equipe"><div class="relay-badge">👥</div><div class="relay-body"><div class="relay-step">Estação 5 · validação</div><div class="relay-name">A equipe (todos juntos)</div><div class="relay-io"><b>Recebe:</b> a síntese · <b>Entrega:</b> o veredicto da TdC, decidido em grupo (na Colheita)</div></div></div>
 </div>
@@ -4593,11 +4593,35 @@ Quais são os principais estudos? Qual o NNT? Qual o posicionamento atual da FEB
 <div class="callout"><div class="callout-label">O papel de Adriana — o olhar que nenhuma clínica tem</div><p>Adriana participa como enfermeira de Terapia Intensiva, com grande conhecimento de Vigilância em Saúde. Ela não vai comentar conduta obstétrica nem subir dados identificáveis — mas faz algo insubstituível: traz o <strong>olhar da vigilância em saúde</strong> e as perguntas certas. <em>"Que perfil de gestante costuma chegar ao PS com esse quadro?"</em> <em>"Que desfechos pós-alta a vigilância costuma observar nesse tipo de caso?"</em> Isso é o que uma profissional de terapia intensiva com essa bagagem em saúde pública traz e nenhuma IA substitui.</p></div>
 <h3>O fluxo completo em 45 minutos</h3>
 <div class="steps-guide">
-<div class="step-item"><div class="step-num">15'</div><div class="step-body"><div class="step-title">Gemini busca (cada um por si)</div><div class="step-desc">Cada residente usa o seu próprio PICO como pergunta de busca. Gemini + Scholar. Salve os 3 artigos mais relevantes.</div><button class="open-ai-btn gemini" onclick="openAI('gemini','')">🔵 Abrir o Gemini</button></div></div>
-<div class="step-item"><div class="step-num">15'</div><div class="step-body"><div class="step-title">Claude analisa (individual)</div><div class="step-desc">Carregar PDF no Claude (Projeto GO/MDV). Usar o prompt de análise crítica. Anotar NNT, qualidade GRADE, conclusão.</div><button class="open-ai-btn claude" onclick="openAI('claude','')">🟡 Abrir o Claude</button></div></div>
-<div class="step-item"><div class="step-num">5'</div><div class="step-body"><div class="step-title">GPT sintetiza (individual)</div><div class="step-desc">Cole a análise do Claude no GPT e peça a síntese no formato fixo — é o seu slide pronto para apresentar.</div><button class="open-ai-btn gpt" onclick="openAI('chatgpt','')">🟣 Abrir o GPT</button></div></div>
+<div class="step-item"><div class="step-num">15'</div><div class="step-body"><div class="step-title">Gemini busca (cada um por si)</div><div class="step-desc">Cada residente usa o seu próprio PICO como pergunta de busca. Gemini + Scholar. Salve os 3 artigos mais relevantes.</div></div></div>
+<div class="step-item"><div class="step-num">15'</div><div class="step-body"><div class="step-title">Claude analisa (individual)</div><div class="step-desc">Carregar PDF no Claude (Projeto GO/MDV). Usar o prompt de análise crítica. Anotar NNT, qualidade GRADE, conclusão.</div></div></div>
+<div class="step-item"><div class="step-num">5'</div><div class="step-body"><div class="step-title">GPT sintetiza (individual)</div><div class="step-desc">Cole a análise do Claude no GPT e peça a síntese no formato fixo — é o seu slide pronto para apresentar.</div></div></div>
 <div class="step-item"><div class="step-num">10'</div><div class="step-body"><div class="step-title">Validação coletiva</div><div class="step-desc">Em grupo, 3-4 residentes compartilham seus achados e constroem o veredicto. Adriana acrescenta o olhar da vigilância em saúde e contextualiza para Joinville.</div></div></div>
-</div>`,
+</div>
+<h3>Kit das 3 IAs — copie e abra</h3>
+<p>Os três prompts do revezamento, prontos para colar. O <strong>Claude</strong> (a análise — o coração) é o bloco detalhado logo abaixo, com os níveis N1/N2/N3. Aqui ficam os atalhos das duas pontas:</p>
+<div class="prompt-title" style="margin-top:14px">1️⃣ Gemini · busca (Estação 1)</div>
+<div class="prompt-box" id="kit-gemini">Faça uma busca acadêmica sobre [TEMA].
+PICO: P=[população] I=[intervenção] C=[comparação] O=[desfecho]
+Filtros: ensaios clínicos e revisões sistemáticas · últimos 10 anos · humanos.
+Entregue os 5 artigos mais relevantes, cada um com: título · DOI · 1 frase de relevância.
+Ao final escreva: "Próximo passo: baixe os PDFs e leve ao Claude."</div>
+<div class="prompt-actions"><button class="btn-copy" data-cp="copy" data-pid="kit-gemini">📋 Copiar prompt</button><button class="btn-open gemini" data-cp="gemini" data-pid="kit-gemini">Abrir no Gemini</button></div>
+<div class="prompt-title" style="margin-top:18px">2️⃣ Claude · análise (Estação 2)</div>
+<p style="margin:6px 0 0">⬇️ O prompt do Claude é o bloco completo logo abaixo — com Copiar, Abrir no Claude e os níveis N1/N2/N3.</p>
+<div class="prompt-title" style="margin-top:18px">3️⃣ GPT · síntese (Estação 3) — esta saída é o seu slide</div>
+<div class="prompt-box" id="kit-gpt">Você é o sintetizador final do revezamento. Recebeu a análise crítica do Claude sobre [TEMA].
+Sua tarefa: produzir o ENTREGÁVEL DE APRESENTAÇÃO no formato EXATO abaixo. Não invente nada fora da análise recebida.
+
+FORMATO OBRIGATÓRIO (preencha cada campo, mantenha os rótulos):
+📌 TEMA: [protocolo / pergunta em uma linha]
+🎯 PICO: P=[ ] · I=[ ] · C=[ ] · O=[ ]
+📚 EVIDÊNCIA (máx. 3): 1) [achado + estudo + nível] 2) [...] 3) [...]
+📊 NÚMEROS-CHAVE: NNT=[ ] · NNH=[ ] · GRADE=[ ]
+⚖️ DIRETRIZES: [FEBRASGO / GINA / RCOG / EASL / OMS / MS] — convergem ou divergem? Por quê?
+✅ VEREDICTO (1 frase acionável): [ ]</div>
+<div class="prompt-actions"><button class="btn-copy" data-cp="copy" data-pid="kit-gpt">📋 Copiar prompt</button><button class="btn-open gpt" data-cp="chatgpt" data-pid="kit-gpt">Abrir no GPT</button></div>
+`,
       prompts:{
         titulo:'Análise Crítica de Artigo GO — Claude',
         subtitulo:'Cole o PDF no Claude (Projeto GO/MDV) e use este prompt',
