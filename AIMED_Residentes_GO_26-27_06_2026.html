@@ -4599,10 +4599,10 @@ Quais são os principais estudos? Qual o NNT? Qual o posicionamento atual da FEB
 <div class="step-item"><div class="step-num">10'</div><div class="step-body"><div class="step-title">Validação coletiva</div><div class="step-desc">Em grupo, 3-4 residentes compartilham seus achados e constroem o veredicto. Adriana acrescenta o olhar da vigilância em saúde e contextualiza para Joinville.</div></div></div>
 </div>
 <h3>Kit das 3 IAs — copie e abra</h3>
-<p>Os três prompts do revezamento, prontos para colar. O <strong>Claude</strong> (a análise — o coração) é o bloco detalhado logo abaixo, com os níveis N1/N2/N3. Aqui ficam os atalhos das duas pontas:</p>
-<div class="prompt-title" style="margin-top:14px">1️⃣ Gemini · busca (Estação 1)</div>
+<p>Os três prompts do revezamento, <strong>na ordem</strong>: Gemini busca → Claude analisa → GPT sintetiza. Copie cada um ou abra direto na IA. Comece colando abaixo o PICO que você criou no passo anterior — ele entra sozinho na busca do Gemini.</p>
+<div style="background:var(--navy);border:1px solid var(--border-dim);border-radius:var(--radius);padding:14px 16px;margin:14px 0"><div style="font-size:0.78rem;font-weight:600;color:var(--gold);margin-bottom:8px">📋 Cole aqui o PICO que você criou no passo anterior — ele entra sozinho na busca do Gemini:</div><textarea id="pico-input" rows="3" placeholder="P=[população] · I=[intervenção] · C=[comparação] · O=[desfecho]" style="width:100%;box-sizing:border-box;background:var(--navy-light);color:var(--text);border:1px solid var(--border-dim);border-radius:8px;padding:10px;font-family:'DM Mono',monospace;font-size:0.78rem;line-height:1.6;resize:vertical"></textarea></div><div class="prompt-title" style="margin-top:14px">1️⃣ Gemini · busca (Estação 1)</div>
 <div class="prompt-box" id="kit-gemini">Faça uma busca acadêmica sobre [TEMA].
-PICO: P=[população] I=[intervenção] C=[comparação] O=[desfecho]
+<span id="gemini-pico">PICO: P=[população] I=[intervenção] C=[comparação] O=[desfecho]</span>
 Filtros: ensaios clínicos e revisões sistemáticas · últimos 10 anos · humanos.
 Entregue os 5 artigos mais relevantes, cada um com: título · DOI · 1 frase de relevância.
 Ao final escreva: "Próximo passo: baixe os PDFs e leve ao Claude."</div>
@@ -7488,5 +7488,6 @@ document.addEventListener("click",function(e){var b=e.target.closest("[data-tdc]
 window.addEventListener("load",function(){setTimeout(render,200);});
 })();
 </script>
+<script>(function(){if(window.__picoBridge)return;window.__picoBridge=true;function apply(v){var sp=document.getElementById("gemini-pico");if(!sp)return;v=(v||"").trim();sp.textContent=v?(/pico/i.test(v)?v:"PICO: "+v):"PICO: P=[população] I=[intervenção] C=[comparação] O=[desfecho]";}function hook(){var ta=document.getElementById("pico-input");if(!ta||ta.__b)return;ta.__b=true;var saved=null;try{saved=localStorage.getItem("aimed_pico");}catch(e){}if(saved){ta.value=saved;}apply(ta.value);ta.addEventListener("input",function(){try{localStorage.setItem("aimed_pico",ta.value);}catch(e){}apply(ta.value);});}document.addEventListener("click",function(e){var oc=e.target.closest("[onclick]");if(e.target.closest(".level-btn")||(oc&&/navigateTo/.test(oc.getAttribute("onclick")||""))){setTimeout(hook,90);}});window.addEventListener("load",function(){setTimeout(hook,220);});})();</script>
 </body>
 </html>
