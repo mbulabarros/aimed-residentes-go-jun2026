@@ -3086,6 +3086,7 @@ input[type="date"].calc-input { color-scheme: dark; }
           <a href="https://gemini.google.com" target="_blank" rel="noopener noreferrer" style="color:var(--text-dim);text-decoration:none;padding:10px 14px;background:var(--navy-light);border-radius:var(--radius);border:1px solid var(--border-dim);display:flex;justify-content:space-between;align-items:center"><span>Gemini</span><span style="font-size:0.72rem;color:var(--text-muted)">gemini.google.com ↗</span></a>
           <a href="https://claude.ai" target="_blank" rel="noopener noreferrer" style="color:var(--text-dim);text-decoration:none;padding:10px 14px;background:var(--navy-light);border-radius:var(--radius);border:1px solid var(--border-dim);display:flex;justify-content:space-between;align-items:center"><span>Claude</span><span style="font-size:0.72rem;color:var(--text-muted)">claude.ai ↗</span></a>
           <a href="https://chatgpt.com" target="_blank" rel="noopener noreferrer" style="color:var(--text-dim);text-decoration:none;padding:10px 14px;background:var(--navy-light);border-radius:var(--radius);border:1px solid var(--border-dim);display:flex;justify-content:space-between;align-items:center"><span>ChatGPT</span><span style="font-size:0.72rem;color:var(--text-muted)">chatgpt.com ↗</span></a>
+          <a href="https://chatgpt.com/gpts" target="_blank" rel="noopener noreferrer" style="color:var(--text-dim);text-decoration:none;padding:10px 14px;background:var(--navy-light);border-radius:var(--radius);border:1px solid var(--border-dim);display:flex;justify-content:space-between;align-items:center"><span>🧩 Explorar GPTs</span><span style="font-size:0.72rem;color:var(--text-muted)">chatgpt.com/gpts ↗</span></a>
           <a href="https://notebooklm.google.com" target="_blank" rel="noopener noreferrer" style="color:var(--text-dim);text-decoration:none;padding:10px 14px;background:var(--navy-light);border-radius:var(--radius);border:1px solid var(--border-dim);display:flex;justify-content:space-between;align-items:center"><span>NotebookLM</span><span style="font-size:0.72rem;color:var(--text-muted)">notebooklm.google.com ↗</span></a>
         </div>
       </div>
@@ -4631,7 +4632,7 @@ FORMATO OBRIGATÓRIO (preencha cada campo, mantenha os rótulos):
 📊 NÚMEROS-CHAVE: NNT=[ ] · NNH=[ ] · GRADE=[ ]
 ⚖️ DIRETRIZES: [FEBRASGO / GINA / RCOG / EASL / OMS / MS] — convergem ou divergem? Por quê?
 ✅ VEREDICTO (1 frase acionável): [ ]</div>
-<div class="prompt-actions"><button class="btn-copy" data-cp="copy" data-pid="kit-gpt">📋 Copiar prompt</button><button class="btn-open gpt" data-cp="chatgpt" data-pid="kit-gpt">Abrir no GPT</button></div>
+<div class="prompt-actions"><button class="btn-copy" data-cp="copy" data-pid="kit-gpt">📋 Copiar prompt</button><button class="btn-open gpt" onclick="copyToClipboard(document.getElementById('kit-gpt').innerText,this);window.open('https://chatgpt.com/gpts','_blank','noopener');">Abrir GPTs ↗</button></div>
 `,
       prompts:null
     },
